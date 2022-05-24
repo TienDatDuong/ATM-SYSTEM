@@ -2,8 +2,6 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-import { API_URL } from "./constant/Config"
-import callApi from  "./ApiCaller"
 function App() {
   const [users, setUsers] = useState([]);
   const [amount, setAmount] = useState("");
@@ -13,24 +11,21 @@ function App() {
     {
       createdAt: createdAt,
       accountNumber: accountNumber,
-      amount: amount,
+      amount: +amount,
       id: uuidv4(),
     },
   ];
-
+  console.log(datas);
+  console.log(createdAt);
   useEffect(() => {
-    
+    const getWithdraws = async () => {
+      const res = await axios.get(
+        "https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws"
+      );
+      setUsers(res.data);
+    };
+    getWithdraws();
   }, []);
-
-  // useEffect(() => {
-  //   const UserBank = async () => {
-  //     const res = await axios.get(
-  //       "https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws"
-  //     );
-  //     setUsers(res.data);
-  //   };
-  //   UserBank();
-  // }, []);
 
   const handleAmount = (e) => {
     setAmount(e.target.value);
@@ -41,16 +36,28 @@ function App() {
   // debugger
   const AddListMember = (e) => {
     e.preventDefault();
-    setUsers([
-      ...users,
-      {
-        id: uuidv4(),
-        amount: Number(amount),
-        accountNumber: accountNumber,
-        createdAt: createdAt,
-      },
-    ]);
+    const createWithdraw = async () => {
+      const res = await axios.post(
+        "https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws",
+        { amount, accountNumber }
+      );
+      return res.data;
+    };
+    createWithdraw().then((abc) => setUsers([...users, abc]));
   };
+  const handleDelete = (id,e) => {
+        console.log(id)
+        e.preventDefault();
+        const deleteWithdraw = async () => {
+          const res = await axios.delete(`https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws/${id}`)
+          return res.data
+        }
+        deleteWithdraw().then((res)=> { 
+          const newabc = users.filter((p)=> p.id !== res.id)
+          setUsers(newabc)
+        })
+  }
+  // findIndex
   return (
     <>
       <div className="inputs">
@@ -86,6 +93,7 @@ function App() {
             <th>amount</th>
             <th>accountNumber</th>
             <th>createdAt</th>
+            <th>Action</th>
           </tr>
           {console.log(users)}
           {users.map((user) => (
@@ -94,6 +102,9 @@ function App() {
               <td>{user.amount}</td>
               <td>{user.accountNumber}</td>
               <td>{user.createdAt}</td>
+              <td>
+                <button type="" className="btnDelete" onClick={(e) => handleDelete(user.id,e)}>Delete</button>
+              </td>
             </tr>
           ))}
         </table>
