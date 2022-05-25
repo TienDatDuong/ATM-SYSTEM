@@ -6,21 +6,15 @@ import ChangeData from "./constant/ChangeData";
 import { type } from "@testing-library/user-event/dist/type";
 function App() {
   const [users, setUsers] = useState([]);
+  const [Member, setMember] = useState([]);
   const [amount, setAmount] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [changeAmount, setChangeAmount] = useState("");
   const [ChangeNumber, setChangeNumber] = useState("");
-  const [getid,setGetid] = useState("")
+  const [getid, setGetid] = useState("");
   const [createdAt, setCreatedAt] = useState(new Date());
   const [title, setTitle] = useState("Add UserBank");
-  const datas = [
-    {
-      createdAt: createdAt,
-      accountNumber: accountNumber,
-      amount: +amount,
-      id: uuidv4(),
-    },
-  ];
+
   useEffect(() => {
     const getWithdraws = async () => {
       const res = await axios.get(
@@ -37,6 +31,7 @@ function App() {
   const handleAmount = (e) => {
     setAmount(e.target.value);
   };
+
   const hanleNumber = (e) => {
     setAccountNumber(e.target.value);
   };
@@ -64,45 +59,63 @@ function App() {
 
     const newabc = users.filter((p) => p.id !== id);
     setUsers(newabc);
-    // })
   };
+
+  const fillUpdateForm = () => {};
 
   const handleUpdate = (user, e) => {
     e.preventDefault();
-    // <ChangeData />
     const UpdateWithdraw = async () => {
       const res = await axios.put(
-        `https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws/${user.id}`
+        `https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws/${user.id}`,{
+          amount: '',
+          accountNumber: ''
+        }
       );
       return res;
     };
     UpdateWithdraw().then((res) => {
-      // console.log("datdt", res.data, res.data.amount, res.data.id);
-      setChangeAmount(res.data.amount);
-      setChangeNumber(res.data.accountNumber);
-      setGetid(res.data.id)
-      // handleChangeDate(res.data)
-      // setAmount(changeAmount)
+      console.log("datdt", res.data, res.data.amount, res.data.id);
+      var data = res.data;
+      setMember({
+        id: data.id,
+        amount: data.amount,
+        accountNumber: data.accountNumber,
+      });
     });
   };
 
+  console.log("Member", Member);
+
   const handleChangeAmount = (e) => {
-    setChangeAmount(e.target.value);
+    setAmount(
+      e.target.value
+      // setMember({
+      //   amount:e.target.value,
+      // })
+    );
   };
 
   const handleChangeNumber = (e) => {
-    setChangeNumber(e.target.value);
-  };
-  // console.log("id:",getid)
-
-  const handleChangeDate = async () => {
-
-    const res = await axios.put(
-      `https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws/${getid}`
+    setAccountNumber(
+      e.target.value
+      // setMember({
+      //   accountNumber:e.target.value
+      // })
     );
-    // setUsers(res.data);
-    console.log("ressss",res.data)
-    // setAmount(res.data.amount)
+  };
+
+  console.log("Member.id", Member);
+  const handleChangeDate = async () => {
+    const res = await axios
+      .put(
+        `https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws/${Member.id}`,
+        { amount: Member.amount, accountNumber: Member.accountNumber }
+      )
+      .then((abc) => {
+        console.log("ressss", abc);
+        setUsers([...users, abc]);
+      });
   };
 
   return (
@@ -130,23 +143,23 @@ function App() {
             value={createdAt}
           />
           <input className="btn" type="submit" value={title} />
-{/* ---------------------------------- */}
+          {/* ---------------------------------- */}
           <div className="box">
             <input
               className="inputs-value"
               type="text"
               placeholder="amount"
-              value={changeAmount}
+              value={Member.amount}
               onChange={(e) => handleChangeAmount(e)}
             />
             <input
               className="inputs-value"
               type="text"
-              placeholder="amount"
-              value={ChangeNumber}
+              placeholder="accountNumber"
+              value={Member.accountNumber}
               onChange={(e) => handleChangeNumber(e)}
             />
-            <button className="btn" onClick={() => handleChangeDate()}>
+            <button className="btn" onClick={() => handleUpdate()}>
               Change
             </button>
             <button className="btn">Close</button>
@@ -180,7 +193,7 @@ function App() {
                 <button
                   type=""
                   className="btnDelete"
-                  onClick={(e) => handleUpdate(user, e)}
+                  onClick={(e) => fillUpdateForm(user)}
                 >
                   Update
                 </button>
