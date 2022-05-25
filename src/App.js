@@ -1,19 +1,15 @@
 import "./App.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
-import ChangeData from "./constant/ChangeData";
-import { type } from "@testing-library/user-event/dist/type";
+
 function App() {
   const [users, setUsers] = useState([]);
-  const [Member, setMember] = useState([]);
   const [amount, setAmount] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [changeAmount, setChangeAmount] = useState("");
   const [ChangeNumber, setChangeNumber] = useState("");
   const [getid, setGetid] = useState("");
   const [createdAt, setCreatedAt] = useState(new Date());
-  const [title, setTitle] = useState("Add UserBank");
 
   useEffect(() => {
     const getWithdraws = async () => {
@@ -61,61 +57,40 @@ function App() {
     setUsers(newabc);
   };
 
-  const fillUpdateForm = () => {};
-
-  const handleUpdate = (user, e) => {
+  const fillUpdateForm = (user) => {
+    setChangeAmount(user.amount)
+    setChangeNumber(user.accountNumber)
+    setGetid(user.id)
+  };
+  
+  const handleUpdate = (getid, e) => {
+    console.log("-----------",getid)
+    console.log("datdt---->",getid)
     e.preventDefault();
     const UpdateWithdraw = async () => {
       const res = await axios.put(
-        `https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws/${user.id}`,{
-          amount: '',
-          accountNumber: ''
+        `https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws/${getid}`,{
+          amount:changeAmount ,
+          accountNumber: ChangeNumber
         }
       );
-      return res;
+      return res.data;
     };
-    UpdateWithdraw().then((res) => {
-      console.log("datdt", res.data, res.data.amount, res.data.id);
-      var data = res.data;
-      setMember({
-        id: data.id,
-        amount: data.amount,
-        accountNumber: data.accountNumber,
-      });
+    UpdateWithdraw().then((abc) =>   {
+      const newid = users.filter((p)=> p.id !== abc.id)
+      setUsers([...newid,abc])
+      setChangeAmount("")
+      setChangeNumber("")
     });
   };
 
-  console.log("Member", Member);
 
   const handleChangeAmount = (e) => {
-    setAmount(
-      e.target.value
-      // setMember({
-      //   amount:e.target.value,
-      // })
-    );
+    setChangeAmount(e.target.value)
   };
 
   const handleChangeNumber = (e) => {
-    setAccountNumber(
-      e.target.value
-      // setMember({
-      //   accountNumber:e.target.value
-      // })
-    );
-  };
-
-  console.log("Member.id", Member);
-  const handleChangeDate = async () => {
-    const res = await axios
-      .put(
-        `https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws/${Member.id}`,
-        { amount: Member.amount, accountNumber: Member.accountNumber }
-      )
-      .then((abc) => {
-        console.log("ressss", abc);
-        setUsers([...users, abc]);
-      });
+    setChangeNumber(e.target.value);
   };
 
   return (
@@ -142,24 +117,26 @@ function App() {
             placeholder="createdAt"
             value={createdAt}
           />
-          <input className="btn" type="submit" value={title} />
+          <input className="btn" type="submit" value="Add UserBank" />
+
           {/* ---------------------------------- */}
+
           <div className="box">
             <input
               className="inputs-value"
               type="text"
               placeholder="amount"
-              value={Member.amount}
+              value={changeAmount}
               onChange={(e) => handleChangeAmount(e)}
             />
             <input
               className="inputs-value"
               type="text"
               placeholder="accountNumber"
-              value={Member.accountNumber}
+              value={ChangeNumber}
               onChange={(e) => handleChangeNumber(e)}
             />
-            <button className="btn" onClick={() => handleUpdate()}>
+            <button className="btn" onClick={(e) => handleUpdate(getid,e)}>
               Change
             </button>
             <button className="btn">Close</button>
