@@ -1,21 +1,33 @@
 .App{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  /* justify-content: center; */
   align-items: center;
   min-width: 100vh;
   min-height: 100vh;
-  margin-top: 20px;
+  margin-top:5%;
 }
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-
-tr,th,td{
+table{
+  margin-top: 30px;
+  border-collapse: collapse;
+}
+tr{
+  height: 35px;
+}
+tr:hover{
+  background-color: rgb(222, 205, 205);
+}
+th,td{
   border: 2px solid #000;
   min-width: 200px;
   height: 35px;
+  text-align: center;
+  border-spacing: 0px;
 }
 .inputs{
   margin-top: 20px;
@@ -34,7 +46,8 @@ tr,th,td{
   cursor: pointer;
   border-radius: 8px;
   border: none;
-  margin-left: 20px ;
+  min-width: 150px;
+  margin: 5px 20px  ;
 }
 .btn:hover{
   background-color: cornflowerblue;
@@ -46,12 +59,48 @@ tr,th,td{
 .boxChange{
   border: 2px solid black;
 }
-/* .box{
-  border: 2px solid #000;
-  width: 800px;
-  height: 50px;
-  position: absolute;
-  margin-left: 19%;
+.navBar{
+  width: 1000px;
+  height: 100px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.navBar_item{
+  font-size: 24px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 30px;
+  color: #000;
+  padding: 20px 25px;
+  min-width: 200px;
+  background-color: gray;
   text-align: center;
-  z-index: 20;
-} */
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 30px 80px;
+}
+.bg{
+  background-color: aqua;
+  width: 100%;
+  height: 100%;
+}
+.User{
+  text-decoration: none;
+  color: #000;
+}
+.header_menu{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 45%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  
+}
+.header_menu h3{
+  display: block;
+  margin: 10px;
+}
