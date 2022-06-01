@@ -94,13 +94,22 @@ th,td{
 .header_menu{
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
-  margin-left: 45%;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  padding: 5% 0 1% 0;
   
 }
 .header_menu h3{
   display: block;
   margin: 10px;
+}
+.menu{
+  background-color: skyblue;
+  min-width: 100vh;
+  min-height: 100vh;
+}
+.back-btn{
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
 }

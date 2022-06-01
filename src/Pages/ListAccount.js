@@ -1,62 +1,22 @@
 import "../App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import BalanceInquiry from "./Components/BalanceInquiry";
-// import Withdrawal from "./Components/Withdrawal";
 import { Link } from "react-router-dom";
-// import Moment from 'react-moment';
-function Account() {
-  const [users, setUsers] = useState([]);
-  const [amount, setAmount] = useState("");
-  const [accountNumber, setAccountNumber] = useState("");
+function ListAccount({
+  users,
+  setUsers,
+  amount,
+  handleAmount,
+  accountNumber,
+  hanleNumber,
+  handleDelete,
+  AddListMember
+}) {
   const [changeAmount, setChangeAmount] = useState("");
   const [ChangeNumber, setChangeNumber] = useState("");
   const [getid, setGetid] = useState("");
   const [createdAt, setCreatedAt] = useState(new Date());
   const [toggle, setToggle] = useState(false);
-
-  useEffect(() => {
-    const getWithdraws = async () => {
-      const res = await axios.get(
-        "https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws"
-      );
-      setUsers(res.data);
-    };
-    getWithdraws();
-  }, []);
-
-  const handleAmount = (e) => {
-    setAmount(e.target.value);
-  };
-
-  const hanleNumber = (e) => {
-    setAccountNumber(e.target.value);
-  };
-
-  const AddListMember = (e) => {
-    e.preventDefault();
-    const createWithdraw = async () => {
-      const res = await axios.post(
-        "https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws",
-        { amount, accountNumber }
-      );
-      return res.data;
-    };
-    createWithdraw().then((abc) => setUsers([...users, abc]));
-    setAmount("");
-    setAccountNumber("");
-  };
-
-  const handleDelete = async (id, e) => {
-    console.log(id);
-    e.preventDefault();
-    const res = await axios.delete(
-      `https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws/${id}`
-    );
-
-    const newabc = users.filter((p) => p.id !== id);
-    setUsers(newabc);
-  };
 
   const fillUpdateForm = (user) => {
     setChangeAmount(user.amount);
@@ -66,12 +26,10 @@ function Account() {
   };
 
   const handleUpdate = (getid, e) => {
-    // console.log("-----------", getid);
-    // console.log("datdt---->", getid);
     e.preventDefault();
     const UpdateWithdraw = async () => {
       const res = await axios.put(
-        `https://628b0319667aea3a3e259443.mockapi.io/api/v1/withdraws/${getid}`,
+        `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank-account/${getid}`,
         {
           amount: changeAmount,
           accountNumber: ChangeNumber,
@@ -126,7 +84,6 @@ function Account() {
           />
           <input className="btn" type="submit" value="Add UserBank" />
 
-          {/* ---------------------------------- */}
           {toggle === true ? (
             <div className="box">
               <input
@@ -171,8 +128,13 @@ function Account() {
               <td>{user.pin}</td>
               <td>
                 <nav>
-                  <Link to={`/Menu/${user.id}`} state={{from:"all user" , id:{user}}} className="User">{user.accountNumber}</Link>
-
+                  <Link
+                    to={`/account/${user.id}`}
+                    state={{ id: { user } }}
+                    className="User"
+                  >
+                    {user.accountNumber}
+                  </Link>
                 </nav>
               </td>
               <td>{user.createdAt}</td>
@@ -200,4 +162,4 @@ function Account() {
   );
 }
 
-export default Account;
+export default ListAccount;

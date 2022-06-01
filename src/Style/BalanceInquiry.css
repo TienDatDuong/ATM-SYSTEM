@@ -1,0 +1,40 @@
+
+.BalanceInquiry{
+  min-width: 100vh;
+  min-height: 100vh;
+  background-color: skyblue;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 5%;
+}
+
+.BalanceInquiry h2{
+  margin-top: 8% ;
+  text-align: left;
+}
+
+.BalanceInquiry_box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  max-width: 800px;
+  flex-direction:row;
+  flex-wrap: wrap;
+}
+.BalanceInquiry_button{
+  min-width: 200px;
+  height: 50px;
+  font-size: 24px;
+  border-radius: 10px;
+  border: none;
+  margin: 50px 100px;
+  cursor: pointer;
+}
+.BalanceInquiry_button:hover{
+  background-color: gainsboro;
+}
+.BalanceInquiry_button_main{
+  background-color: cornflowerblue;
+}
