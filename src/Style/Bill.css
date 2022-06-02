@@ -1,0 +1,15 @@
+.bill_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+.bill_container>div{
+  margin: 5% ;
+}
+.bill_container_text{
+  margin: 2%;
+  text-align: right;
+}

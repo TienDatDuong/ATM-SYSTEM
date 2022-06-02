@@ -13,7 +13,6 @@ function User() {
       );
       setUsers(res.data);
     };
-    console.log("res", users);
     getWithdraws();
   }, []);
   return (

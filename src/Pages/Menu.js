@@ -17,7 +17,6 @@ function Menu() {
       );
       setUsers(res.data);
     };
-    console.log("res", users);
     getWithdraws();
   }, []);
 

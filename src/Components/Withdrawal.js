@@ -1,35 +1,20 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, {  useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 function Withdrawal() {
-  const location = useLocation();
-  console.log("----->", location);
-  const [amount, setAmount] = useState(0);
-  const [total, setTotal] = useState(location.state.amounts.user.amount);
-  const [other, setOther] = useState("");
+  const [amount, setAmount] = useState();
+  const [other, setOther] = useState();
   const [text, setText] = useState("");
   const navigate = useNavigate();
-
-  const handleTotal = () => {
-    const newTotal = total - amount;
-    setTotal(newTotal);
-    newTotal = location.state.amounts.user.amount;
-  };
 
   const handleSubmit = () => {
     navigate(-1);
   };
 
   const handleOther = (e) => {
-    setOther(+e.target.value);
-    if (other === Number && other % 5 === 0) {
-      setText("");
-    } else {
-      setText("Please enter an amount that is a multiple of 50");
-    }
+    const value = e.target.value.replace(/\D/g, "");
+    setOther(value);
+    setAmount(value);
   };
-
-
-  
 
   return (
     <div className="Withdrawal">
@@ -61,12 +46,13 @@ function Withdrawal() {
           className="Withdrawal_button"
           onClick={() => setAmount(10)}
         />
-        <input
-          type="button"
-          value={"15"}
-          className="Withdrawal_button"
-          onClick={() => setAmount(15)}
-        />
+
+          <input
+            type="button"
+            value={"15"}
+            className="Withdrawal_button"
+            onClick={() => setAmount(15)}
+          />
 
         <input
           type="text"
@@ -75,19 +61,20 @@ function Withdrawal() {
           className="Withdrawal_button_other"
           onChange={(e) => handleOther(e)}
         />
+        <Link to="Billing" state={{amount:{amount}}}>
+          <input
+            type="button"
+            value={"confirm"}
+            className="Withdrawal_button_main Withdrawal_button"
+          
+          />
+        </Link>
 
         <input
           type="button"
-          value={"confirm"}
+          value={"Cancel"}
           className="Withdrawal_button_main Withdrawal_button"
-          onClick={() => handleTotal()}
-        />
-
-        <input
-          type="button"
-          value={"confirm"}
-          className="Withdrawal_button_main Withdrawal_button"
-          onClick={() => handleTotal()}
+          // onClick={() => handleTotal()}
         />
       </div>
 
@@ -100,9 +87,4 @@ function Withdrawal() {
     </div>
   );
 }
-// const numberonly = (input) => {
-//   var num = /[^0-9]/gi;
-//       input.value = input.value.replace(num,"")
-
-// }
 export default Withdrawal;

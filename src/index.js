@@ -7,6 +7,7 @@ import Menu from "./Pages/Menu";
 import Withdrawal from "./Components/Withdrawal";
 import BalanceInquiry from "./Components/BalanceInquiry";
 import User from "./Pages/User";
+import Billing from "./Components/Billing";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ root.render(
           <Route index element={<Menu />} />
           <Route path="Withdrawal" element={<Withdrawal />} />
           <Route path="Balance-inquiry" element={<BalanceInquiry />} />
+          <Route path="Withdrawal/Billing" element={<Billing />} />
         </Route>
       </Routes>
     </BrowserRouter>

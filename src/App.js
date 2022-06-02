@@ -1,11 +1,11 @@
 import "./App.css";
 import "./Style/BalanceInquiry.css";
 import "./Style/Withdrawal.css";
+import "./Style/Bill.css"
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import ListAccount from "./Pages/ListAccount";
-// import Moment from 'react-moment';
 function App() {
   const [users, setUsers] = useState([]);
   const [amount, setAmount] = useState("");
