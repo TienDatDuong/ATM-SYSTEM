@@ -1,9 +1,12 @@
 import React, {  useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link,useLocation } from "react-router-dom";
 function Withdrawal() {
   const [amount, setAmount] = useState();
   const [other, setOther] = useState();
   const [text, setText] = useState("");
+  const location = useLocation()
+  const  id = location.state.getid
+  console.log("datdt",id)
   const navigate = useNavigate();
 
   const handleSubmit = () => {
@@ -61,7 +64,7 @@ function Withdrawal() {
           className="Withdrawal_button_other"
           onChange={(e) => handleOther(e)}
         />
-        <Link to="Billing" state={{amount:{amount}}}>
+        <Link to="Billing" state={{amount:{amount},id}}>
           <input
             type="button"
             value={"confirm"}

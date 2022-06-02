@@ -4,26 +4,23 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 
 function Menu() {
   const [users, setUsers] = useState([]);
+  const [getid,setGetid] = useState("")
   const location = useLocation();
   const navigate = useNavigate();
   const amounts = location.state.id;
-  const [toggle, setToggle] = useState(false);
   useEffect(() => {
     const id = location.state.id.user.id;
-
+    
     const getWithdraws = async () => {
       const res = await axios.get(
         `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank-account/${id}`
-      );
-      setUsers(res.data);
-    };
-    getWithdraws();
-  }, []);
-
-  const hanleSubmit = () => {
-    setToggle(!toggle);
-  };
-
+        );
+        setUsers(res.data);
+        setGetid(id)
+      };
+      getWithdraws();
+    }, []);
+  
   return (
     <>
       <div className="menu">
@@ -33,7 +30,6 @@ function Menu() {
             <Link
               to="Balance-inquiry"
               className="navBar_item"
-              onClick={() => hanleSubmit()}
               state={{ amounts }}
             >
               BalanceInquiry
@@ -41,8 +37,7 @@ function Menu() {
             <Link
               to="Withdrawal"
               className="navBar_item"
-              onClick={hanleSubmit}
-              state={{ amounts, toggle: toggle }}
+              state={{ amounts,getid}}
             >
               Withdrawal
             </Link>

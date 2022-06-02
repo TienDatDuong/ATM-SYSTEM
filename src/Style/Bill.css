@@ -7,9 +7,11 @@
   font-weight: 500;
 }
 .bill_container>div{
-  margin: 5% ;
+  margin: 2% ;
 }
 .bill_container_text{
-  margin: 2%;
+  margin: 1%;
   text-align: right;
+  display: block;
+  min-width: 300px;
 }
