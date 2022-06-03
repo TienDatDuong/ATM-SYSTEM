@@ -4,17 +4,12 @@ import axios from "axios";
 import GoBack from "../Molecules/GoBack";
 
 function Billing({amounts,id}) {
-  // const location = useLocation();
-  // const amounts = location.state.amount.amount;
-  // const id = location.state.id;
-  console.log("---->",amounts)
   const [fee, setFee] = useState(1500);
-  const [money, setMoney] = useState(fee + +amounts);
   const [user, setUser] = useState([]);
   const [history, setHistory] = useState([]);
   const navigate = useNavigate();
   const wallet = user.amount;
-  const totalWallet = +wallet - money;
+  const totalWallet = +wallet - (+amounts + fee);
   const URL = "https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts";
 
   const date = new Date();
@@ -46,7 +41,7 @@ function Billing({amounts,id}) {
   
       updateListUser().then((abc) => {
         setUser(abc);
-        alert(` you withdrewed ${money}`);
+        alert(` you withdrewed ${+amounts + fee}`);
       });
   
       const createTranstion = async () => {
@@ -75,7 +70,7 @@ function Billing({amounts,id}) {
         <p className="bill_container_text">DATE : {today} - {time}</p>
         <p className="bill_container_text">REQUSTED AMOUNT : {amounts} </p>
         <p className="bill_container_text">TERNIMAL FEE : {fee} </p>
-        <p className="bill_container_text">TOTAL AMOUNT :{money} </p>
+        <p className="bill_container_text">TOTAL AMOUNT :{+amounts + fee} </p>
         <button className="btn" onClick={(e) => handleUpdate(e)}> approve </button>
 
         <table className="bill_container_table">
