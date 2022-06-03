@@ -28,7 +28,8 @@ function App() {
   }, []);
 
   const handleAmount = (e) => {
-    setAmount(e.target.value);
+    const value = e.target.value.replace(/\D/g, "");
+    setAmount(value);
   };
 
   const hanleNumber = (e) => {

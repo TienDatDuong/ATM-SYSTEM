@@ -2,6 +2,7 @@ import "../App.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../Molecules/Button";
+import OtherBtn from "../Molecules/OtherBtn";
 function ListAccount({
   users,
   setUsers,
@@ -21,7 +22,6 @@ function ListAccount({
 }) {
   const [getid, setGetid] = useState("");
   const [createdAt, setCreatedAt] = useState(new Date());
-
   const fillUpdateForm = (user) => {
     setChangeAmount(user.amount);
     setChangeNumber(user.accountNumber);
@@ -48,7 +48,7 @@ function ListAccount({
           <Button value={amount} onChange={handleAmount} placeholder={"amount"} />
           <Button value={accountNumber} onChange={hanleNumber} placeholder={"accountNumber"}/>
           <Button value={createdAt} placeholder={"createdAt"} />
-          <input className="btn" type="submit" value="Add UserBank" />
+          <OtherBtn type={"submit"} className={"btn"} value={"Add UserBank"}/>
           {isToggle === true ?
            (
             <div className="box">

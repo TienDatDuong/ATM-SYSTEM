@@ -1,12 +1,12 @@
 import React from 'react'
 
-function OtherBtn({value,placeholder,handleOther}) {
+function OtherBtn({type,value,placeholder,handleOther,className}) {
   return (
     <input
-          type="text"
+          type={type}
           value={value}
           placeholder={placeholder}
-          className="Withdrawal_button_other"
+          className={className}
           onChange={(e) => handleOther(e)}
         />
   )

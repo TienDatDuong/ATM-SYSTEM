@@ -34,7 +34,7 @@ function Billing({amounts,id}) {
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    if(amounts % 50 !== 0){
+    if(amounts % 50 !== 0 ){
       alert("the amount must be divisible by 50")
     }else{
       const updateListUser = async () => {

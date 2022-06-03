@@ -6,7 +6,7 @@ import WithdrawBtn from "../Molecules/WithdrawBtn";
 import Billing from "./Billing";
 
 function Withdrawal() {
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState(0);
   const [other, setOther] = useState();
   const [text, setText] = useState("");
   const [isTranstion, isSetTranstion] = useState(false);
@@ -20,7 +20,12 @@ function Withdrawal() {
   };
 
   const handleSubmit = () => {
-    isSetTranstion(true)
+    
+    if(amount === 0 || amount === "" || amount === null) {
+      alert("Please select an amount")
+    }else{
+      isSetTranstion(true)
+    }
   }
 
   return (
@@ -38,9 +43,11 @@ function Withdrawal() {
             <WithdrawBtn value={"100"} setAmount={setAmount} />
             <WithdrawBtn value={"150"} setAmount={setAmount} />
             <OtherBtn
+              type={"text"}
               value={other}
               placeholder={"Other...."}
               handleOther={handleOther}
+              className={"Withdrawal_button_other"}
             />
 
             {/* <Link to="Billing" state={{ amount: { amount }, id }}> */}

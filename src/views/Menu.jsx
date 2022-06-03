@@ -43,16 +43,16 @@ function Menu() {
             >
               Withdrawal
             </Link>
-            <Link to={``} className="navBar_item">
+            <Link to={`Transfer`} className="navBar_item">
               Transfer
             </Link>
-            <Link to={``} className="navBar_item">
+            <Link to={`Transactions`} className="navBar_item">
               Transactions
             </Link>
-            <Link to={``} className="navBar_item">
+            <Link to={`Change PIN`} className="navBar_item">
               Change PIN
             </Link>
-            <Link to={``} className="navBar_item">
+            <Link to={`Change PIN`} className="navBar_item">
               Other
             </Link>
           </ul>
