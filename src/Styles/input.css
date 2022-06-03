@@ -1,0 +1,18 @@
+.inputs{
+  margin-top: 20px;
+  text-align: center;
+  height: 35px;
+  min-width: 200px;
+  background-color: #21bd7c;
+}
+
+.inputs-value{
+  margin: 0 20px 20px 0;
+  height: 35px;
+  padding: 10px;
+  min-width: 200px;
+  background-color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}

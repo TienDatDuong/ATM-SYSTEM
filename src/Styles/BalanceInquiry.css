@@ -23,6 +23,7 @@
   flex-direction:row;
   flex-wrap: wrap;
 }
+
 .BalanceInquiry_button{
   min-width: 200px;
   height: 50px;
@@ -32,9 +33,11 @@
   margin: 50px 100px;
   cursor: pointer;
 }
+
 .BalanceInquiry_button:hover{
   background-color: gainsboro;
 }
+
 .BalanceInquiry_button_main{
   background-color: cornflowerblue;
 }

@@ -1,7 +1,10 @@
-
 *{
   background-color: #21bd7c;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
+
 .App{
   display: flex;
   flex-direction: column;
@@ -11,21 +14,20 @@
   min-height: 100vh;
   padding-top:5%;
 }
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+
 table{
   margin-top: 30px;
   border-collapse: collapse;
 }
+
 tr{
   height: 35px;
 }
+
 tr:hover{
   background-color: rgb(222, 205, 205);
 }
+
 th,td{
   border: 2px solid #000;
   min-width: 200px;
@@ -33,23 +35,7 @@ th,td{
   text-align: center;
   border-spacing: 0px;
 }
-.inputs{
-  margin-top: 20px;
-  text-align: center;
-  height: 35px;
-  min-width: 200px;
-  background-color: #21bd7c;
-}
-.inputs-value{
-  margin: 0 20px 20px 0;
-  height: 35px;
-  padding: 10px;
-  min-width: 200px;
-  background-color: #fff;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-}
+
 .btn{
   padding: 9px 15px;
   cursor: pointer;
@@ -59,16 +45,20 @@ th,td{
   margin: 5px 20px  ;
   background-color: #fff;
 }
+
 .btn:hover{
   background-color: cornflowerblue;
 }
+
 .btnDelete{
   padding: 3px;
   margin-left: 20px;
 }
+
 .boxChange{
   border: 2px solid black;
 }
+
 .navBar{
   width: 1000px;
   height: 100px;
@@ -78,6 +68,7 @@ th,td{
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
 .navBar_item{
   font-size: 24px;
   font-weight: 500;
@@ -92,32 +83,18 @@ th,td{
   cursor: pointer;
   margin: 30px 80px;
 }
+
 .bg{
   background-color: #21bd7c;
   width: 100%;
   height: 100%;
 }
+
 .User{
   text-decoration: none;
   color: #000;
 }
-.header_menu{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 5% 0 1% 0;
-  
-}
-.header_menu h3{
-  display: block;
-  margin: 10px;
-}
-.menu{
-  background-color: #21bd7c;
-  min-width: 100vh;
-  min-height: 100vh;
-}
+
 .back-btn{
   position: absolute;
   bottom: 5%;

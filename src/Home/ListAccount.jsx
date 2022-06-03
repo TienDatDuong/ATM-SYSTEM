@@ -45,51 +45,30 @@ function ListAccount({
     <>
       <div className="inputs">
         <form onSubmit={AddListMember}>
-          <Button
-            value={amount}
-            onChange={handleAmount}
-            placeholder={"amount"}
-          />
-          <Button
-            value={accountNumber}
-            onChange={hanleNumber}
-            placeholder={"accountNumber"}
-          />
+          <Button value={amount} onChange={handleAmount} placeholder={"amount"} />
+          <Button value={accountNumber} onChange={hanleNumber} placeholder={"accountNumber"}/>
           <Button value={createdAt} placeholder={"createdAt"} />
-
           <input className="btn" type="submit" value="Add UserBank" />
-
-          {isToggle === true ? (
+          {isToggle === true ?
+           (
             <div className="box">
-              <Button
-                value={changeAmount}
-                onChange={handleChangeAmount}
-                placeholder={"amount"}
-              />
-              <Button
-                value={ChangeNumber}
-                onChange={handleChangeNumber}
-                placeholder={"accountNumber"}
-              />
-
-              <button className="btn" onClick={(e) => handleUpdate(getid, e)}>
-                Change
-              </button>
-              <button className="btn" onClick={(e) => handleClose(e)}>
-                Close
-              </button>
+              <Button  value={changeAmount} onChange={handleChangeAmount} placeholder={"amount"}/>
+              <Button value={ChangeNumber} onChange={handleChangeNumber}  placeholder={"accountNumber"} />
+              <button className="btn" onClick={(e) => handleUpdate(getid, e)}>  Change </button>
+              <button className="btn" onClick={(e) => handleClose(e)}>  Close </button>
             </div>
-          ) : (
-            ""
-          )}
+          ) 
+          : 
+          ("")}
         </form>
       </div>
+
       <div className="App">
         <h1>List Account</h1>
         <table>
           <tr>
             <th>id</th>
-            <th>pin</th>
+            <th>amount</th>
             <th>accountNumber</th>
             <th>createdAt</th>
             <th>Action</th>
@@ -97,38 +76,25 @@ function ListAccount({
           {users.map((user) => (
             <tr key={user.id}>
               <td>{user.id}</td>
-              <td>{user.pin}</td>
+              <td>{user.amount}</td>
               <td>
                 <nav>
-                  <Link
-                    to={`/account/${user.id}`}
-                    state={{ id: { user } }}
-                    className="User"
-                  >
-                    {user.accountNumber}
-                  </Link>
+                  <Link to={`/account/${user.id}`} state={{ id: { user } }} className="User"> {user.accountNumber} </Link>
                 </nav>
               </td>
               <td>{user.createdAt}</td>
               <td>
-                <button
-                  type=""
-                  className="btn"
-                  onClick={(e) => handleDelete(user.id, e)}
-                >
+                <button  type="" className="btn" onClick={(e) => handleDelete(user.id, e)}>
                   Delete
                 </button>
-                <button
-                  type=""
-                  className="btn"
-                  onClick={(e) => fillUpdateForm(user)}
-                >
+                <button type="" className="btn" onClick={(e) => fillUpdateForm(user)} >
                   Update
                 </button>
               </td>
             </tr>
           ))}
         </table>
+        
       </div>
     </>
   );

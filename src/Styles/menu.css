@@ -1,0 +1,18 @@
+.header_menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 5% 0 1% 0;
+}
+
+.header_menu h3{
+  display: block;
+  margin: 10px;
+}
+
+.menu{
+  background-color: #21bd7c;
+  min-width: 100vh;
+  min-height: 100vh;
+}

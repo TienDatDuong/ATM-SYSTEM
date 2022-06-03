@@ -2,10 +2,12 @@ import "./App.css";
 import "./Styles/BalanceInquiry.css";
 import "./Styles/Withdrawal.css";
 import "./Styles/Bill.css"
+import "./Styles/input.css"
+import "./Styles/menu.css"
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import ListAccount from "./Home/ListAccount";
+
 function App() {
   const [users, setUsers] = useState([]);
   const [amount, setAmount] = useState("");
@@ -13,8 +15,7 @@ function App() {
   const [changeAmount, setChangeAmount] = useState("");
   const [ChangeNumber, setChangeNumber] = useState("");
   const [isToggle, isSetToggle] = useState(false);
-  const URL =  "https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank-account"
-
+  const URL =  "https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts"
 
   useEffect(() => {
     const getWithdraws = async () => {
@@ -49,17 +50,16 @@ function App() {
   };
 
   const handleDelete = async (id, e) => {
-    console.log(id);
     e.preventDefault();
     const res = await axios.delete(
       `${URL}/${id}`
     );
-
     const newabc = users.filter((p) => p.id !== id);
     setUsers(newabc);
   };
 
   const handleUpdate = (getid, e) => {
+    
     e.preventDefault();
     const UpdateWithdraw = async () => {
       const res = await axios.put(
@@ -71,6 +71,7 @@ function App() {
       );
       return res.data;
     };
+
     UpdateWithdraw().then((abc) => {
       const newid = users.filter((p) => p.id !== abc.id);
       setUsers([...newid, abc]);
@@ -78,6 +79,7 @@ function App() {
       setChangeNumber("");
       isSetToggle(false);
     });
+
   };
 
   return (
@@ -98,7 +100,6 @@ function App() {
         handleUpdate={handleUpdate}
         isSetToggle ={isSetToggle}
         isToggle = {isToggle}
-
       />
     </>
   );

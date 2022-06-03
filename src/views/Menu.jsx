@@ -9,17 +9,19 @@ function Menu() {
   const location = useLocation();
   const navigate = useNavigate();
   const amounts = location.state.id;
+  const id = location.state.id.user.id;
+
   useEffect(() => {
-    const id = location.state.id.user.id;
 
     const getWithdraws = async () => {
       const res = await axios.get(
-        `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank-account/${id}`
+        `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/${id}`
       );
       setUsers(res.data);
       setGetid(id);
     };
     getWithdraws();
+
   }, []);
 
   return (
@@ -55,7 +57,9 @@ function Menu() {
             </Link>
           </ul>
         </nav>
+
         <GoBack />
+        
       </div>
     </>
   );
