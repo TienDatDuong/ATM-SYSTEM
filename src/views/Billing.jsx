@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import GoBack from "../Molecules/GoBack";
 function Billing() {
   const location = useLocation();
   const amount = location.state.amount.amount;
@@ -63,12 +64,7 @@ function Billing() {
         </button>
       </div>
 
-      <button
-        onClick={handleSubmit}
-        className="Withdrawal_button_main Withdrawal_button back-btn"
-      >
-        go back
-      </button>
+      <GoBack />
     </>
   );
 }

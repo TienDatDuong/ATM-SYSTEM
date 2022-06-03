@@ -1,30 +1,30 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import GoBack from "../Molecules/GoBack";
 
 function Menu() {
   const [users, setUsers] = useState([]);
-  const [getid,setGetid] = useState("")
+  const [getid, setGetid] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
   const amounts = location.state.id;
   useEffect(() => {
     const id = location.state.id.user.id;
-    
+
     const getWithdraws = async () => {
       const res = await axios.get(
         `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank-account/${id}`
-        );
-        setUsers(res.data);
-        setGetid(id)
-      };
-      getWithdraws();
-    }, []);
-  
+      );
+      setUsers(res.data);
+      setGetid(id);
+    };
+    getWithdraws();
+  }, []);
+
   return (
     <>
       <div className="menu">
-      
         <nav>
           <ul className="navBar">
             <Link
@@ -37,7 +37,7 @@ function Menu() {
             <Link
               to="Withdrawal"
               className="navBar_item"
-              state={{ amounts,getid}}
+              state={{ amounts, getid }}
             >
               Withdrawal
             </Link>
@@ -55,12 +55,7 @@ function Menu() {
             </Link>
           </ul>
         </nav>
-        <button
-          onClick={() => navigate(-1)}
-          className="BalanceInquiry_button_main BalanceInquiry_button back-btn"
-        >
-          go back
-        </button>
+        <GoBack />
       </div>
     </>
   );

@@ -3,11 +3,11 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Menu from "./Pages/Menu";
-import Withdrawal from "./Components/Withdrawal";
-import BalanceInquiry from "./Components/BalanceInquiry";
-import User from "./Pages/User";
-import Billing from "./Components/Billing";
+import Menu from "./views/Menu";
+import Withdrawal from "./views/Withdrawal";
+import BalanceInquiry from "./views/BalanceInquiry";
+import User from "./views/User";
+import Billing from "./views/Billing";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

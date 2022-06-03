@@ -1,7 +1,7 @@
 import "../App.css";
-import React, {  useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Button from "../Molecules/Button";
 function ListAccount({
   users,
   setUsers,
@@ -10,40 +10,23 @@ function ListAccount({
   accountNumber,
   hanleNumber,
   handleDelete,
-  AddListMember
+  AddListMember,
+  setChangeAmount,
+  setChangeNumber,
+  changeAmount,
+  ChangeNumber,
+  handleUpdate,
+  isSetToggle,
+  isToggle,
 }) {
-  const [changeAmount, setChangeAmount] = useState("");
-  const [ChangeNumber, setChangeNumber] = useState("");
   const [getid, setGetid] = useState("");
   const [createdAt, setCreatedAt] = useState(new Date());
-  const [toggle, setToggle] = useState(false);
 
   const fillUpdateForm = (user) => {
     setChangeAmount(user.amount);
     setChangeNumber(user.accountNumber);
     setGetid(user.id);
-    setToggle(true);
-  };
-
-  const handleUpdate = (getid, e) => {
-    e.preventDefault();
-    const UpdateWithdraw = async () => {
-      const res = await axios.put(
-        `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank-account/${getid}`,
-        {
-          amount: changeAmount,
-          accountNumber: ChangeNumber,
-        }
-      );
-      return res.data;
-    };
-    UpdateWithdraw().then((abc) => {
-      const newid = users.filter((p) => p.id !== abc.id);
-      setUsers([...newid, abc]);
-      setChangeAmount("");
-      setChangeNumber("");
-      setToggle(false);
-    });
+    isSetToggle(true);
   };
 
   const handleChangeAmount = (e) => {
@@ -55,51 +38,40 @@ function ListAccount({
   };
 
   const handleClose = () => {
-    setToggle(false);
+    isSetToggle(false);
   };
 
   return (
     <>
       <div className="inputs">
         <form onSubmit={AddListMember}>
-          <input
-            className="inputs-value"
-            type="text"
-            placeholder="amount"
+          <Button
             value={amount}
             onChange={handleAmount}
+            placeholder={"amount"}
           />
-          <input
-            className="inputs-value"
-            type="text"
-            placeholder="accountNumber"
+          <Button
             value={accountNumber}
             onChange={hanleNumber}
+            placeholder={"accountNumber"}
           />
-          <input
-            className="inputs-value"
-            type="text"
-            placeholder="createdAt"
-            value={createdAt}
-          />
+          <Button value={createdAt} placeholder={"createdAt"} />
+
           <input className="btn" type="submit" value="Add UserBank" />
 
-          {toggle === true ? (
+          {isToggle === true ? (
             <div className="box">
-              <input
-                className="inputs-value"
-                type="text"
-                placeholder="amount"
+              <Button
                 value={changeAmount}
-                onChange={(e) => handleChangeAmount(e)}
+                onChange={handleChangeAmount}
+                placeholder={"amount"}
               />
-              <input
-                className="inputs-value"
-                type="text"
-                placeholder="accountNumber"
+              <Button
                 value={ChangeNumber}
-                onChange={(e) => handleChangeNumber(e)}
+                onChange={handleChangeNumber}
+                placeholder={"accountNumber"}
               />
+
               <button className="btn" onClick={(e) => handleUpdate(getid, e)}>
                 Change
               </button>
