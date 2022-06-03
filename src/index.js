@@ -18,7 +18,6 @@ root.render(
           <Route index element={<Menu />} />
           <Route path="Withdrawal" element={<Withdrawal />} />
           <Route path="Balance-inquiry" element={<BalanceInquiry />} />
-          <Route path="Withdrawal/Billing" element={<Billing />} />
         </Route>
       </Routes>
     </BrowserRouter>

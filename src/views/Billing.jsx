@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import GoBack from "../Molecules/GoBack";
 
-function Billing() {
-  const location = useLocation();
-  const amounts = location.state.amount.amount;
-  const id = location.state.id;
+function Billing({amounts,id}) {
+  // const location = useLocation();
+  // const amounts = location.state.amount.amount;
+  // const id = location.state.id;
+  console.log("---->",amounts)
   const [fee, setFee] = useState(1500);
-  const [money, setMoney] = useState(+amounts + fee);
+  const [money, setMoney] = useState(fee + +amounts);
   const [user, setUser] = useState([]);
   const [history, setHistory] = useState([]);
   const navigate = useNavigate();

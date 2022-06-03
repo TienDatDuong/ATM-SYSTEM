@@ -9,7 +9,7 @@ function Withdrawal() {
   const [amount, setAmount] = useState();
   const [other, setOther] = useState();
   const [text, setText] = useState("");
-  const [isTranstion,isSetTranstion] = useState(false)
+  const [isTranstion, isSetTranstion] = useState(false);
   const location = useLocation();
   const id = location.state.getid;
 
@@ -19,52 +19,52 @@ function Withdrawal() {
     setAmount(value);
   };
 
+  const handleSubmit = () => {
+    isSetTranstion(true)
+  }
+
   return (
-
     <>
-     
-    
-      <div className="Withdrawal">
+      {!isTranstion && (
+        <div className="Withdrawal">
+          <h1>Please select an amount </h1>
+          <h3>Withdrawal : {amount} $</h3>
+          <h2>{text}</h2>
 
-      <h1>Please select an amount </h1>
-      <h3>Withdrawal : {amount} $</h3>
-      <h2>{text}</h2>
+          <div className="Withdrawal_box">
+            <WithdrawBtn value={"50"} setAmount={setAmount} />
+            <WithdrawBtn value={"10"} setAmount={setAmount} />
+            <WithdrawBtn value={"200"} setAmount={setAmount} />
+            <WithdrawBtn value={"100"} setAmount={setAmount} />
+            <WithdrawBtn value={"150"} setAmount={setAmount} />
+            <OtherBtn
+              value={other}
+              placeholder={"Other...."}
+              handleOther={handleOther}
+            />
 
-      <div className="Withdrawal_box">
-        <WithdrawBtn value={"50"} setAmount={setAmount} />
-        <WithdrawBtn value={"10"} setAmount={setAmount} />
-        <WithdrawBtn value={"200"} setAmount={setAmount} />
-        <WithdrawBtn value={"100"} setAmount={setAmount} />
-        <WithdrawBtn value={"150"} setAmount={setAmount} />
-        <OtherBtn
-          value={other}
-          placeholder={"Other...."}
-          handleOther={handleOther}
-        />
+            {/* <Link to="Billing" state={{ amount: { amount }, id }}> */}
+              <input
+                type="button"
+                value={"confirm"}
+                className="Withdrawal_button_main Withdrawal_button"
+                onClick={(e)=>handleSubmit(e)}
+              />
+            {/* </Link> */}
 
-        <Link to="Billing" state={{ amount: { amount }, id }}>
-          <input
-            type="button"
-            value={"confirm"}
-            className="Withdrawal_button_main Withdrawal_button"
-          />
-        </Link>
+            <input
+              type="button"
+              value={"Cancel"}
+              className="Withdrawal_button_main Withdrawal_button"
+              onClick={() => setAmount(0)}
+            />
+          </div>
 
-        <input
-          type="button"
-          value={"Cancel"}
-          className="Withdrawal_button_main Withdrawal_button"
-          onClick={() => setAmount(0)}
-
-        />
-
-      </div>
-
-      <GoBack />
-      
-    </div>
+          <GoBack />
+        </div>
+      )}
+      {<Billing amounts={amount} id={id}/>}
     </>
-   
   );
 }
 export default Withdrawal;

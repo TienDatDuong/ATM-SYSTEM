@@ -39,7 +39,7 @@ function Menu() {
             <Link
               to="Withdrawal"
               className="navBar_item"
-              state={{ amounts, getid }}
+              state={{ getid }}
             >
               Withdrawal
             </Link>
