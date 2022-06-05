@@ -7,7 +7,6 @@ import Menu from "./views/Menu";
 import Withdrawal from "./views/Withdrawal";
 import BalanceInquiry from "./views/BalanceInquiry";
 import User from "./views/User";
-import Billing from "./views/Billing";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

@@ -1,9 +1,9 @@
 import "./App.css";
 import "./Styles/BalanceInquiry.css";
 import "./Styles/Withdrawal.css";
-import "./Styles/Bill.css"
-import "./Styles/input.css"
-import "./Styles/menu.css"
+import "./Styles/Bill.css";
+import "./Styles/input.css";
+import "./Styles/menu.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ListAccount from "./Home/ListAccount";
@@ -15,13 +15,12 @@ function App() {
   const [changeAmount, setChangeAmount] = useState("");
   const [ChangeNumber, setChangeNumber] = useState("");
   const [isToggle, isSetToggle] = useState(false);
-  const URL =  "https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts"
+  const URL =
+    "https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts";
 
   useEffect(() => {
     const getWithdraws = async () => {
-      const res = await axios.get(
-        `${URL}`
-      );
+      const res = await axios.get(`${URL}`);
       setUsers(res.data);
     };
     getWithdraws();
@@ -39,10 +38,7 @@ function App() {
   const AddListMember = (e) => {
     e.preventDefault();
     const createWithdraw = async () => {
-      const res = await axios.post(
-        `${URL}`,
-        { amount, accountNumber }
-      );
+      const res = await axios.post(`${URL}`, { amount, accountNumber });
       return res.data;
     };
     createWithdraw().then((abc) => setUsers([...users, abc]));
@@ -52,24 +48,18 @@ function App() {
 
   const handleDelete = async (id, e) => {
     e.preventDefault();
-    const res = await axios.delete(
-      `${URL}/${id}`
-    );
+    const res = await axios.delete(`${URL}/${id}`);
     const newabc = users.filter((p) => p.id !== id);
     setUsers(newabc);
   };
 
   const handleUpdate = (getid, e) => {
-    
     e.preventDefault();
     const UpdateWithdraw = async () => {
-      const res = await axios.put(
-        `${URL}/${getid}`,
-        {
-          amount: changeAmount,
-          accountNumber: ChangeNumber,
-        }
-      );
+      const res = await axios.put(`${URL}/${getid}`, {
+        amount: changeAmount,
+        accountNumber: ChangeNumber,
+      });
       return res.data;
     };
 
@@ -80,7 +70,6 @@ function App() {
       setChangeNumber("");
       isSetToggle(false);
     });
-
   };
 
   return (
@@ -94,13 +83,13 @@ function App() {
         accountNumber={accountNumber}
         hanleNumber={hanleNumber}
         handleDelete={handleDelete}
-        setChangeAmount ={setChangeAmount}
+        setChangeAmount={setChangeAmount}
         setChangeNumber={setChangeNumber}
-        changeAmount ={changeAmount}
+        changeAmount={changeAmount}
         ChangeNumber={ChangeNumber}
         handleUpdate={handleUpdate}
-        isSetToggle ={isSetToggle}
-        isToggle = {isToggle}
+        isSetToggle={isSetToggle}
+        isToggle={isToggle}
       />
     </>
   );

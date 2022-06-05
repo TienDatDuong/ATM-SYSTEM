@@ -20,13 +20,12 @@ function Withdrawal() {
   };
 
   const handleSubmit = () => {
-    
-    if(amount === 0 || amount === "" || amount === null) {
-      alert("Please select an amount")
-    }else{
-      isSetTranstion(true)
+    if (amount === 0 || amount === "" || amount === null) {
+      alert("Please select an amount");
+    } else {
+      isSetTranstion(true);
     }
-  }
+  };
 
   return (
     <>
@@ -38,10 +37,10 @@ function Withdrawal() {
 
           <div className="Withdrawal_box">
             <WithdrawBtn value={"50"} setAmount={setAmount} />
-            <WithdrawBtn value={"10"} setAmount={setAmount} />
-            <WithdrawBtn value={"200"} setAmount={setAmount} />
             <WithdrawBtn value={"100"} setAmount={setAmount} />
-            <WithdrawBtn value={"150"} setAmount={setAmount} />
+            <WithdrawBtn value={"200"} setAmount={setAmount} />
+            <WithdrawBtn value={"500"} setAmount={setAmount} />
+            <WithdrawBtn value={"1000"} setAmount={setAmount} />
             <OtherBtn
               type={"text"}
               value={other}
@@ -50,14 +49,12 @@ function Withdrawal() {
               className={"Withdrawal_button_other"}
             />
 
-            {/* <Link to="Billing" state={{ amount: { amount }, id }}> */}
-              <input
-                type="button"
-                value={"confirm"}
-                className="Withdrawal_button_main Withdrawal_button"
-                onClick={(e)=>handleSubmit(e)}
-              />
-            {/* </Link> */}
+            <input
+              type="button"
+              value={"confirm"}
+              className="Withdrawal_button_main Withdrawal_button"
+              onClick={(e) => handleSubmit(e)}
+            />
 
             <input
               type="button"
@@ -70,7 +67,7 @@ function Withdrawal() {
           <GoBack />
         </div>
       )}
-      {<Billing amounts={amount} id={id}/>}
+      {<Billing amounts={amount} id={id} />}
     </>
   );
 }

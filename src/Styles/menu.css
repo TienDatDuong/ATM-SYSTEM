@@ -1,4 +1,4 @@
-.header_menu{
+.header_menu {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,12 +6,12 @@
   padding: 5% 0 1% 0;
 }
 
-.header_menu h3{
+.header_menu h3 {
   display: block;
   margin: 10px;
 }
 
-.menu{
+.menu {
   background-color: #21bd7c;
   min-width: 100vh;
   min-height: 100vh;

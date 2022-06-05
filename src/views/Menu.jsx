@@ -12,7 +12,6 @@ function Menu() {
   const id = location.state.id.user.id;
 
   useEffect(() => {
-
     const getWithdraws = async () => {
       const res = await axios.get(
         `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/${id}`
@@ -21,7 +20,6 @@ function Menu() {
       setGetid(id);
     };
     getWithdraws();
-
   }, []);
 
   return (
@@ -36,11 +34,7 @@ function Menu() {
             >
               BalanceInquiry
             </Link>
-            <Link
-              to="Withdrawal"
-              className="navBar_item"
-              state={{ getid }}
-            >
+            <Link to="Withdrawal" className="navBar_item" state={{ getid }}>
               Withdrawal
             </Link>
             <Link to={`Transfer`} className="navBar_item">
@@ -59,7 +53,6 @@ function Menu() {
         </nav>
 
         <GoBack />
-        
       </div>
     </>
   );

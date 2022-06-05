@@ -20,13 +20,11 @@ function User() {
 
   return (
     <div className="menu">
-
       <div className="header_menu">
         <h3>Account number : {users.accountNumber} </h3>
       </div>
 
       <Outlet />
-
     </div>
   );
 }

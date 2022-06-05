@@ -1,4 +1,4 @@
-.bill_container{
+.bill_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,17 +7,17 @@
   font-weight: 500;
 }
 
-.bill_container>div{
-  margin: 2% ;
+.bill_container > div {
+  margin: 2%;
 }
 
-.bill_container_text{
+.bill_container_text {
   margin: 1%;
   text-align: right;
   display: block;
   min-width: 300px;
 }
 
-.bill_container_table{
+.bill_container_table {
   font-size: 16px;
 }
