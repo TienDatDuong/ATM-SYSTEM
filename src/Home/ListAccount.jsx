@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../Molecules/Button";
 import OtherBtn from "../Molecules/OtherBtn";
+import moment from "moment";
+import Moment from "react-moment";
 function ListAccount({
   users,
   amount,
@@ -21,6 +23,7 @@ function ListAccount({
 }) {
   const [getid, setGetid] = useState("");
   const [createdAt, setCreatedAt] = useState(new Date());
+  moment(createdAt).format();
   const fillUpdateForm = (user) => {
     setChangeAmount(user.amount);
     setChangeNumber(user.accountNumber);
@@ -86,15 +89,15 @@ function ListAccount({
       <div className="App">
         <h1>List Account</h1>
         <table>
-          <tr>
+          <thead>
             <th>id</th>
             <th>amount</th>
             <th>accountNumber</th>
             <th>createdAt</th>
             <th>Action</th>
-          </tr>
-          {users.map((user) => (
-            <tr key={user.id}>
+          </thead>
+          {users.map((user, index) => (
+            <tr key={index} className="se">
               <td>{user.id}</td>
               <td>{user.amount}</td>
               <td>
@@ -109,7 +112,9 @@ function ListAccount({
                   </Link>
                 </nav>
               </td>
-              <td>{user.createdAt}</td>
+              <td>
+                <Moment format="D MMMM YYYY HH:mm">{user.createdAt}</Moment>
+              </td>
               <td>
                 <button
                   type=""
