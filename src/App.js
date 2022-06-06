@@ -1,12 +1,12 @@
 import "./App.css";
-import "./Styles/BalanceInquiry.css";
-import "./Styles/Withdrawal.css";
-import "./Styles/Bill.css";
-import "./Styles/input.css";
-import "./Styles/menu.css";
+import "./assets/Styles/BalanceInquiry.css";
+import "./assets/Styles/Withdrawal.css";
+import "./assets/Styles/Bill.css";
+import "./assets/Styles/input.css";
+import "./assets/Styles/menu.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ListAccount from "./Home/ListAccount";
+import ListAccount from "./views/auth/ListAccount";
 
 function App() {
   const [users, setUsers] = useState([]);

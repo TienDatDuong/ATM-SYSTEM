@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import GoBack from "../Molecules/GoBack";
+import GoBack from "../../components/Button/GoBack";
 
 function Menu() {
   const [users, setUsers] = useState([]);
@@ -27,26 +27,22 @@ function Menu() {
       <div className="menu">
         <nav>
           <ul className="navBar">
-            <Link
-              to="Balance-inquiry"
-              className="navBar_item"
-              state={{ amounts }}
-            >
+            <Link to="balance-inquiry" className="navBar_item">
               BalanceInquiry
             </Link>
-            <Link to="Withdrawal" className="navBar_item" state={{ getid }}>
+            <Link to="withdrawal" className="navBar_item" state={{ getid }}>
               Withdrawal
             </Link>
-            <Link to={`Transfer`} className="navBar_item">
+            <Link to={`transfer`} className="navBar_item">
               Transfer
             </Link>
-            <Link to={`Transactions`} className="navBar_item">
+            <Link to={`transactions`} className="navBar_item">
               Transactions
             </Link>
-            <Link to={`Change PIN`} className="navBar_item">
+            <Link to={`change PIN`} className="navBar_item">
               Change PIN
             </Link>
-            <Link to={`Change PIN`} className="navBar_item">
+            <Link to={`change PIN`} className="navBar_item">
               Other
             </Link>
           </ul>

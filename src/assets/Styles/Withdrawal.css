@@ -1,7 +1,6 @@
 .Withdrawal {
   min-width: 100vh;
   min-height: 100vh;
-  background-color: #21bd7c;
   display: flex;
   align-items: center;
   flex-direction: column;

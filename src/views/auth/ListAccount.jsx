@@ -1,8 +1,8 @@
-import "../App.css";
+import "../../App.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Button from "../Molecules/Button";
-import OtherBtn from "../Molecules/OtherBtn";
+import Button from "../../components/Button/Button";
+import OtherBtn from "../../components/Button/OtherBtn";
 import moment from "moment";
 import Moment from "react-moment";
 function ListAccount({
@@ -47,19 +47,19 @@ function ListAccount({
     <>
       <div className="inputs">
         <form onSubmit={AddListMember}>
-          <Button
+          {/* <Button
             value={amount}
             onChange={handleAmount}
             placeholder={"amount"}
-          />
-          <Button
+          /> */}
+          {/* <Button
             value={accountNumber}
             onChange={hanleNumber}
             placeholder={"accountNumber"}
-          />
-          <Button value={createdAt} placeholder={"createdAt"} />
-          <OtherBtn type={"submit"} className={"btn"} value={"Add UserBank"} />
-          {isToggle === true ? (
+          /> */}
+          {/* <Button value={createdAt} placeholder={"createdAt"} /> */}
+          {/* <OtherBtn type={"submit"} className={"btn"} value={"Add UserBank"} /> */}
+          {/* {isToggle === true ? (
             <div className="box">
               <Button
                 value={changeAmount}
@@ -82,7 +82,7 @@ function ListAccount({
             </div>
           ) : (
             ""
-          )}
+          )} */}
         </form>
       </div>
 
@@ -90,16 +90,18 @@ function ListAccount({
         <h1>List Account</h1>
         <table>
           <thead>
-            <th>id</th>
+            <th>STT</th>
+            <th>Name</th>
             <th>amount</th>
-            <th>accountNumber</th>
-            <th>createdAt</th>
-            <th>Action</th>
+            <th>Phone</th>
+            <th>Account Number</th>
+            <th>Pin</th>
+            {/* <th>createdAt</th> */}
+            {/* <th>Action</th> */}
           </thead>
           {users.map((user, index) => (
-            <tr key={index} className="se">
+            <tr key={index} className="selecter">
               <td>{user.id}</td>
-              <td>{user.amount}</td>
               <td>
                 <nav>
                   <Link
@@ -112,10 +114,14 @@ function ListAccount({
                   </Link>
                 </nav>
               </td>
-              <td>
+              <td>{user.amount}$</td>
+              <td>{user.accPhone}</td>
+              <td>{user.accNumber}</td>
+              <th>{user.pin}</th>
+              {/* <td>
                 <Moment format="D MMMM YYYY HH:mm">{user.createdAt}</Moment>
-              </td>
-              <td>
+              </td> */}
+              {/* <td>
                 <button
                   type=""
                   className="btn"
@@ -130,7 +136,7 @@ function ListAccount({
                 >
                   Update
                 </button>
-              </td>
+              </td> */}
             </tr>
           ))}
         </table>

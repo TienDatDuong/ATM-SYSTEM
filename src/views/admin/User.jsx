@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 
 function User() {
   const [users, setUsers] = useState([]);
-  const location = useLocation();
+  const params = useParams();
 
   useEffect(() => {
-    const id = location.state.id.user.id;
+    const id = params.id;
 
     const getWithdraws = async () => {
       const res = await axios.get(
@@ -22,6 +22,7 @@ function User() {
     <div className="menu">
       <div className="header_menu">
         <h3>Account number : {users.accountNumber} </h3>
+        <h3>Phone : {users.accPhone}</h3>
       </div>
 
       <Outlet />

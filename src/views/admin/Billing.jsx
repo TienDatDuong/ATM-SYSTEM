@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import GoBack from "../Molecules/GoBack";
+import GoBack from "../../components/Button/GoBack";
 
 function Billing({ amounts, id }) {
-  const [fee, setFee] = useState(1500);
+  // const [fee, setFee] = useState(1500);
   const [user, setUser] = useState([]);
   const [history, setHistory] = useState([]);
   const navigate = useNavigate();
   const wallet = user.amount;
-  console.log("wallet",wallet)
-  let a = (+amounts + fee)
-  const totalWallet = +wallet - (+amounts + fee);
+  console.log("wallet", wallet);
+  const totalWallet = +wallet - (+amounts);
   const URL =
     "https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts";
 
@@ -32,10 +31,11 @@ function Billing({ amounts, id }) {
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    if (amounts % 50 !== 0 ||  wallet < a) {
-      alert("transaction failed because money not enought in wallet and the amount must be divisible by 50");
+    if (amounts % 50 !== 0 || wallet < amounts) {
+      alert(
+        "transaction failed because money not enought in wallet and the amount must be divisible by 50"
+      );
     } else {
-      
       const updateListUser = async () => {
         const res = await axios.put(`${URL}/${id}`, {
           amount: totalWallet,
@@ -45,7 +45,7 @@ function Billing({ amounts, id }) {
 
       updateListUser().then((abc) => {
         setUser(abc);
-        alert(` you withdrewed ${+amounts + fee}`);
+        alert(` you withdrewed ${+amounts}`);
       });
 
       const createTranstion = async () => {
@@ -54,12 +54,10 @@ function Billing({ amounts, id }) {
           {
             accountNumber: user.accountNumber,
             amount: user.amount,
-            ternimal_fee: fee,
             requsted_amount: amounts,
             createdAt: { date },
           }
         );
-        console.log("===>", res);
         return res.data;
       };
       createTranstion().then((abc) => setHistory([...history, abc]));
@@ -69,13 +67,13 @@ function Billing({ amounts, id }) {
   return (
     <>
       <div className="bill_container">
-        <div>ATM TRANSACTION - Wallet {user.amount}</div>
+        <div>ATM TRANSACTION - Wallet {user.amount}$</div>
         <p className="bill_container_text">
           DATE : {today} - {time}
         </p>
-        <p className="bill_container_text">REQUSTED AMOUNT : {amounts} </p>
-        <p className="bill_container_text">TERNIMAL FEE : {fee} </p>
-        <p className="bill_container_text">TOTAL AMOUNT :{+amounts + fee} </p>
+        <p className="bill_container_text">REQUSTED AMOUNT : {amounts}$ </p>
+        {/* <p className="bill_container_text">TERNIMAL FEE : {fee} </p> */}
+        <p className="bill_container_text">TOTAL AMOUNT :{+amounts }$ </p>
         <button className="btn" onClick={(e) => handleUpdate(e)}>
           {" "}
           approve{" "}
@@ -86,16 +84,14 @@ function Billing({ amounts, id }) {
             <th>Date</th>
             <th>accountNumber</th>
             <th>Requested amount</th>
-            <th>ternminal fee</th>
             <th>Wallet </th>
           </tr>
           {history.map((historys, index) => (
             <tr key={index}>
               <td>{historys.createdAt}</td>
               <td>{historys.accountNumber}</td>
-              <td>{amounts}</td>
-              <td>{fee}</td>
-              <td>{historys.amount}</td>
+              <td>{amounts}$</td>
+              <td>{historys.amount}$</td>
             </tr>
           ))}
         </table>

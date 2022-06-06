@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import GoBack from "../Molecules/GoBack";
-import OtherBtn from "../Molecules/OtherBtn";
-import WithdrawBtn from "../Molecules/WithdrawBtn";
+import { useParams } from "react-router-dom";
+import GoBack from "../../components/Button/GoBack";
+import OtherBtn from "../../components/Button/OtherBtn";
+import WithdrawBtn from "../../components/Button/WithdrawBtn";
 import Billing from "./Billing";
 
 function Withdrawal() {
@@ -10,8 +10,9 @@ function Withdrawal() {
   const [other, setOther] = useState();
   const [text, setText] = useState("");
   const [isTranstion, isSetTranstion] = useState(false);
-  const location = useLocation();
-  const id = location.state.getid;
+  const params = useParams();
+  console.log("params", params);
+  const id = params.id;
 
   const handleOther = (e) => {
     const value = e.target.value.replace(/\D/g, "");
