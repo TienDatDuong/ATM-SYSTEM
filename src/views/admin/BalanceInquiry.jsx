@@ -17,17 +17,15 @@ function BalanceInquiry() {
     };
     getDetailUser();
   }, []);
-  console.log("user", user);
+
   return (
     <div className="BalanceInquiry">
-      <h1>
-        Review your balance information, then select Continue when are done
-      </h1>
       {console.log("user", user)}
-      <h2>Available balance : {user.amount}$ </h2>
       <div className="BalanceInquiry_box">
-        <GoBack />
+        <div className="BalanceInquiry_box_lable">Account Balance</div>
+        <h2>Available balance : {user.amount}$ </h2>
       </div>
+      <GoBack />
     </div>
   );
 }

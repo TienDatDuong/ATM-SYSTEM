@@ -1,10 +1,12 @@
 .bill_container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
   font-size: 24px;
   font-weight: 500;
+  margin: auto;
+  width: 500px;
 }
 
 .bill_container > div {
@@ -13,11 +15,27 @@
 
 .bill_container_text {
   margin: 1%;
-  text-align: right;
+  text-align: left;
   display: block;
   min-width: 300px;
+  margin-bottom: 20px;
 }
-
+.bill_container_text >span{
+  margin-left: auto;
+  text-align: right;
+}
 .bill_container_table {
   font-size: 16px;
+}
+.BillingInfor{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.BillingInfor h3,.BillingInfor h4{
+  margin-bottom: 30px;
+}
+.BillingInfor-btn{
+  
 }

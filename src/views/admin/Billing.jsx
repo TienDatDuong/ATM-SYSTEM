@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import GoBack from "../../components/Button/GoBack";
-
+import Button from "../../components/Button/Button";
+import OtherBtn from "../../components/Button/OtherBtn";
 function Billing({ amounts, id }) {
   // const [fee, setFee] = useState(1500);
   const [user, setUser] = useState([]);
   const [history, setHistory] = useState([]);
+  const [isToggle, isSetToggle] = useState(false);
   const navigate = useNavigate();
   const wallet = user.amount;
   console.log("wallet", wallet);
-  const totalWallet = +wallet - (+amounts);
+  const totalWallet = +wallet - +amounts;
   const URL =
     "https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts";
 
@@ -45,7 +47,6 @@ function Billing({ amounts, id }) {
 
       updateListUser().then((abc) => {
         setUser(abc);
-        alert(` you withdrewed ${+amounts}`);
       });
 
       const createTranstion = async () => {
@@ -61,43 +62,70 @@ function Billing({ amounts, id }) {
         return res.data;
       };
       createTranstion().then((abc) => setHistory([...history, abc]));
+      isSetToggle(true);
     }
+  };
+
+  const Continue = () => {
+    isSetToggle(false);
+    navigate(-1);
+    console.log("datdt");
+  };
+
+  const Succeed = () => {
+    isSetToggle(false);
+    navigate(-2);
+    console.log("datdt");
   };
 
   return (
     <>
-      <div className="bill_container">
-        <div>ATM TRANSACTION - Wallet {user.amount}$</div>
-        <p className="bill_container_text">
+      {isToggle === false ? (
+        <>
+          <div className="bill_container">
+            <p className="bill_container_text">Bill</p>
+            <p className="bill_container_text">
+              ATM transaction - Wallet : <span>{user.amount}$</span>
+            </p>
+            {/* <p className="bill_container_text">
           DATE : {today} - {time}
-        </p>
-        <p className="bill_container_text">REQUSTED AMOUNT : {amounts}$ </p>
-        {/* <p className="bill_container_text">TERNIMAL FEE : {fee} </p> */}
-        <p className="bill_container_text">TOTAL AMOUNT :{+amounts }$ </p>
-        <button className="btn" onClick={(e) => handleUpdate(e)}>
-          {" "}
-          approve{" "}
-        </button>
+        </p> */}
+            <p className="bill_container_text">
+              Requsted amount : <span>{amounts}$</span>{" "}
+            </p>
+            {/* <p className="bill_container_text">TERNIMAL FEE : {fee} </p> */}
+            <p className="bill_container_text">
+              Remaining amount : <span>{totalWallet}$</span>{" "}
+            </p>
+            <button className="btn" onClick={(e) => handleUpdate(e)}>
+              {" "}
+              approve{" "}
+            </button>
+          </div>
 
-        <table className="bill_container_table">
-          <tr>
-            <th>Date</th>
-            <th>accountNumber</th>
-            <th>Requested amount</th>
-            <th>Wallet </th>
-          </tr>
-          {history.map((historys, index) => (
-            <tr key={index}>
-              <td>{historys.createdAt}</td>
-              <td>{historys.accountNumber}</td>
-              <td>{amounts}$</td>
-              <td>{historys.amount}$</td>
-            </tr>
-          ))}
-        </table>
-      </div>
-
-      <GoBack />
+          <GoBack />
+        </>
+      ) : (
+        <div className="BillingInfor">
+          <h3>Successful transaction</h3>
+          <h3>Thank you for using our service</h3>
+          <h3>Do you want to make another transaction ? </h3>
+          <div>
+            <input
+              type="button"
+              value={"Yes"}
+              className="Withdrawal_button_other"
+              onClick={() => Continue()}
+            />
+            <input
+              type="button"
+              value={"No"}
+              className="Withdrawal_button_other"
+              onClick={() => Succeed()}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }

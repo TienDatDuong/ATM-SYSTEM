@@ -39,3 +39,21 @@
 .BalanceInquiry_button_main {
   background-color: cornflowerblue;
 }
+.BalanceInquiry_box {
+  border: 2px solid #ccc;
+  min-width: 800px;
+  min-height: 300px;
+  border-radius: 10px;
+  position: relative;
+}
+.BalanceInquiry_box_lable {
+  position: absolute;
+  top: 0;
+  padding: 20px;
+  width: 100%;
+  background-color: steelblue;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}

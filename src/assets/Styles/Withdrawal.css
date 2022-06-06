@@ -25,7 +25,7 @@
   border: none;
   margin: 35px 100px;
   cursor: pointer;
-  background-color: #fff;
+  background-color: steelblue;
 }
 .Withdrawal_button:hover {
   background-color: gainsboro;
@@ -43,8 +43,11 @@
   margin: 50px 85px;
   text-align: center;
   border: none;
-  background-color: #fff;
+  background-color: steelblue;
+  color: #000;
+  border: 1px solid black;
 }
 .Withdrawal_button_other:active {
   background-color: gainsboro;
+  color: #fff;
 }
