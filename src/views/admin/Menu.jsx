@@ -50,9 +50,6 @@ function Menu() {
 
         <GoBack />
       </div>
-      <div className="PageFooter">
-        <h2>Welcome To Vietcombank ATM</h2>
-      </div>
     </>
   );
 }

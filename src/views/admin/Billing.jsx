@@ -33,7 +33,7 @@ function Billing({ amounts, id }) {
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    if (amounts % 50 !== 0 || wallet < amounts) {
+    if (amounts % 50 !== 0) {
       alert(
         "transaction failed because money not enought in wallet and the amount must be divisible by 50"
       );
@@ -99,7 +99,7 @@ function Billing({ amounts, id }) {
             </p>
             <button className="btn" onClick={(e) => handleUpdate(e)}>
               {" "}
-              approve{" "}
+              Approve{" "}
             </button>
           </div>
 
@@ -109,7 +109,7 @@ function Billing({ amounts, id }) {
         <div className="BillingInfor">
           <h2>Successful transaction</h2>
           <h2>Thank you for using our service</h2>
-          <h2>Do you want to make another transaction ? </h2>
+          <h2>Do you want to continue making other transactions?</h2>
           <div>
             <input
               type="button"

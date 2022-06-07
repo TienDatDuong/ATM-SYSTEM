@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
+import { TitleContext } from "../../Contexts/ToolContext";
 
 function User() {
   const [users, setUsers] = useState([]);
@@ -16,6 +17,11 @@ function User() {
       setUsers(res.data);
     };
     getWithdraws();
+  }, []);
+
+  const { setTitle } = useContext(TitleContext);
+  useEffect(() => {
+    setTitle("DASHBOARD");
   }, []);
 
   return (

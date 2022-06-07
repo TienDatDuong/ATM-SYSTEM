@@ -1,1 +1,0 @@
-export  const WithdrawApi = "https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/1/withdraws"

@@ -1,10 +1,12 @@
 import "../../App.css";
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import OtherBtn from "../../components/Button/OtherBtn";
 import moment from "moment";
 import Moment from "react-moment";
+import AdminHeader from "../admin/AdminHeader";
+import { TitleContext } from "../../Contexts/ToolContext";
 function ListAccount({
   users,
   amount,
@@ -42,6 +44,11 @@ function ListAccount({
   const handleClose = () => {
     isSetToggle(false);
   };
+
+  const { setTitle } = useContext(TitleContext);
+  useEffect(() => {
+    setTitle("DASHBOARD");
+  }, []);
 
   return (
     <>
@@ -85,7 +92,7 @@ function ListAccount({
           )} */}
         </form>
       </div>
-
+      {/* <AdminHeader /> */}
       <div className="App">
         <h1>List Account</h1>
         <table>
@@ -105,7 +112,7 @@ function ListAccount({
               <td>
                 <nav>
                   <Link
-                    to={`/account/${user.id}`}
+                    to={`/admin/account/${user.id}`}
                     state={{ id: { user } }}
                     className="User"
                   >
@@ -140,9 +147,6 @@ function ListAccount({
             </tr>
           ))}
         </table>
-      </div>
-      <div className="PageFooter">
-        <h2>Welcome To Vietcombank ATM</h2>
       </div>
     </>
   );

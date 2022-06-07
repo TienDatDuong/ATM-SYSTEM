@@ -1,12 +1,11 @@
 import axios from "axios";
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import GoBack from "../../components/Button/GoBack";
 import OtherBtn from "../../components/Button/OtherBtn";
 import WithdrawBtn from "../../components/Button/WithdrawBtn";
 import Billing from "./Billing";
 import { TitleContext } from "../../Contexts/ToolContext";
-
 
 function Withdrawal() {
   const [member, setMember] = useState([]);
@@ -16,12 +15,9 @@ function Withdrawal() {
   const [isToggleBtn, isSetToggleBtn] = useState(false);
   const [isTranstion, isSetTranstion] = useState(false);
   const params = useParams();
-  const titleFooter = useContext(TitleContext);
-  const titlePage = titleFooter.title[1].Withdrawal;
-  console.log("-------------",titlePage)
-  console.log("params", params);
+  const totalMoney = member.amount
   const id = params.id;
-
+  debugger
   const handleOther = (e) => {
     const value = e.target.value.replace(/\D/g, "");
     setOther(value);
@@ -32,7 +28,7 @@ function Withdrawal() {
   const handleSubmit = () => {
     if (amount === 0 || amount === "") {
       alert("ATM only payments is a multiple of 50 - Please enter the amount");
-    } else if (member.amount > amount) {
+    } else if (totalMoney >= amount ) {
       isSetTranstion(true);
     } else {
       alert(" money not enought");
@@ -53,20 +49,25 @@ function Withdrawal() {
     isSetToggleBtn(!isTranstion);
   };
 
+  const { setTitle } = useContext(TitleContext);
+  useEffect(() => {
+    setTitle("WITHDRAWAL");
+  }, []);
+
   return (
     <>
       {isTranstion === false ? (
         <div className="Withdrawal">
-          <h1>Please select an amount </h1>
+          <h1>Please select an amount {totalMoney}</h1>
           <h3>Withdrawal : {amount} $</h3>
           <h2>{text}</h2>
 
           <div className="Withdrawal_box">
-            <WithdrawBtn value={"50"} setAmount={setAmount} />
             <WithdrawBtn value={"100"} setAmount={setAmount} />
             <WithdrawBtn value={"200"} setAmount={setAmount} />
             <WithdrawBtn value={"500"} setAmount={setAmount} />
             <WithdrawBtn value={"1000"} setAmount={setAmount} />
+            <WithdrawBtn value={"1500"} setAmount={setAmount} />
             {isToggleBtn === false ? (
               <input
                 type={"button"}
@@ -104,9 +105,6 @@ function Withdrawal() {
       ) : (
         <Billing amounts={amount} id={id} />
       )}
-      <div className="PageFooter">
-        <h2>Welcome To Vietcombank ATM - {titlePage}</h2>
-      </div>
     </>
   );
 }

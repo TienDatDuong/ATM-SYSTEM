@@ -1,22 +1,23 @@
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
+import { TitleContext } from "../../Contexts/ToolContext";
 import { useParams } from "react-router-dom";
 import GoBack from "../../components/Button/GoBack";
-import { TitleContext } from "../../Contexts/ToolContext";
+import { getAccount } from "../../services/bankaccount";
+
 function BalanceInquiry() {
   const params = useParams();
+
   const [user, setUser] = useState([]);
-  const titleFooter = useContext(TitleContext);
-  const titlePage = titleFooter.title[0].Balancelnquiry;
+
   useEffect(() => {
     const id = params.id;
-    const getDetailUser = async () => {
-      const res = await axios.get(
-        `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/${id}`
-      );
-      setUser(res.data);
-    };
-    getDetailUser();
+    getAccount(id).then((res) => setUser(res.data));
+  }, []);
+
+  const { setTitle } = useContext(TitleContext);
+  useEffect(() => {
+    setTitle("BALANCE INQUIRY");
   }, []);
 
   return (
@@ -28,9 +29,6 @@ function BalanceInquiry() {
           <h2>Available balance : {user.amount}$ </h2>
         </div>
         <GoBack />
-      </div>
-      <div className="PageFooter">
-        <h2>Welcome To Vietcombank ATM - {titlePage}</h2>
       </div>
     </div>
   );

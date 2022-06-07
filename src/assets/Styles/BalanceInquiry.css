@@ -57,7 +57,7 @@
   font-size: 18px;
   font-weight: 600;
 }
-.PageFooter{
+.PageHeader{
   min-height: 100px;
   min-width: 100vh;
   background-color:#00502f ;
@@ -71,7 +71,4 @@
   color: #fff;
   font-weight: 300;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
-}
-.PageFooter>h2{
-
 }
