@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family:'Times New Roman', Times, serif;
 }
 
 .App {
@@ -23,7 +24,7 @@ tr {
 }
 
 .selecter:hover {
-  background-color: aqua;
+  background-color: #b8db89;
   z-index: 999;
 }
 th,
@@ -35,18 +36,29 @@ td {
   border-spacing: 0px;
 }
 
+thead{
+  background-color:#00502f;
+  color: #FFF;
+}
+
 .btn {
   padding: 9px 15px;
   cursor: pointer;
   border-radius: 8px;
   border: none;
+  font-size: 18px;
+  font-weight: 500;
   min-width: 150px;
-  margin: 5px 20px;
-  background-color: steelblue;
+  min-height: 50px;
+  margin: 20px;
+  background-color: #00502f;
+  color: #fff;
+  font-size: 20px;
 }
 
 .btn:hover {
-  background-color: cornflowerblue;
+  background-color: #ccc;
+  color: #000;
 }
 
 .btnDelete {
@@ -76,7 +88,8 @@ td {
   color: #000;
   padding: 20px 25px;
   min-width: 200px;
-  background-color: steelblue;
+  background-color: #00502f;
+  color: #fff;
   text-align: center;
   border-radius: 10px;
   cursor: pointer;

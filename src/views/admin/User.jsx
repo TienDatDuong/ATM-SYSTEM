@@ -24,7 +24,6 @@ function User() {
         <h3>Account number : {users.accountNumber} </h3>
         <h3>Phone : {users.accPhone}</h3>
       </div>
-
       <Outlet />
     </div>
   );

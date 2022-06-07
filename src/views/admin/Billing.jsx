@@ -107,9 +107,9 @@ function Billing({ amounts, id }) {
         </>
       ) : (
         <div className="BillingInfor">
-          <h3>Successful transaction</h3>
-          <h3>Thank you for using our service</h3>
-          <h3>Do you want to make another transaction ? </h3>
+          <h2>Successful transaction</h2>
+          <h2>Thank you for using our service</h2>
+          <h2>Do you want to make another transaction ? </h2>
           <div>
             <input
               type="button"

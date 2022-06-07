@@ -141,6 +141,9 @@ function ListAccount({
           ))}
         </table>
       </div>
+      <div className="PageFooter">
+        <h2>Welcome To Vietcombank ATM</h2>
+      </div>
     </>
   );
 }

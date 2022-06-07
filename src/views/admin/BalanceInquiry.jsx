@@ -1,12 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import GoBack from "../../components/Button/GoBack";
-
+import { TitleContext } from "../../Contexts/ToolContext";
 function BalanceInquiry() {
   const params = useParams();
   const [user, setUser] = useState([]);
-
+  const titleFooter = useContext(TitleContext);
+  const titlePage = titleFooter.title[0].Balancelnquiry;
   useEffect(() => {
     const id = params.id;
     const getDetailUser = async () => {
@@ -19,13 +20,18 @@ function BalanceInquiry() {
   }, []);
 
   return (
-    <div className="BalanceInquiry">
-      {console.log("user", user)}
-      <div className="BalanceInquiry_box">
-        <div className="BalanceInquiry_box_lable">Account Balance</div>
-        <h2>Available balance : {user.amount}$ </h2>
+    <div>
+      <div className="BalanceInquiry">
+        {console.log("user", user)}
+        <div className="BalanceInquiry_box">
+          <div className="BalanceInquiry_box_lable">Account Balance</div>
+          <h2>Available balance : {user.amount}$ </h2>
+        </div>
+        <GoBack />
       </div>
-      <GoBack />
+      <div className="PageFooter">
+        <h2>Welcome To Vietcombank ATM - {titlePage}</h2>
+      </div>
     </div>
   );
 }

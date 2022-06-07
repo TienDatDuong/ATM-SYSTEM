@@ -1,6 +1,6 @@
 .Withdrawal {
   min-width: 100vh;
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -23,29 +23,30 @@
   font-size: 24px;
   border-radius: 10px;
   border: none;
-  margin: 35px 100px;
+  margin: 30px 100px ;
   cursor: pointer;
-  background-color: steelblue;
+  background-color: #00502f;
+  color: #fff;
 }
 .Withdrawal_button:hover {
   background-color: gainsboro;
+  color: #000;
 }
 .Withdrawal_button_main {
-  background-color: cornflowerblue;
+  background-color: #00502f;
 }
 .Withdrawal_button_other {
-  min-width: 200px;
+  width: 200px;
   height: 50px;
-  font-size: 18px;
+  font-size: 22px;
   border-radius: 10px;
   outline: none;
   cursor: pointer;
   margin: 50px 85px;
   text-align: center;
   border: none;
-  background-color: steelblue;
-  color: #000;
-  border: 1px solid black;
+  background-color: #00502f;
+  color: #fff;
 }
 .Withdrawal_button_other:active {
   background-color: gainsboro;

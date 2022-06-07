@@ -1,10 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { useParams } from "react-router-dom";
 import GoBack from "../../components/Button/GoBack";
 import OtherBtn from "../../components/Button/OtherBtn";
 import WithdrawBtn from "../../components/Button/WithdrawBtn";
 import Billing from "./Billing";
+import { TitleContext } from "../../Contexts/ToolContext";
+
 
 function Withdrawal() {
   const [member, setMember] = useState([]);
@@ -14,6 +16,9 @@ function Withdrawal() {
   const [isToggleBtn, isSetToggleBtn] = useState(false);
   const [isTranstion, isSetTranstion] = useState(false);
   const params = useParams();
+  const titleFooter = useContext(TitleContext);
+  const titlePage = titleFooter.title[1].Withdrawal;
+  console.log("-------------",titlePage)
   console.log("params", params);
   const id = params.id;
 
@@ -50,7 +55,7 @@ function Withdrawal() {
 
   return (
     <>
-      {!isTranstion && (
+      {isTranstion === false ? (
         <div className="Withdrawal">
           <h1>Please select an amount </h1>
           <h3>Withdrawal : {amount} $</h3>
@@ -96,8 +101,12 @@ function Withdrawal() {
 
           <GoBack />
         </div>
+      ) : (
+        <Billing amounts={amount} id={id} />
       )}
-      {<Billing amounts={amount} id={id} />}
+      <div className="PageFooter">
+        <h2>Welcome To Vietcombank ATM - {titlePage}</h2>
+      </div>
     </>
   );
 }
