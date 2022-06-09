@@ -5,14 +5,14 @@ import GoBack from "../../components/Button/GoBack";
 import Button from "../../components/Button/Button";
 import OtherBtn from "../../components/Button/OtherBtn";
 import { useSelector } from "react-redux";
-import {accSelector} from "../../store/accSlice"
-import {addAmount} from "../../store/accSlice"
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux";
+import { updateBalance } from "../../store/actions/balance";
+
 function Billing({ amounts, id }) {
-  const [acc,setAcc] = useState("")
-  const accSelectors = useSelector(accSelector)
-  const dispatch = useDispatch()
-  console.log("------datdt",accSelectors)
+  const [acc, setAcc] = useState("");
+  const accSelectors = useSelector((state) => state.balance);
+  const dispatch = useDispatch();
+  console.log("------datdt", accSelectors);
   // const [fee, setFee] = useState(1500);
   const [user, setUser] = useState([]);
   const [history, setHistory] = useState([]);
@@ -51,7 +51,8 @@ function Billing({ amounts, id }) {
           amount: totalWallet,
         });
         // dispatchEvent(amount)
-        dispatch(addAmount(totalWallet))
+        console.log(res.data);
+        dispatch(updateBalance(res.data.amount));
         return res.data;
       };
 

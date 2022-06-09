@@ -1,11 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit"; 
-import accReducer from "./accSlice";
-import {createlogger} from "redux-logger"
-import thunk from "redux-thunk";
-const store = configureStore({
-  reducer : {
-    accReducer
-  }
-})
+import { configureStore } from "@reduxjs/toolkit";
+// import accReducer from "./accSlice";
+import balanceReducer from "./reducers/balance";
 
-export default store
+const store = configureStore({
+  reducer: {
+    balance: balanceReducer,
+  },
+});
+
+export default store;

@@ -1,11 +1,15 @@
 import React, { useContext } from "react";
 import { TitleContext } from "../../Contexts/ToolContext";
+import { useSelector } from "react-redux";
+
 function AdminHeader() {
   const { title } = useContext(TitleContext);
+  const balance = useSelector((state) => state.balance) || { amount: 0 };
+  console.log("abc", balance);
   return (
     <div className="PageHeader">
-      <h2> Welcome To Vietcombank ATM - {title}</h2> 
-      <h2>  Balance - {123}</h2>
+      <h2> Welcome To Vietcombank ATM - {title}</h2>
+      <h2> Balance - {balance.amount || 0}</h2>
     </div>
   );
 }
