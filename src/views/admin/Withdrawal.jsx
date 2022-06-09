@@ -17,7 +17,6 @@ function Withdrawal() {
   const params = useParams();
   const totalMoney = member.amount
   const id = params.id;
-  debugger
   const handleOther = (e) => {
     const value = e.target.value.replace(/\D/g, "");
     setOther(value);
@@ -58,7 +57,7 @@ function Withdrawal() {
     <>
       {isTranstion === false ? (
         <div className="Withdrawal">
-          <h1>Please select an amount {totalMoney}</h1>
+          <h1>Please select an amount</h1>
           <h3>Withdrawal : {amount} $</h3>
           <h2>{text}</h2>
 

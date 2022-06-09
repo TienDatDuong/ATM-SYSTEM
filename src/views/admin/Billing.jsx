@@ -4,7 +4,15 @@ import axios from "axios";
 import GoBack from "../../components/Button/GoBack";
 import Button from "../../components/Button/Button";
 import OtherBtn from "../../components/Button/OtherBtn";
+import { useSelector } from "react-redux";
+import {accSelector} from "../../store/accSlice"
+import {addAmount} from "../../store/accSlice"
+import {useDispatch} from "react-redux"
 function Billing({ amounts, id }) {
+  const [acc,setAcc] = useState("")
+  const accSelectors = useSelector(accSelector)
+  const dispatch = useDispatch()
+  console.log("------datdt",accSelectors)
   // const [fee, setFee] = useState(1500);
   const [user, setUser] = useState([]);
   const [history, setHistory] = useState([]);
@@ -42,6 +50,8 @@ function Billing({ amounts, id }) {
         const res = await axios.put(`${URL}/${id}`, {
           amount: totalWallet,
         });
+        // dispatchEvent(amount)
+        dispatch(addAmount(totalWallet))
         return res.data;
       };
 
@@ -69,13 +79,11 @@ function Billing({ amounts, id }) {
   const Continue = () => {
     isSetToggle(false);
     navigate(-1);
-    console.log("datdt");
   };
 
   const Succeed = () => {
     isSetToggle(false);
     navigate(-2);
-    console.log("datdt");
   };
 
   return (
