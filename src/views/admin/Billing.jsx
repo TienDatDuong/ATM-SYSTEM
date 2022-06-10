@@ -4,15 +4,15 @@ import axios from "axios";
 import GoBack from "../../components/Button/GoBack";
 import Button from "../../components/Button/Button";
 import OtherBtn from "../../components/Button/OtherBtn";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { updateBalance } from "../../store/actions/balance";
+// import { updateBalance } from "../../store/actions/balance";
+import  {updateBalance}  from "../../store/reducers/balance";
 
 function Billing({ amounts, id }) {
-  const [acc, setAcc] = useState("");
-  const accSelectors = useSelector((state) => state.balance);
+  // const accSelectors = useSelector((state) => state.balance);
   const dispatch = useDispatch();
-  console.log("------datdt", accSelectors);
+  // console.log("------datdt", accSelectors);
   // const [fee, setFee] = useState(1500);
   const [user, setUser] = useState([]);
   const [history, setHistory] = useState([]);
@@ -50,7 +50,6 @@ function Billing({ amounts, id }) {
         const res = await axios.put(`${URL}/${id}`, {
           amount: totalWallet,
         });
-        // dispatchEvent(amount)
         console.log(res.data);
         dispatch(updateBalance(res.data.amount));
         return res.data;

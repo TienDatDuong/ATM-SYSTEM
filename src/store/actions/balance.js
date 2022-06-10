@@ -1,4 +1,4 @@
-export const updateBalance = (amount) => ({
-  type: "UPDATE_BALANCE",
-  amount,
-});
+// export const updateBalance = (amount) => ({
+//   type: "UPDATE_BALANCE",
+//   amount,
+// });
