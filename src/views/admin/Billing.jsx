@@ -7,7 +7,7 @@ import OtherBtn from "../../components/Button/OtherBtn";
 // import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 // import { updateBalance } from "../../store/actions/balance";
-import  {updateBalance}  from "../../store/reducers/balance";
+import { updateBalance } from "../../store/reducers/balance";
 
 function Billing({ amounts, id }) {
   // const accSelectors = useSelector((state) => state.balance);
