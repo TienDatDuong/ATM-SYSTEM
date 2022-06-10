@@ -37,6 +37,9 @@
 .BillingInfor h2,.BillingInfor h3{
   margin-bottom: 30px;
 }
+.BillingInfor h2{
+  font-size: 48px;
+}
 .BillingInfor-btn{
   
 }

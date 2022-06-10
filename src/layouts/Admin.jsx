@@ -1,10 +1,6 @@
 import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-
-// components
+import { Navigate, Route, Routes } from "react-router-dom";
 import AdminHeader from "../views/admin/AdminHeader";
-
-// views
 import Menu from "../views/admin/Menu";
 import Withdrawal from "../views/admin/Withdrawal";
 import BalanceInquiry from "../views/admin/BalanceInquiry";
@@ -13,6 +9,7 @@ import TitleContextProvider from "../Contexts/ToolContext";
 import App from "../App";
 
 function Admin() {
+
   return (
     <div>
       <TitleContextProvider>
@@ -25,11 +22,11 @@ function Admin() {
             <Route path="balance-inquiry" element={<BalanceInquiry />} />
           </Route>
           <Route path="/" element={<Navigate to="/admin/dashboard" />} />
-          {/* <Redirect from = "/" to="dashboard" /> */}
         </Routes>
       </TitleContextProvider>
     </div>
   );
+
 }
 
 export default Admin;

@@ -1,152 +1,62 @@
 import "../../App.css";
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Button from "../../components/Button/Button";
-import OtherBtn from "../../components/Button/OtherBtn";
 import moment from "moment";
-import Moment from "react-moment";
-import AdminHeader from "../admin/AdminHeader";
 import { TitleContext } from "../../Contexts/ToolContext";
-function ListAccount({
-  users,
-  amount,
-  handleAmount,
-  accountNumber,
-  hanleNumber,
-  handleDelete,
-  AddListMember,
-  setChangeAmount,
-  setChangeNumber,
-  changeAmount,
-  ChangeNumber,
-  handleUpdate,
-  isSetToggle,
-  isToggle,
-}) {
-  const [getid, setGetid] = useState("");
+import { useDispatch } from "react-redux";
+import { updatebalance } from "../../store/reducers/balance";
+
+function ListAccount({ users }) {
+
+  const dispatch = useDispatch();
   const [createdAt, setCreatedAt] = useState(new Date());
-  moment(createdAt).format();
-  const fillUpdateForm = (user) => {
-    setChangeAmount(user.amount);
-    setChangeNumber(user.accountNumber);
-    setGetid(user.id);
-    isSetToggle(true);
-  };
-
-  const handleChangeAmount = (e) => {
-    setChangeAmount(e.target.value);
-  };
-
-  const handleChangeNumber = (e) => {
-    setChangeNumber(e.target.value);
-  };
-
-  const handleClose = () => {
-    isSetToggle(false);
-  };
-
   const { setTitle } = useContext(TitleContext);
+  moment(createdAt).format();
+
   useEffect(() => {
     setTitle("DASHBOARD");
+    dispatch(updatebalance(0));
   }, []);
 
   return (
     <>
-      <div className="inputs">
-        <form onSubmit={AddListMember}>
-          {/* <Button
-            value={amount}
-            onChange={handleAmount}
-            placeholder={"amount"}
-          /> */}
-          {/* <Button
-            value={accountNumber}
-            onChange={hanleNumber}
-            placeholder={"accountNumber"}
-          /> */}
-          {/* <Button value={createdAt} placeholder={"createdAt"} /> */}
-          {/* <OtherBtn type={"submit"} className={"btn"} value={"Add UserBank"} /> */}
-          {/* {isToggle === true ? (
-            <div className="box">
-              <Button
-                value={changeAmount}
-                onChange={handleChangeAmount}
-                placeholder={"amount"}
-              />
-              <Button
-                value={ChangeNumber}
-                onChange={handleChangeNumber}
-                placeholder={"accountNumber"}
-              />
-              <button className="btn" onClick={(e) => handleUpdate(getid, e)}>
-                {" "}
-                Change{" "}
-              </button>
-              <button className="btn" onClick={(e) => handleClose(e)}>
-                {" "}
-                Close{" "}
-              </button>
-            </div>
-          ) : (
-            ""
-          )} */}
-        </form>
-      </div>
-      {/* <AdminHeader /> */}
       <div className="App">
-        <h1>List Account</h1>
+        <h1>LIST ACCOUNT</h1>
+
         <table>
+
           <thead>
             <th>STT</th>
-            <th>Name</th>
-            <th>amount</th>
-            <th>Phone</th>
-            <th>Account Number</th>
-            <th>Pin</th>
-            {/* <th>createdAt</th> */}
-            {/* <th>Action</th> */}
+            <th>NAME</th>
+            <th>AMOUNT</th>
+            <th>PHONE</th>
+            <th>ACCONNT NUMBER</th>
+            <th>PIN</th>
           </thead>
+
           {users.map((user, index) => (
             <tr key={index} className="selecter">
               <td>{user.id}</td>
               <td>
-                <nav>
+                <nav className="uppercase">
                   <Link
                     to={`/admin/account/${user.id}`}
                     state={{ id: { user } }}
                     className="User"
                   >
-                    {" "}
                     {user.accountNumber}{" "}
                   </Link>
                 </nav>
               </td>
-              <td>{user.amount}$</td>
+              <td className="selecter_number">{user.amount} $ </td>
               <td>{user.accPhone}</td>
               <td>{user.accNumber}</td>
               <th>{user.pin}</th>
-              {/* <td>
-                <Moment format="D MMMM YYYY HH:mm">{user.createdAt}</Moment>
-              </td> */}
-              {/* <td>
-                <button
-                  type=""
-                  className="btn"
-                  onClick={(e) => handleDelete(user.id, e)}
-                >
-                  Delete
-                </button>
-                <button
-                  type=""
-                  className="btn"
-                  onClick={(e) => fillUpdateForm(user)}
-                >
-                  Update
-                </button>
-              </td> */}
             </tr>
           ))}
+
         </table>
+
       </div>
     </>
   );

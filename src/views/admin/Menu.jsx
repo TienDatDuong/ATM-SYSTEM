@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import GoBack from "../../components/Button/GoBack";
+import { updatebalance } from "../../store/reducers/balance";
+import { useDispatch } from "react-redux";
 
 function Menu() {
   const [users, setUsers] = useState([]);
@@ -10,12 +12,14 @@ function Menu() {
   const navigate = useNavigate();
   const amounts = location.state.id;
   const id = location.state.id.user.id;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getWithdraws = async () => {
       const res = await axios.get(
         `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/${id}`
       );
+      dispatch(updatebalance(res.data.amount));
       setUsers(res.data);
       setGetid(id);
     };
@@ -28,22 +32,22 @@ function Menu() {
         <nav>
           <ul className="navBar">
             <Link to="balance-inquiry" className="navBar_item">
-              BalanceInquiry
+              BALANCE INQUIRY
             </Link>
             <Link to="withdrawal" className="navBar_item" state={{ getid }}>
-              Withdrawal
+              WITHDRAWAL
             </Link>
             <Link to={`transfer`} className="navBar_item">
-              Transfer
+              TRANSACTIONS
             </Link>
             <Link to={`transactions`} className="navBar_item">
-              Transactions
+              TRANSACTIONS
             </Link>
             <Link to={`change PIN`} className="navBar_item">
-              Change PIN
+              CHANGE PIN
             </Link>
             <Link to={`change PIN`} className="navBar_item">
-              Other
+              OTHER
             </Link>
           </ul>
         </nav>

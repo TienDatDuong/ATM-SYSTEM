@@ -10,9 +10,9 @@
 }
 .Withdrawal_box {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 50px;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* margin-top: 50px; */
   max-width: 800px;
   flex-direction: row;
   flex-wrap: wrap;
@@ -23,10 +23,14 @@
   font-size: 24px;
   border-radius: 10px;
   border: none;
-  margin: 30px 100px ;
+  margin: 30px 100px;
   cursor: pointer;
   background-color: #00502f;
   color: #fff;
+}
+.Withdrawal_button:focus {
+  background-color: gainsboro;
+  color: #000;
 }
 .Withdrawal_button:hover {
   background-color: gainsboro;
@@ -38,11 +42,11 @@
 .Withdrawal_button_other {
   width: 200px;
   height: 50px;
-  font-size: 22px;
+  font-size: 24px;
   border-radius: 10px;
   outline: none;
   cursor: pointer;
-  margin: 50px 85px;
+  margin: 30px 100px;
   text-align: center;
   border: none;
   background-color: #00502f;
@@ -51,4 +55,12 @@
 .Withdrawal_button_other:active {
   background-color: gainsboro;
   color: #fff;
+}
+.Withdrawl_btn_confirm {
+  background-color: green;
+  font-weight: 600;
+}
+.Withdrawl_btn_cancel {
+  background-color: red;
+  font-weight: 600;
 }

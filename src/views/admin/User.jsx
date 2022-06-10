@@ -5,6 +5,7 @@ import { TitleContext } from "../../Contexts/ToolContext";
 
 function User() {
   const [users, setUsers] = useState([]);
+  const { setTitle } = useContext(TitleContext);
   const params = useParams();
 
   useEffect(() => {
@@ -19,18 +20,20 @@ function User() {
     getWithdraws();
   }, []);
 
-  const { setTitle } = useContext(TitleContext);
   useEffect(() => {
     setTitle("DASHBOARD");
   }, []);
 
   return (
     <div className="menu">
+
       <div className="header_menu">
-        <h3>Account number : {users.accountNumber} </h3>
-        <h3>Phone : {users.accPhone}</h3>
+        <h3>ACCOUNT NUMBER : {users.accountNumber} </h3>
+        <h3>PHONE : {users.accPhone}</h3>
       </div>
+
       <Outlet />
+
     </div>
   );
 }

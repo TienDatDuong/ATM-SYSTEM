@@ -2,29 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import GoBack from "../../components/Button/GoBack";
-import Button from "../../components/Button/Button";
-import OtherBtn from "../../components/Button/OtherBtn";
-// import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-// import { updateBalance } from "../../store/actions/balance";
-import { updateBalance } from "../../store/reducers/balance";
+import { updatebalance } from "../../store/reducers/balance";
 
 function Billing({ amounts, id }) {
-  // const accSelectors = useSelector((state) => state.balance);
+
   const dispatch = useDispatch();
-  // console.log("------datdt", accSelectors);
-  // const [fee, setFee] = useState(1500);
   const [user, setUser] = useState([]);
   const [history, setHistory] = useState([]);
   const [isToggle, isSetToggle] = useState(false);
   const navigate = useNavigate();
   const wallet = user.amount;
-  console.log("wallet", wallet);
   const totalWallet = +wallet - +amounts;
+  const date = new Date();
   const URL =
     "https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts";
 
-  const date = new Date();
   const today =
     date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
   const time =
@@ -39,6 +32,7 @@ function Billing({ amounts, id }) {
   }, []);
 
   const handleUpdate = (e) => {
+
     e.preventDefault();
 
     if (amounts % 50 !== 0) {
@@ -51,7 +45,7 @@ function Billing({ amounts, id }) {
           amount: totalWallet,
         });
         console.log(res.data);
-        dispatch(updateBalance(res.data.amount));
+        dispatch(updatebalance(res.data.amount));
         return res.data;
       };
 
@@ -90,50 +84,49 @@ function Billing({ amounts, id }) {
     <>
       {isToggle === false ? (
         <>
-          <div className="bill_container">
+          <div className="bill_container uppercase ">
             <p className="bill_container_text">Bill</p>
             <p className="bill_container_text">
               ATM transaction - Wallet : <span>{user.amount}$</span>
             </p>
-            {/* <p className="bill_container_text">
-          DATE : {today} - {time}
-        </p> */}
             <p className="bill_container_text">
               Requsted amount : <span>{amounts}$</span>{" "}
             </p>
-            {/* <p className="bill_container_text">TERNIMAL FEE : {fee} </p> */}
             <p className="bill_container_text">
               Remaining amount : <span>{totalWallet}$</span>{" "}
             </p>
             <button className="btn" onClick={(e) => handleUpdate(e)}>
               {" "}
-              Approve{" "}
+              APPROVE{" "}
             </button>
           </div>
 
           <GoBack />
         </>
-      ) : (
-        <div className="BillingInfor">
+      ) 
+      : 
+      (
+        <div className="BillingInfor uppercase" >
           <h2>Successful transaction</h2>
-          <h2>Thank you for using our service</h2>
-          <h2>Do you want to continue making other transactions?</h2>
+          <h3>Thank you for using our service</h3>
+          <h3>Do you want to continue making other transactions?</h3>
           <div>
             <input
               type="button"
-              value={"Yes"}
-              className="Withdrawal_button_other"
+              value={"ENTER"}
+              className="Withdrawal_button_other Withdrawl_btn_confirm"
               onClick={() => Continue()}
             />
             <input
               type="button"
-              value={"No"}
-              className="Withdrawal_button_other"
+              value={"CENCAL"}
+              className="Withdrawal_button_other  Withdrawl_btn_cancel"
               onClick={() => Succeed()}
             />
           </div>
         </div>
       )}
+
     </>
   );
 }

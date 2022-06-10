@@ -9,7 +9,7 @@ function GoBack() {
       onClick={() => navigate(-1)}
       className="BalanceInquiry_button_main BalanceInquiry_button back-btn"
     >
-      go back
+      GO BACK
     </button>
   );
 }

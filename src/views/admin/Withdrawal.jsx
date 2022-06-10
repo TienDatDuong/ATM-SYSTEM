@@ -8,15 +8,18 @@ import Billing from "./Billing";
 import { TitleContext } from "../../Contexts/ToolContext";
 
 function Withdrawal() {
+
   const [member, setMember] = useState([]);
   const [amount, setAmount] = useState(0);
-  const [other, setOther] = useState();
+  const [other, setOther] = useState("OTHER");
   const [text, setText] = useState("");
   const [isToggleBtn, isSetToggleBtn] = useState(false);
   const [isTranstion, isSetTranstion] = useState(false);
   const params = useParams();
-  const totalMoney = member.amount
+  const totalMoney = member.amount;
   const id = params.id;
+  const { setTitle } = useContext(TitleContext);
+
   const handleOther = (e) => {
     const value = e.target.value.replace(/\D/g, "");
     setOther(value);
@@ -27,11 +30,15 @@ function Withdrawal() {
   const handleSubmit = () => {
     if (amount === 0 || amount === "") {
       alert("ATM only payments is a multiple of 50 - Please enter the amount");
-    } else if (totalMoney >= amount ) {
+    } else if (totalMoney >= amount) {
       isSetTranstion(true);
     } else {
       alert(" money not enought");
     }
+  };
+
+  const handeleOtherMoney = () => {
+    isSetToggleBtn(!isTranstion);
   };
 
   useEffect(() => {
@@ -44,11 +51,6 @@ function Withdrawal() {
     getDetailUser();
   }, []);
 
-  const handeleOtherMoney = () => {
-    isSetToggleBtn(!isTranstion);
-  };
-
-  const { setTitle } = useContext(TitleContext);
   useEffect(() => {
     setTitle("WITHDRAWAL");
   }, []);
@@ -56,7 +58,7 @@ function Withdrawal() {
   return (
     <>
       {isTranstion === false ? (
-        <div className="Withdrawal">
+        <div className="Withdrawal uppercase">
           <h1>Please select an amount</h1>
           <h3>Withdrawal : {amount} $</h3>
           <h2>{text}</h2>
@@ -67,14 +69,17 @@ function Withdrawal() {
             <WithdrawBtn value={"500"} setAmount={setAmount} />
             <WithdrawBtn value={"1000"} setAmount={setAmount} />
             <WithdrawBtn value={"1500"} setAmount={setAmount} />
+
             {isToggleBtn === false ? (
               <input
                 type={"button"}
                 className="Withdrawal_button"
-                value={"Other"}
+                value={"OTHER"}
                 onClick={() => handeleOtherMoney()}
               />
-            ) : (
+            ) 
+            :
+            (
               <OtherBtn
                 type={"text"}
                 value={other}
@@ -86,22 +91,25 @@ function Withdrawal() {
 
             <input
               type="button"
-              value={"confirm"}
-              className="Withdrawal_button_main Withdrawal_button"
+              value={"CONFIRM"}
+              className="Withdrawal_button_main Withdrawal_button Withdrawl_btn_confirm"
               onClick={(e) => handleSubmit(e)}
             />
 
             <input
               type="button"
-              value={"Cancel"}
-              className="Withdrawal_button_main Withdrawal_button"
+              value={"CANCEL"}
+              className="Withdrawal_button_main Withdrawal_button Withdrawl_btn_cancel"
               onClick={() => setAmount(0)}
             />
           </div>
 
           <GoBack />
+
         </div>
-      ) : (
+      ) 
+      :
+      (
         <Billing amounts={amount} id={id} />
       )}
     </>
