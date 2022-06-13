@@ -114,8 +114,12 @@ thead {
 .User {
   text-decoration: none;
   color: #000;
+  transition-property:scale();
+  transition-duration: 1s;
 }
-
+.User:active{
+  transform: scale(0.6);
+}
 .back-btn {
   position: absolute;
   bottom: 5%;

@@ -95,7 +95,7 @@ function Billing({ amounts, id }) {
             <p className="bill_container_text">
               Remaining amount : <span>{totalWallet}$</span>{" "}
             </p>
-            <button className="btn" onClick={(e) => handleUpdate(e)}>
+            <button className="btn  btn_effect" onClick={(e) => handleUpdate(e)}>
               {" "}
               APPROVE{" "}
             </button>
@@ -114,13 +114,13 @@ function Billing({ amounts, id }) {
             <input
               type="button"
               value={"ENTER"}
-              className="Withdrawal_button_other Withdrawl_btn_confirm"
+              className="Withdrawal_button_other Withdrawl_btn_confirm  btn_effect"
               onClick={() => Continue()}
             />
             <input
               type="button"
               value={"CENCAL"}
-              className="Withdrawal_button_other  Withdrawl_btn_cancel"
+              className="Withdrawal_button_other  Withdrawl_btn_cancel  btn_effect"
               onClick={() => Succeed()}
             />
           </div>

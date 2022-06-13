@@ -7,7 +7,7 @@ function GoBack() {
   return (
     <button
       onClick={() => navigate(-1)}
-      className="BalanceInquiry_button_main BalanceInquiry_button back-btn"
+      className="BalanceInquiry_button_main BalanceInquiry_button back-btn  btn_effect"
     >
       GO BACK
     </button>

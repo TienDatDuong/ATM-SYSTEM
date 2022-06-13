@@ -38,6 +38,7 @@
 }
 .Withdrawal_button_main {
   background-color: #00502f;
+  box-shadow: 3px 3px #999;
 }
 .Withdrawal_button_other {
   width: 200px;

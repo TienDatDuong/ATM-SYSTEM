@@ -1,0 +1,8 @@
+.btn_effect{
+  transition-property:scale();
+  transition-duration: 1s;
+  box-shadow: 3px 3px #999;
+}
+.btn_effect:active{
+  transform: scale(0.9);
+}

@@ -24,7 +24,7 @@ function BalanceInquiry() {
       <div className="BalanceInquiry">
 
         {console.log("user", user)}
-        <div className="BalanceInquiry_box">
+        <div className="BalanceInquiry_box  btn_effect">
           <div className="BalanceInquiry_box_lable">ACCOUNT BALANCE</div> 
           <h2>AVAILABLE BALANCE : {user.amount}$ </h2>
         </div>

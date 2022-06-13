@@ -85,21 +85,21 @@ function Withdrawal() {
                 value={other}
                 placeholder={"Other...."}
                 handleOther={handleOther}
-                className={"Withdrawal_button_other"}
+                className={"Withdrawal_button_other  btn_effect"}
               />
             )}
 
             <input
               type="button"
               value={"CONFIRM"}
-              className="Withdrawal_button_main Withdrawal_button Withdrawl_btn_confirm"
+              className="Withdrawal_button_main Withdrawal_button Withdrawl_btn_confirm btn_effect "
               onClick={(e) => handleSubmit(e)}
             />
 
             <input
               type="button"
               value={"CANCEL"}
-              className="Withdrawal_button_main Withdrawal_button Withdrawl_btn_cancel"
+              className="Withdrawal_button_main Withdrawal_button Withdrawl_btn_cancel btn_effect "
               onClick={() => setAmount(0)}
             />
           </div>

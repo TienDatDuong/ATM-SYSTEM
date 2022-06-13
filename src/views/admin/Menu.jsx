@@ -31,22 +31,22 @@ function Menu() {
       <div className="menu">
         <nav>
           <ul className="navBar">
-            <Link to="balance-inquiry" className="navBar_item">
+            <Link to="balance-inquiry" className="navBar_item btn_effect">
               BALANCE INQUIRY
             </Link>
-            <Link to="withdrawal" className="navBar_item" state={{ getid }}>
+            <Link to="withdrawal" className="navBar_item btn_effect" state={{ getid }}>
               WITHDRAWAL
             </Link>
-            <Link to={`transfer`} className="navBar_item">
+            <Link to={`transfer`} className="navBar_item btn_effect">
               TRANSACTIONS
             </Link>
-            <Link to={`transactions`} className="navBar_item">
+            <Link to={`transactions`} className="navBar_item btn_effect">
               TRANSACTIONS
             </Link>
-            <Link to={`change PIN`} className="navBar_item">
+            <Link to={`change PIN`} className="navBar_item btn_effect">
               CHANGE PIN
             </Link>
-            <Link to={`change PIN`} className="navBar_item">
+            <Link to={`change PIN`} className="navBar_item btn_effect">
               OTHER
             </Link>
           </ul>

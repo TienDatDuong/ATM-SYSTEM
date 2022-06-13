@@ -5,7 +5,7 @@ function WithdrawBtn({ value, setAmount }) {
     <input
       type="button"
       value={value}
-      className="Withdrawal_button"
+      className="Withdrawal_button  btn_effect"
       onClick={() => setAmount(value)}
     />
   );
