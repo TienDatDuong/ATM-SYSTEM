@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import GoBack from "../../components/Button/GoBack";
@@ -6,19 +5,22 @@ import OtherBtn from "../../components/Button/OtherBtn";
 import WithdrawBtn from "../../components/Button/WithdrawBtn";
 import Billing from "./Billing";
 import { TitleContext } from "../../Contexts/ToolContext";
+import {useDispatch,useSelector} from "react-redux"
+import {getUser,selectUser} from "../../store/reducerUser/user"
 
 function Withdrawal() {
 
-  const [member, setMember] = useState([]);
   const [amount, setAmount] = useState(0);
   const [other, setOther] = useState("OTHER");
   const [text, setText] = useState("");
   const [isToggleBtn, isSetToggleBtn] = useState(false);
   const [isTranstion, isSetTranstion] = useState(false);
   const params = useParams();
-  const totalMoney = member.amount;
   const id = params.id;
   const { setTitle } = useContext(TitleContext);
+  const dispatch = useDispatch()
+  const getDetailUser = useSelector(selectUser);
+  const totalMoney = getDetailUser.amount 
 
   const handleOther = (e) => {
     const value = e.target.value.replace(/\D/g, "");
@@ -42,13 +44,7 @@ function Withdrawal() {
   };
 
   useEffect(() => {
-    const getDetailUser = async () => {
-      const res = await axios.get(
-        `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/${id}`
-      );
-      setMember(res.data);
-    };
-    getDetailUser();
+    dispatch(getUser(id))
   }, []);
 
   useEffect(() => {

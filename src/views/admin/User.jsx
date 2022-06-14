@@ -2,22 +2,18 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import { TitleContext } from "../../Contexts/ToolContext";
+import {useDispatch,useSelector} from "react-redux"
+import  {selectUser,getUser } from "../../store/reducerUser/user"
 
 function User() {
-  const [users, setUsers] = useState([]);
   const { setTitle } = useContext(TitleContext);
+  const dispatch = useDispatch()
+  const users = useSelector(selectUser)
   const params = useParams();
 
   useEffect(() => {
     const id = params.id;
-
-    const getWithdraws = async () => {
-      const res = await axios.get(
-        `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/${id}`
-      );
-      setUsers(res.data);
-    };
-    getWithdraws();
+    dispatch(getUser(id))
   }, []);
 
   useEffect(() => {

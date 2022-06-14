@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import GoBack from "../../components/Button/GoBack";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updatebalance } from "../../store/reducers/balance";
+import { getUser, selectUser } from "../../store/reducerUser/user";
+import { updateUser } from "../../store/reducerUser/user";
 
 function Billing({ amounts, id }) {
-
+  const RemainingAmount = useSelector(selectUser);
   const dispatch = useDispatch();
   const [user, setUser] = useState([]);
   const [history, setHistory] = useState([]);
   const [isToggle, isSetToggle] = useState(false);
   const navigate = useNavigate();
-  const wallet = user.amount;
+  const wallet = RemainingAmount.amount;
   const totalWallet = +wallet - +amounts;
   const date = new Date();
   const URL =
@@ -24,15 +26,10 @@ function Billing({ amounts, id }) {
     date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 
   useEffect(() => {
-    const getDetailUser = async () => {
-      const res = await axios.get(`${URL}/${id}`);
-      setUser(res.data);
-    };
-    getDetailUser();
+    dispatch(getUser(id));
   }, []);
 
   const handleUpdate = (e) => {
-
     e.preventDefault();
 
     if (amounts % 50 !== 0) {
@@ -44,7 +41,6 @@ function Billing({ amounts, id }) {
         const res = await axios.put(`${URL}/${id}`, {
           amount: totalWallet,
         });
-        console.log(res.data);
         dispatch(updatebalance(res.data.amount));
         return res.data;
       };
@@ -64,7 +60,9 @@ function Billing({ amounts, id }) {
           }
         );
         return res.data;
+
       };
+
       createTranstion().then((abc) => setHistory([...history, abc]));
       isSetToggle(true);
     }
@@ -87,7 +85,7 @@ function Billing({ amounts, id }) {
           <div className="bill_container uppercase ">
             <p className="bill_container_text">Bill</p>
             <p className="bill_container_text">
-              ATM transaction - Wallet : <span>{user.amount}$</span>
+              ATM transaction - Wallet : <span>{RemainingAmount.amount}$</span>
             </p>
             <p className="bill_container_text">
               Requsted amount : <span>{amounts}$</span>{" "}
@@ -95,7 +93,10 @@ function Billing({ amounts, id }) {
             <p className="bill_container_text">
               Remaining amount : <span>{totalWallet}$</span>{" "}
             </p>
-            <button className="btn  btn_effect" onClick={(e) => handleUpdate(e)}>
+            <button
+              className="btn  btn_effect"
+              onClick={(e) => handleUpdate(e)}
+            >
               {" "}
               APPROVE{" "}
             </button>
@@ -103,10 +104,8 @@ function Billing({ amounts, id }) {
 
           <GoBack />
         </>
-      ) 
-      : 
-      (
-        <div className="BillingInfor uppercase" >
+      ) : (
+        <div className="BillingInfor uppercase">
           <h2>Successful transaction</h2>
           <h3>Thank you for using our service</h3>
           <h3>Do you want to continue making other transactions?</h3>
@@ -126,7 +125,6 @@ function Billing({ amounts, id }) {
           </div>
         </div>
       )}
-
     </>
   );
 }

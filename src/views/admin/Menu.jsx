@@ -1,17 +1,14 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import GoBack from "../../components/Button/GoBack";
 import { updatebalance } from "../../store/reducers/balance";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
 function Menu() {
-  const [users, setUsers] = useState([]);
-  const [getid, setGetid] = useState("");
-  const location = useLocation();
-  const navigate = useNavigate();
-  const amounts = location.state.id;
-  const id = location.state.id.user.id;
+  const params = useParams();
+  const id = params.id
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,8 +17,6 @@ function Menu() {
         `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/${id}`
       );
       dispatch(updatebalance(res.data.amount));
-      setUsers(res.data);
-      setGetid(id);
     };
     getWithdraws();
   }, []);
@@ -34,7 +29,7 @@ function Menu() {
             <Link to="balance-inquiry" className="navBar_item btn_effect">
               BALANCE INQUIRY
             </Link>
-            <Link to="withdrawal" className="navBar_item btn_effect" state={{ getid }}>
+            <Link to="withdrawal" className="navBar_item btn_effect" state={{ id }}>
               WITHDRAWAL
             </Link>
             <Link to={`transfer`} className="navBar_item btn_effect">
