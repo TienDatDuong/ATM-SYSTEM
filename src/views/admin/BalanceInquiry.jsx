@@ -3,7 +3,7 @@ import { TitleContext } from "../../Contexts/ToolContext";
 import { useParams } from "react-router-dom";
 import GoBack from "../../components/Button/GoBack";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, selectUser } from "../../store/reducerUser/user";
+import { getUser, selectUser } from "../../store/reducers/user";
 
 function BalanceInquiry() {
   const { setTitle } = useContext(TitleContext);

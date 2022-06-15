@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const billSlice = createSlice({
+export const userSlice = createSlice({
   name: "user",
   initialState: { status: "", users: [], user: {} },
   reducers: {},
@@ -57,6 +57,4 @@ export const selectUser = (state) => state.user.user;
 
 export const getUsers = (state) => state.user.users;
 
-export const selectAmount = (state) => state.balance.amount;
-
-export default billSlice.reducer;
+export default userSlice.reducer;

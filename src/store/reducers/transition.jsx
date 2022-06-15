@@ -7,18 +7,18 @@ export const historySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(addhistory.pending, (state, action) => {
+      .addCase(addtransitionHistory.pending, (state, action) => {
         state.status = "Loading";
       })
-      .addCase(addhistory.fulfilled, (state, action) => {
+      .addCase(addtransitionHistory.fulfilled, (state, action) => {
         state.status = "idle";
         state.user.push(action.payload);
       });
   },
 });
 
-export const addhistory = createAsyncThunk(
-  "history/addhistory",
+export const addtransitionHistory = createAsyncThunk(
+  "history/addtransitionHistory",
   async (history) => {
     const res = await axios.post(
       `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/1/withdraws`,

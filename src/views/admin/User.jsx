@@ -1,9 +1,8 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import { TitleContext } from "../../Contexts/ToolContext";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser, getUser } from "../../store/reducerUser/user";
+import { selectUser, getUser } from "../../store/reducers/user";
 
 function User() {
   const { setTitle } = useContext(TitleContext);
@@ -23,7 +22,7 @@ function User() {
   return (
     <div className="menu">
       <div className="header_menu">
-        <h3>ACCOUNT NUMBER : {users.accountNumber} </h3>
+        <h3>ACCOUNT NUMBER : {users.accountName} </h3>
         <h3>PHONE : {users.accPhone}</h3>
       </div>
 

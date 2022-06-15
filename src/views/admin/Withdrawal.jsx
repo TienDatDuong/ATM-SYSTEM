@@ -6,24 +6,23 @@ import WithdrawBtn from "../../components/Button/WithdrawBtn";
 import Billing from "./Billing";
 import { TitleContext } from "../../Contexts/ToolContext";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, selectUser } from "../../store/reducerUser/user";
+import { getUser, selectUser } from "../../store/reducers/user";
 
 function Withdrawal() {
   const [amount, setAmount] = useState(0);
-  const [other, setOther] = useState("OTHER");
-  const [text, setText] = useState("");
+  const [otherAmount, setOtherAmount] = useState("OTHER");
   const [isToggleBtn, isSetToggleBtn] = useState(false);
   const [isTranstion, isSetTranstion] = useState(false);
-  const params = useParams();
-  const id = params.id;
-  const { setTitle } = useContext(TitleContext);
-  const dispatch = useDispatch();
   const getDetailUser = useSelector(selectUser);
   const totalMoney = getDetailUser.amount;
+  const dispatch = useDispatch();
+  const { setTitle } = useContext(TitleContext);
+  const params = useParams();
+  const id = params.id;
 
-  const handleOther = (e) => {
+  const handleOtherAmount = (e) => {
     const value = e.target.value.replace(/\D/g, "");
-    setOther(value);
+    setOtherAmount(value);
     setAmount(value);
     isSetToggleBtn(!isTranstion);
   };
@@ -31,7 +30,7 @@ function Withdrawal() {
   const handleSubmit = () => {
     if (amount === 0 || amount === "") {
       alert("ATM only payments is a multiple of 50 - Please enter the amount");
-    } else if (totalMoney >= amount) {
+    } else if (+totalMoney >= +amount) {
       isSetTranstion(true);
     } else {
       alert(" money not enought");
@@ -56,7 +55,6 @@ function Withdrawal() {
         <div className="Withdrawal uppercase">
           <h1>Please select an amount</h1>
           <h3>Withdrawal : {amount} $</h3>
-          <h2>{text}</h2>
 
           <div className="Withdrawal_box">
             <WithdrawBtn value={"100"} setAmount={setAmount} />
@@ -75,10 +73,10 @@ function Withdrawal() {
             ) : (
               <OtherBtn
                 type={"text"}
-                value={other}
+                value={otherAmount}
                 placeholder={"Other...."}
-                handleOther={handleOther}
-                className={"Withdrawal_button_other  btn_effect"}
+                handleOther={handleOtherAmount}
+                className={"Withdrawal_button_other btn_effect"}
               />
             )}
 

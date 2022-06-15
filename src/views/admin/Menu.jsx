@@ -1,20 +1,16 @@
-import axios from "axios";
 import React, { useEffect } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import GoBack from "../../components/Button/GoBack";
-import { updatebalance } from "../../store/reducers/balance";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getUser, selectUser } from "../../store/reducerUser/user";
+import { getUser } from "../../store/reducers/user";
 
 function Menu() {
   const params = useParams();
   const id = params.id;
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
 
   useEffect(() => {
-    dispatch(updatebalance(user.amount));
     dispatch(getUser(id));
   }, []);
 

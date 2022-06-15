@@ -8,13 +8,12 @@ import "./assets/Styles/Button.css";
 import React, { useEffect } from "react";
 import ListAccount from "./views/auth/ListAccount";
 import { useDispatch, useSelector } from "react-redux";
-import { getListUser, getUsers } from "./store/reducerUser/user";
+import { getListUser, getUsers } from "./store/reducers/user";
 
 function App() {
-
   const dispatch = useDispatch();
   const userList = useSelector(getUsers);
-  
+
   useEffect(() => {
     dispatch(getListUser());
   }, []);
