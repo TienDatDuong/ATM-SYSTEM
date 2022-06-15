@@ -7,7 +7,7 @@ import {
   selectUser,
   updateUserBalance,
 } from "../../store/reducers/user";
-import { addtransitionHistory } from "../../store/reducers/transition";
+import { addtransitionHistory } from "../../store/reducers/user";
 
 function Billing({ amounts, id }) {
   const [isToggle, isSetToggle] = useState(false);

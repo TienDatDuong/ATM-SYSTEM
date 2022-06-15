@@ -24,6 +24,13 @@ export const userSlice = createSlice({
       .addCase(updateUserBalance.fulfilled, (state, action) => {
         state.status = "idle";
         state.user = action.payload;
+      })
+      .addCase(addtransitionHistory.pending, (state, action) => {
+        state.status = "Loading";
+      })
+      .addCase(addtransitionHistory.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.user.push(action.payload);
       });
   },
 });
@@ -48,6 +55,17 @@ export const updateUserBalance = createAsyncThunk(
     const res = await axios.put(
       `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/${id}`,
       { amount }
+    );
+    return res.data;
+  }
+);
+
+export const addtransitionHistory = createAsyncThunk(
+  "history/addtransitionHistory",
+  async (history) => {
+    const res = await axios.post(
+      `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/1/withdraws`,
+      history
     );
     return res.data;
   }
