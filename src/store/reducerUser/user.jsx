@@ -24,7 +24,6 @@ export const billSlice = createSlice({
       .addCase(updateUserBalance.fulfilled, (state, action) => {
         state.status = "idle";
         state.user = action.payload;
-        console.log("----***", action.payload);
       });
   },
 });
@@ -50,7 +49,6 @@ export const updateUserBalance = createAsyncThunk(
       `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/${id}`,
       { amount }
     );
-    console.log("*****", res.data);
     return res.data;
   }
 );
