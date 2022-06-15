@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { TitleContext } from "../../Contexts/ToolContext";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/reducers/user";

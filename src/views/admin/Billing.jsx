@@ -31,12 +31,12 @@ function Billing({ amounts, id }) {
         "transaction failed because money not enought in wallet and the amount must be divisible by 50"
       );
     } else {
-      dispatch(updateUserBalance({ id, amount: totalWallet }));
       isSetToggle(true);
     }
   };
 
   const Continue = () => {
+    dispatch(updateUserBalance({ id, amount: totalWallet }));
     dispatch(
       addtransitionHistory({
         accountName: user.accountName,
@@ -50,6 +50,7 @@ function Billing({ amounts, id }) {
   };
 
   const Succeed = () => {
+    dispatch(updateUserBalance({ id, amount: totalWallet }));
     dispatch(
       addtransitionHistory({
         accountName: user.accountName,
