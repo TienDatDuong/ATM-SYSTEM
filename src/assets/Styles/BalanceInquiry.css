@@ -57,10 +57,10 @@
   font-size: 24px;
   font-weight: 600;
 }
-.PageHeader{
+.PageHeader {
   min-height: 100px;
   min-width: 100vh;
-  background-color:#00502f ;
+  background-color: #00502f;
   position: absolute;
   top: 0;
   left: 0;
@@ -69,8 +69,7 @@
   align-items: center;
   padding-left: 5%;
   color: #fff;
-  letter-spacing : 2px;
+  letter-spacing: 2px;
   font-weight: 300;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
-  
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }

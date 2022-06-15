@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import GoBack from "../../components/Button/GoBack";
 import { useDispatch, useSelector } from "react-redux";
 import { updatebalance } from "../../store/reducers/balance";
-import { getUser, selectUser } from "../../store/reducerUser/user";
-import { updateUser } from "../../store/reducerUser/user";
+import {
+  getUser,
+  selectUser,
+  updateUserBalance,
+} from "../../store/reducerUser/user";
+import { addhistory } from "../../store/reducerHistory/transition";
 
 function Billing({ amounts, id }) {
+  console.log("selectUser", selectUser);
   const RemainingAmount = useSelector(selectUser);
   const dispatch = useDispatch();
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(RemainingAmount);
   const [history, setHistory] = useState([]);
   const [isToggle, isSetToggle] = useState(false);
   const navigate = useNavigate();
@@ -37,33 +41,17 @@ function Billing({ amounts, id }) {
         "transaction failed because money not enought in wallet and the amount must be divisible by 50"
       );
     } else {
-      const updateListUser = async () => {
-        const res = await axios.put(`${URL}/${id}`, {
-          amount: totalWallet,
-        });
-        dispatch(updatebalance(res.data.amount));
-        return res.data;
-      };
+      dispatch(updatebalance(RemainingAmount.amount));
+      dispatch(updateUserBalance({ id, amount: totalWallet }));
 
-      updateListUser().then((abc) => {
-        setUser(abc);
-      });
-
-      const createTranstion = async () => {
-        const res = await axios.post(
-          `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/1/withdraws`,
-          {
-            accountNumber: user.accountNumber,
-            amount: user.amount,
-            requsted_amount: amounts,
-            createdAt: { date },
-          }
-        );
-        return res.data;
-
-      };
-
-      createTranstion().then((abc) => setHistory([...history, abc]));
+      dispatch(
+        addhistory({
+          accountNumber: user.accountNumber,
+          amount: user.amount,
+          requsted_amount: amounts,
+          createdAt: { date },
+        })
+      );
       isSetToggle(true);
     }
   };

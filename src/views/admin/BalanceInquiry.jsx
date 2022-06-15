@@ -1,18 +1,19 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { TitleContext } from "../../Contexts/ToolContext";
 import { useParams } from "react-router-dom";
 import GoBack from "../../components/Button/GoBack";
-import { getAccount } from "../../services/bankaccount";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, selectUser } from "../../store/reducerUser/user";
 
 function BalanceInquiry() {
-
-  const params = useParams();
-  const [user, setUser] = useState([]);
   const { setTitle } = useContext(TitleContext);
+  const params = useParams();
+  const id = params.id;
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
 
   useEffect(() => {
-    const id = params.id;
-    getAccount(id).then((res) => setUser(res.data));
+    dispatch(getUser(id));
   }, []);
 
   useEffect(() => {
@@ -23,12 +24,11 @@ function BalanceInquiry() {
     <div>
       <div className="BalanceInquiry">
         <div className="BalanceInquiry_box  btn_effect">
-          <div className="BalanceInquiry_box_lable">ACCOUNT BALANCE</div> 
+          <div className="BalanceInquiry_box_lable">ACCOUNT BALANCE</div>
           <h2>AVAILABLE BALANCE : {user.amount}$ </h2>
         </div>
 
         <GoBack />
-
       </div>
     </div>
   );

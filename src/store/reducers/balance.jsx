@@ -10,7 +10,6 @@ export const counterSlice = createSlice({
       state.amount = action.payload;
     },
   },
-  
 });
 
 export const { updatebalance } = counterSlice.actions;

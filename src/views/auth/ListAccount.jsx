@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { updatebalance } from "../../store/reducers/balance";
 
 function ListAccount({ users }) {
-
   const dispatch = useDispatch();
   const [createdAt, setCreatedAt] = useState(new Date());
   const { setTitle } = useContext(TitleContext);
@@ -24,7 +23,6 @@ function ListAccount({ users }) {
         <h1>LIST ACCOUNT</h1>
 
         <table>
-
           <thead>
             <th>STT</th>
             <th>NAME</th>
@@ -54,9 +52,7 @@ function ListAccount({ users }) {
               <th>{user.pin}</th>
             </tr>
           ))}
-
         </table>
-
       </div>
     </>
   );

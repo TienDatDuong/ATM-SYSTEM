@@ -4,21 +4,24 @@ import "./assets/Styles/Withdrawal.css";
 import "./assets/Styles/Bill.css";
 import "./assets/Styles/input.css";
 import "./assets/Styles/menu.css";
-import "./assets/Styles/Button.css"
-import React, { useEffect, useState } from "react";
+import "./assets/Styles/Button.css";
+import React, { useEffect } from "react";
 import ListAccount from "./views/auth/ListAccount";
-import { getAllAccount } from "./services/bankaccount.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { getListUser, getUsers } from "./store/reducerUser/user";
 
 function App() {
-  const [users, setUsers] = useState([]);
 
+  const dispatch = useDispatch();
+  const userList = useSelector(getUsers);
+  
   useEffect(() => {
-    getAllAccount().then((res) => setUsers(res.data));
+    dispatch(getListUser());
   }, []);
 
   return (
     <>
-      <ListAccount users={users} />
+      <ListAccount users={userList} />
     </>
   );
 }

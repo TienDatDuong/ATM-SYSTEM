@@ -5,11 +5,10 @@ import OtherBtn from "../../components/Button/OtherBtn";
 import WithdrawBtn from "../../components/Button/WithdrawBtn";
 import Billing from "./Billing";
 import { TitleContext } from "../../Contexts/ToolContext";
-import {useDispatch,useSelector} from "react-redux"
-import {getUser,selectUser} from "../../store/reducerUser/user"
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, selectUser } from "../../store/reducerUser/user";
 
 function Withdrawal() {
-
   const [amount, setAmount] = useState(0);
   const [other, setOther] = useState("OTHER");
   const [text, setText] = useState("");
@@ -18,9 +17,9 @@ function Withdrawal() {
   const params = useParams();
   const id = params.id;
   const { setTitle } = useContext(TitleContext);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const getDetailUser = useSelector(selectUser);
-  const totalMoney = getDetailUser.amount 
+  const totalMoney = getDetailUser.amount;
 
   const handleOther = (e) => {
     const value = e.target.value.replace(/\D/g, "");
@@ -44,7 +43,7 @@ function Withdrawal() {
   };
 
   useEffect(() => {
-    dispatch(getUser(id))
+    dispatch(getUser(id));
   }, []);
 
   useEffect(() => {
@@ -73,9 +72,7 @@ function Withdrawal() {
                 value={"OTHER"}
                 onClick={() => handeleOtherMoney()}
               />
-            ) 
-            :
-            (
+            ) : (
               <OtherBtn
                 type={"text"}
                 value={other}
@@ -101,11 +98,8 @@ function Withdrawal() {
           </div>
 
           <GoBack />
-
         </div>
-      ) 
-      :
-      (
+      ) : (
         <Billing amounts={amount} id={id} />
       )}
     </>

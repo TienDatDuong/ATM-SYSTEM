@@ -9,7 +9,6 @@ import TitleContextProvider from "../Contexts/ToolContext";
 import App from "../App";
 
 function Admin() {
-
   return (
     <div>
       <TitleContextProvider>
@@ -26,7 +25,6 @@ function Admin() {
       </TitleContextProvider>
     </div>
   );
-
 }
 
 export default Admin;
