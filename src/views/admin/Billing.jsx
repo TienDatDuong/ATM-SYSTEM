@@ -56,7 +56,7 @@ function Billing({ amounts, id }) {
         accountName: user.accountName,
         amount: user.amount,
         requsted_amount: amounts,
-        createdAt: { date },
+        updatedAt: { date },
       })
     );
     isSetToggle(false);
