@@ -10,11 +10,11 @@ import {
 import { addtransitionHistory } from "../../store/reducers/transition";
 
 function Billing({ amounts, id }) {
-  const [user, setUser] = useState(remainingAmount);
   const [isToggle, isSetToggle] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const remainingAmount = useSelector(selectUser);
+  const [user, setUser] = useState(remainingAmount);
   const wallet = remainingAmount.amount;
   const totalWallet = +wallet - +amounts;
   const date = new Date();

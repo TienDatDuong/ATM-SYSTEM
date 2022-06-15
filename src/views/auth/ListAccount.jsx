@@ -27,7 +27,7 @@ function ListAccount({ users }) {
             <th>ACCONNT NUMBER</th>
             <th>PIN</th>
           </thead>
-
+          
           {users.map((user, index) => (
             <tr key={index} className="selecter">
               <td>{user.id}</td>
@@ -38,7 +38,7 @@ function ListAccount({ users }) {
                     state={{ id: { user } }}
                     className="User"
                   >
-                    {user.accountNumber}{" "}
+                    {user.accountName}{" "}
                   </Link>
                 </nav>
               </td>
