@@ -58,8 +58,9 @@
   font-weight: 600;
 }
 .PageHeader {
-  min-height: 100px;
-  min-width: 100vh;
+  min-height: 10%;
+  min-width: 100vw;
+  max-width: 1240px;
   background-color: #00502f;
   position: absolute;
   top: 0;

@@ -9,18 +9,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 100vh;
+  justify-content: center;
+  min-width: 100vw;
   min-height: 100vh;
-  padding-top: 8%;
+  padding-top: 6%;
 }
 
 table {
-  margin-top: 30px;
+  margin-top: 3%;
   border-collapse: collapse;
 }
 
 tr {
-  height: 35px;
+  height: 5%;
 }
 
 .selecter:hover {
@@ -39,7 +40,7 @@ tr {
 th,
 td {
   border: 2px solid #000;
-  min-width: 200px;
+  width: 200px;
   height: 35px;
   text-align: center;
   border-spacing: 0px;
@@ -81,8 +82,8 @@ thead {
 }
 
 .navBar {
-  width: 1000px;
-  height: 100px;
+  width: 60%;
+  height: 10%;
   margin: auto;
   display: flex;
   align-items: center;
@@ -123,5 +124,5 @@ thead {
 .back-btn {
   position: absolute;
   bottom: 5%;
-  right: 5%;
+  right: 2%;
 }

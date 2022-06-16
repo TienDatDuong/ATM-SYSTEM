@@ -25,10 +25,10 @@ export const userSlice = createSlice({
         state.status = "idle";
         state.user = action.payload;
       })
-      .addCase(addtransitionHistory.pending, (state, action) => {
+      .addCase(createWithdraw.pending, (state, action) => {
         state.status = "Loading";
       })
-      .addCase(addtransitionHistory.fulfilled, (state, action) => {
+      .addCase(createWithdraw.fulfilled, (state, action) => {
         state.status = "idle";
         state.user.push(action.payload);
       });
@@ -60,12 +60,18 @@ export const updateUserBalance = createAsyncThunk(
   }
 );
 
-export const addtransitionHistory = createAsyncThunk(
-  "history/addtransitionHistory",
-  async (history) => {
+export const createWithdraw = createAsyncThunk(
+  "user/createWithdraw",
+  async (history, thunkAPI) => {
     const res = await axios.post(
       `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/1/withdraws`,
       history
+    );
+    thunkAPI.dispatch(
+      updateUserBalance({
+        id: history.bank_accountId,
+        amount: history.amount - history.requsted_amount,
+      })
     );
     return res.data;
   }

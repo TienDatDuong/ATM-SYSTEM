@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import GoBack from "../../components/Button/GoBack";
+import GoBack from "../../../components/Button/GoBack";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getUser,
-  selectUser,
-  updateUserBalance,
-} from "../../store/reducers/user";
-import { addtransitionHistory } from "../../store/reducers/user";
+import { getUser, selectUser } from "../../../store/reducers/user";
+import { createWithdraw } from "../../../store/reducers/user";
+import { TitleContext } from "../../../Contexts/ToolContext";
 
 function Billing({ amounts, id }) {
-  const [isToggle, isSetToggle] = useState(false);
+  const [isExchangeCompleted, setIsExchangeCompleted] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const remainingAmount = useSelector(selectUser);
@@ -18,6 +15,7 @@ function Billing({ amounts, id }) {
   const wallet = remainingAmount.amount;
   const totalWallet = +wallet - +amounts;
   const date = new Date();
+  const { setTitle } = useContext(TitleContext);
 
   useEffect(() => {
     dispatch(getUser(id));
@@ -31,41 +29,33 @@ function Billing({ amounts, id }) {
         "transaction failed because money not enought in wallet and the amount must be divisible by 50"
       );
     } else {
-      isSetToggle(true);
+      dispatch(
+        createWithdraw({
+          bank_accountId: id,
+          accountName: user.accountName,
+          amount: user.amount,
+          requsted_amount: amounts,
+          updatedAt: { date },
+        })
+      );
+      setIsExchangeCompleted(true);
     }
   };
 
   const Continue = () => {
-    dispatch(updateUserBalance({ id, amount: totalWallet }));
-    dispatch(
-      addtransitionHistory({
-        accountName: user.accountName,
-        amount: user.amount,
-        requsted_amount: amounts,
-        createdAt: { date },
-      })
-    );
-    isSetToggle(false);
+    setTitle("DASHBOARD ");
+    setIsExchangeCompleted(false);
     navigate(-1);
   };
 
   const Succeed = () => {
-    dispatch(updateUserBalance({ id, amount: totalWallet }));
-    dispatch(
-      addtransitionHistory({
-        accountName: user.accountName,
-        amount: user.amount,
-        requsted_amount: amounts,
-        updatedAt: { date },
-      })
-    );
-    isSetToggle(false);
+    setIsExchangeCompleted(false);
     navigate(-2);
   };
 
   return (
     <>
-      {isToggle === false ? (
+      {isExchangeCompleted === false ? (
         <>
           <div className="bill_container uppercase ">
             <p className="bill_container_text">Bill</p>

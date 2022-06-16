@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { Outlet, useParams } from "react-router-dom";
-import { TitleContext } from "../../Contexts/ToolContext";
+import { TitleContext } from "../../../Contexts/ToolContext";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser, getUser } from "../../store/reducers/user";
+import { selectUser, getUser } from "../../../store/reducers/user";
 
 function User() {
   const { setTitle } = useContext(TitleContext);

@@ -15,3 +15,44 @@
   border: none;
   border-radius: 5px;
 }
+.inputAmount {
+  position: absolute;
+  bottom: 40%;
+  left: 38%;
+  padding: 40px;
+  height: 80px;
+  font-size: 32px;
+  margin-bottom: 3%;
+  border: 20px solid black;
+  /* border-radius: 5%; */
+}
+.btn_inputAmount {
+  border: 1px solid black;
+  position: absolute;
+  bottom: 40%;
+  left: 39%;
+  height: 8%;
+  font-size: 32px;
+  width: 25%;
+  border-radius: 3%;
+}
+.btn_inputAmount_input {
+  height: 100%;
+  width: 70%;
+  outline: none;
+  border: none;
+  font-size: 32px;
+  padding-left: 3%;
+}
+.btn_inputAmount_submit {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 30%;
+  border: none;
+  cursor: pointer;
+  background-color: green;
+  font-weight: 600;
+  color: #fff;
+  font-size: 24px;
+}

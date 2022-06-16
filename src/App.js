@@ -5,6 +5,7 @@ import "./assets/Styles/Bill.css";
 import "./assets/Styles/input.css";
 import "./assets/Styles/menu.css";
 import "./assets/Styles/Button.css";
+import "./assets/Styles/Reponsive.css"
 import React, { useEffect } from "react";
 import ListAccount from "./views/auth/ListAccount";
 import { useDispatch, useSelector } from "react-redux";

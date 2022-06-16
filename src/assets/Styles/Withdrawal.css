@@ -10,9 +10,6 @@
 }
 .Withdrawal_box {
   display: flex;
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* margin-top: 50px; */
   max-width: 800px;
   flex-direction: row;
   flex-wrap: wrap;
@@ -64,4 +61,10 @@
 .Withdrawl_btn_cancel {
   background-color: red;
   font-weight: 600;
+}
+.Withdrawal_cofirm {
+  position: absolute;
+  bottom: 12%;
+}
+.Withdrawal_cofirm_other {
 }
