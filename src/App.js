@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "./assets/Styles/BalanceInquiry.css";
+import "./assets/Styles/Withdrawal.css";
+import "./assets/Styles/Bill.css";
+import "./assets/Styles/input.css";
+import "./assets/Styles/menu.css";
+import "./assets/Styles/Button.css";
+import React, { useEffect } from "react";
+import ListAccount from "./views/auth/ListAccount";
+import { useDispatch, useSelector } from "react-redux";
+import { getListUser, getUsers } from "./store/reducers/user";
 
 function App() {
+  const dispatch = useDispatch();
+  const userList = useSelector(getUsers);
+
+  useEffect(() => {
+    dispatch(getListUser());
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ListAccount users={userList} />
+    </>
   );
 }
 

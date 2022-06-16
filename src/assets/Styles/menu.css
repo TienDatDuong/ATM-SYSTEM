@@ -1,0 +1,22 @@
+.header_menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 8% 0 1% 0;
+  text-transform: uppercase;
+}
+
+.header_menu h3 {
+  display: block;
+  margin: 10px;
+}
+
+.menu {
+  min-width: 100vh;
+  min-height: 100vh;
+}
+/* admin header */
+.PageHeader_break {
+  margin-left: 1%;
+}
