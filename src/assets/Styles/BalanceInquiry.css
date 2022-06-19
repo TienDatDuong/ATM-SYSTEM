@@ -1,0 +1,77 @@
+.BalanceInquiry {
+  min-width: 100vw;
+  min-height: 10vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 5%;
+}
+
+.BalanceInquiry h2 {
+  margin-top: 8%;
+  text-align: left;
+}
+
+.BalanceInquiry_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  max-width: 800px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.BalanceInquiry_button {
+  min-width: 200px;
+  height: 50px;
+  font-size: 24px;
+  border-radius: 10px;
+  border: none;
+  margin: 50px 100px;
+  cursor: pointer;
+}
+
+.BalanceInquiry_button:hover {
+  background-color: gainsboro;
+}
+
+.BalanceInquiry_button_main {
+  background-color: #b8db89;
+}
+.BalanceInquiry_box {
+  border: 2px solid #ccc;
+  min-width: 800px;
+  min-height: 300px;
+  border-radius: 10px;
+  position: relative;
+}
+.BalanceInquiry_box_lable {
+  position: absolute;
+  top: 0;
+  padding: 20px;
+  min-width: 100%;
+  max-width: 800px;
+  background-color: #b8db89;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+}
+.PageHeader {
+  min-height: 10%;
+  min-width: 100vw;
+  max-width: 1240px;
+  background-color: #00502f;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 5%;
+  color: #fff;
+  letter-spacing: 2px;
+  font-weight: 300;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}

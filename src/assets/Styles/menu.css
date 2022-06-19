@@ -1,0 +1,22 @@
+.menu {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+  padding: 8% 0 1% 0;
+  text-transform: uppercase;
+}
+
+.header_menu h3 {
+  display: block;
+  margin-top: 5%;
+  text-align: center;
+}
+
+.menu {
+  min-width: 100vw;
+  min-height: 100vh;
+}
+.PageHeader_break {
+  margin-left: 1%;
+}
