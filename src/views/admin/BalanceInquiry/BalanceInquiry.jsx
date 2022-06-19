@@ -22,8 +22,6 @@ function BalanceInquiry() {
     setTitle("  BALANCE INQUIRY  ");
   }, []);
 
-  console.log(999, setTitle);
-
   const handlerSubmit = () => {
     navigate(-1);
     setTitle("DASHBOARD ");

@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 function Withdrawal() {
   const [amount, setAmount] = useState();
+  const [isFocus, isSetFocus] = useState(false);
   const [otherAmount, setOtherAmount] = useState("OTHER");
   const [isSelectAmount, isSetSelectAmount] = useState(false);
   const [isRedirectBill, isSetRedirectBill] = useState(false);
@@ -66,11 +67,41 @@ function Withdrawal() {
 
           {isSelectAmount === false ? (
             <div className="Withdrawal_box">
-              <WithdrawBtn value={"100"} setAmount={setAmount} />
-              <WithdrawBtn value={"200"} setAmount={setAmount} />
-              <WithdrawBtn value={"500"} setAmount={setAmount} />
-              <WithdrawBtn value={"1000"} setAmount={setAmount} />
-              <WithdrawBtn value={"1500"} setAmount={setAmount} />
+              <WithdrawBtn
+                value={"100"}
+                setAmount={setAmount}
+                isFocus={isFocus}
+                isSetFocus={isSetFocus}
+                amount={amount}
+              />
+              <WithdrawBtn
+                value={"200"}
+                setAmount={setAmount}
+                isFocus={isFocus}
+                isSetFocus={isSetFocus}
+                amount={amount}
+              />
+              <WithdrawBtn
+                value={"500"}
+                setAmount={setAmount}
+                isFocus={isFocus}
+                isSetFocus={isSetFocus}
+                amount={amount}
+              />
+              <WithdrawBtn
+                value={"1000"}
+                setAmount={setAmount}
+                isFocus={isFocus}
+                isSetFocus={isSetFocus}
+                amount={amount}
+              />
+              <WithdrawBtn
+                value={"1500"}
+                setAmount={setAmount}
+                isFocus={isFocus}
+                isSetFocus={isSetFocus}
+                amount={amount}
+              />
 
               <input
                 type={"button"}
@@ -84,7 +115,7 @@ function Withdrawal() {
               <input
                 type="text"
                 className="btn_inputAmount_input"
-                placeholder={"Number ... "}
+                placeholder={"Amount of money ... "}
                 value={amount}
                 onChange={(e) => handleOtherAmount(e)}
               />

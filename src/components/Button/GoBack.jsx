@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function GoBack({ props }) {
+function GoBack() {
   const navigate = useNavigate();
-  console.log("props", props);
-  useEffect(() => {}, []);
 
   return (
     <button

@@ -27,22 +27,23 @@
   /* border-radius: 5%; */
 }
 .btn_inputAmount {
-  border: 1px solid black;
+  border: 2px solid #00502f;
   position: absolute;
   bottom: 40%;
   left: 39%;
   height: 8%;
   font-size: 32px;
   width: 25%;
-  border-radius: 3%;
+  border-radius: 12px;
 }
 .btn_inputAmount_input {
   height: 100%;
   width: 70%;
   outline: none;
   border: none;
-  font-size: 32px;
+  font-size: 24px;
   padding-left: 3%;
+  border-radius: 10px 0 0 10px;
 }
 .btn_inputAmount_submit {
   position: absolute;
@@ -51,8 +52,9 @@
   width: 30%;
   border: none;
   cursor: pointer;
-  background-color: green;
+  background-color: #00502f;
   font-weight: 600;
   color: #fff;
-  font-size: 24px;
+  font-size: 20px;
+  border-radius: 0 10px 10px 0;
 }

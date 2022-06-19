@@ -25,10 +25,14 @@
   background-color: #00502f;
   color: #fff;
 }
-.Withdrawal_button:focus {
+.Withdrawal_button_focus {
   background-color: gainsboro;
   color: #000;
 }
+/* .Withdrawal_button:focus {
+  background-color: gainsboro;
+  color: #000;
+} */
 .Withdrawal_button:hover {
   background-color: gainsboro;
   color: #000;

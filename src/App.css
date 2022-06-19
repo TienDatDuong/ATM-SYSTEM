@@ -28,12 +28,12 @@ tr {
   background-color: #b8db89;
   z-index: 999;
 }
-.uppercase{
+.uppercase {
   text-transform: uppercase;
   text-align: left;
   margin-left: 2%;
 }
-.selecter_number{
+.selecter_number {
   text-align: right;
   padding-right: 6%;
 }
@@ -115,10 +115,10 @@ thead {
 .User {
   text-decoration: none;
   color: #000;
-  transition-property:scale();
+  transition-property: scale();
   transition-duration: 1s;
 }
-.User:active{
+.User:active {
   transform: scale(0.6);
 }
 .back-btn {
