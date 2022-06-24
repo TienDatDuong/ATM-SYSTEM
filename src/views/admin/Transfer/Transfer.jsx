@@ -50,16 +50,16 @@ function Transfer() {
     dispatch(
       UpDateTransfer({
         type: "transfer",
-        amount: amount,
+        balance: amount,
         Information: content,
-        receiver_id: acc.id,
-        sender_id: bankuser.id,
-        sender: bankuser.accountName,
-        sender_amount: bankuser.amount,
-        receiver: acc.accountName,
-        receiver_amount: acc.amount,
-        sender_amounts: +bankuser.amount - +amount,
-        receiver_amounts: +acc.amount + +amount,
+        // receiver_id: acc.id,
+        // sender_id: bankuser.id,
+        // sender: bankuser.accountName,
+        // sender_amount: bankuser.amount,
+        // receiver: acc.accountName,
+        // receiver_amount: acc.amount,
+        // sender_amounts: +bankuser.amount - +amount,
+        // receiver_amounts: +acc.amount + +amount,
       })
     );
     isSetInfo(!isInfo);
@@ -71,7 +71,7 @@ function Transfer() {
     setTitle("TRANSFER");
     dispatch(getListUser());
   }, []);
-
+  console.log(111111,bankuser)
   return (
     <div>
       <div className="transfer">
@@ -90,7 +90,7 @@ function Transfer() {
                     className="uppercase"
                     onClick={() => handlerTransfer({ user })}
                   >
-                    {user.accountName}{" "}
+                    {user.accName}{" "}
                   </nav>
                 </td>
                 <td>{user.accNumber}</td>
@@ -101,13 +101,13 @@ function Transfer() {
           <div>
             <h3>Transferr Information :</h3>
             <div className="transfer_section">
-              <h4>Source account : {bankuser.accountName} </h4>
-              <h4>Available balances : {bankuser.amount} $ </h4>
+              <h4>Source account : {bankuser.Account.accName} </h4>
+              <h4>Available balances : {bankuser.balance} $ </h4>
             </div>
 
             <h3>Beneficiary information :</h3>
             <div className="transfer_section">
-              <h4>Beneficiary account : {acc.accountName}</h4>
+              <h4>Beneficiary account : {acc.accName}</h4>
               <h4>Amount received : {amount} $</h4>
             </div>
 

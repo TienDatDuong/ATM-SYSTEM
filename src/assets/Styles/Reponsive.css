@@ -1,30 +1,25 @@
 @media screen and (min-width: 1240px) {
   .header_menu h3 {
     margin-top: 10%;
-
   }
-  .navBar{
+  .navBar {
     width: 60%;
-
   }
-  .navBar_item{
+  .navBar_item {
     font-size: 24px;
     min-width: 250px;
-
   }
 }
 @media screen and (max-width: 1240px) {
   .header_menu h3 {
     margin-top: 20%;
   }
-  .navBar{
+  .navBar {
     width: 80%;
-
   }
-  .navBar_item{
+  .navBar_item {
     font-size: 16px;
     min-width: 250px;
-
   }
 }
 @media screen and (max-width: 768px) {
@@ -41,24 +36,43 @@
   .back-btn {
     position: relative;
     bottom: 5%;
-    margin-left: 22%;
+    margin-left: 31%;
   }
-  .BalanceInquiry_box{
+  .BalanceInquiry_box {
     max-width: 400px;
   }
-  td,th{
-    font-size: 14px;
+  td,
+  th {
+    font-size: 10px;
     width: 100px;
   }
 }
 
 @media screen and (max-width: 640px) {
+  .PageHeader {
+    min-height: 9%;
+  }
+  td,
+  th {
+    font-size: 8px;
+    height: 25px;
+  }
   .header_menu h3 {
     margin-top: 30%;
+  }
+  .BalanceInquiry_box h2 {
+    font-size: 14px;
   }
 }
 @media screen and (max-width: 400px) {
   .header_menu h3 {
     margin-top: 35%;
+  }
+}
+@media screen and (max-width: 640px) {
+  .PageHeader h2{
+    min-height: 9%;
+    font-size: 8px;
+    min-width: 100vw;
   }
 }

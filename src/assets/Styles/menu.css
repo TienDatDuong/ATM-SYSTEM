@@ -6,8 +6,13 @@
   padding: 8% 0 1% 0;
   text-transform: uppercase;
 }
-
+.header_menu h2{
+  font-size: 16px;
+  text-align: center;
+  padding: 20px;
+}
 .header_menu h3 {
+  font-size: 18px;
   display: block;
   margin-top: 5%;
   text-align: center;

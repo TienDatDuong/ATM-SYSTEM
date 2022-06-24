@@ -31,12 +31,12 @@
     min-width: 100vw;
   }
   .BalanceInquiry_box {
-    min-width: 400px;
-    font-size: 16px;
+    min-width: 300px;
+    font-size: 12px;
     min-height: 200px;
   }
   .BalanceInquiry_box_lable {
-    min-width: 400px;
-    font-size: 16px;
+    min-width: 300px;
+    font-size: 14px;
   }
 }

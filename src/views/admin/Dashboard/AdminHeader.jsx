@@ -1,21 +1,21 @@
 import React, { useContext } from "react";
 import { TitleContext } from "../../../Contexts/ToolContext";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../../store/reducers/user";
+import { selectBalance } from "../../../store/reducers/user";
 
 function AdminHeader() {
-  const balance = useSelector(selectUser || { amount: 0 });
+  const balance = useSelector(selectBalance);
   const { title } = useContext(TitleContext);
   return (
     <div className="PageHeader">
       <h2>{` WELCOME TO NEWWAVE ATM - ${title}`}</h2>
-      
-      <p className="PageHeader_break"></p>
 
+      <p className="PageHeader_break"></p>
+      {console.log(9999,balance)}
       {title === "DASHBOARD" ? (
-        balance.amount === 0
-      ) : balance.amount > 0 ? (
-        <h2> BALANCE - {balance.amount} $</h2>
+        balance?.Account?.balance === 0
+      ) : balance?.Account?.balance > 0 ? (
+        <h2> BALANCE - {balance?.Account?.balance} $</h2>
       ) : (
         ""
       )}

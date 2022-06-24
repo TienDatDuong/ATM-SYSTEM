@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: { status: "", users: [], user: {} },
+  initialState: { status: "", users: [], user: {}, balance: {}, withdraw: {} },
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -13,6 +13,10 @@ export const userSlice = createSlice({
       .addCase(getUser.fulfilled, (state, action) => {
         state.status = "idle";
         state.user = action.payload;
+      })
+      .addCase(getBalanceUser.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.balance = action.payload;
       })
       .addCase(getListUser.pending, (state, action) => {
         state.status = "Loading";
@@ -30,7 +34,8 @@ export const userSlice = createSlice({
       })
       .addCase(createWithdraw.fulfilled, (state, action) => {
         state.status = "idle";
-        state.user.push(action.payload);
+        // state.withdraw.push(action.payload)
+        state.withdraw = action.payload;
       })
       .addCase(UpDateTransfer.fulfilled, (state, action) => {
         state.status = "idle";
@@ -40,43 +45,49 @@ export const userSlice = createSlice({
 });
 
 export const getUser = createAsyncThunk("user/getUser", async (id) => {
-  const res = await axios.get(
-    `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/${id}`
-  );
+  const res = await axios.get(`http://localhost:4001/api/accounts/${id}`);
   return res.data;
 });
 
+export const getBalanceUser = createAsyncThunk(
+  "user/getBalanceUser",
+  async (id) => {
+    const res = await axios.get(
+      `http://localhost:4001/api/accounts/${id}/balance-inquiry`
+    );
+
+    return res.data;
+  }
+);
+
 export const getListUser = createAsyncThunk("user/getListUser", async () => {
-  const res = await axios.get(
-    `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts`
-  );
-  return res.data;
+  const res = await axios.get(`http://localhost:4001/api/accounts`);
+  return res.data.accounts;
 });
 
 export const updateUserBalance = createAsyncThunk(
   "user/putUser",
-  async ({ id, amount }) => {
-    const res = await axios.put(
-      `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/${id}`,
-      { amount }
-    );
+  async ({ id, balance }) => {
+    const res = await axios.patch(`http://localhost:4001/api/accounts/${id}`, {
+      balance,
+    });
     return res.data;
   }
 );
 
 export const createWithdraw = createAsyncThunk(
   "user/createWithdraw",
-  async (history, thunkAPI) => {
+  async (newTransaction, thunkAPI) => {
     const res = await axios.post(
-      `https://628b0319667aea3a3e259443.mockapi.io/api/v1/bank_accounts/1/withdraws`,
-      history
+      `http://localhost:4001/api/accounts/${newTransaction.user_id}/withdraw`,
+      newTransaction
     );
-    thunkAPI.dispatch(
-      updateUserBalance({
-        id: history.bank_accountId,
-        amount: history.amount - history.requsted_amount,
-      })
-    );
+    // thunkAPI.dispatch(
+    //   updateUserBalance({
+    //     id:newTransaction._id,
+    //     balance: newTransaction.balance - newTransaction.requsted_balance,
+    //   })
+    // );
     return res.data;
   }
 );
@@ -105,6 +116,10 @@ export const UpDateTransfer = createAsyncThunk(
 );
 
 export const selectUser = (state) => state.user.user;
+
+export const selectBalance = (state) => state.user.balance;
+
+export const updateBalance = (state) => state.user.withdraw;
 
 export const getUsers = (state) => state.user.users;
 

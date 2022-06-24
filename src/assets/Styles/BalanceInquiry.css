@@ -58,6 +58,9 @@
   font-size: 24px;
   font-weight: 600;
 }
+.BalanceInquiry_box_lable h2{
+  font-size: 24px;
+}
 .PageHeader {
   min-height: 10%;
   min-width: 100vw;

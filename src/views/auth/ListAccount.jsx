@@ -20,29 +20,28 @@ function ListAccount({ users }) {
 
         <table>
           <thead>
-            <th>STT</th>
+            <th>ID</th>
             <th>NAME</th>
             <th>AMOUNT</th>
             <th>PHONE</th>
             <th>ACCONNT NUMBER</th>
             <th>PIN</th>
           </thead>
-
-          {users.map((user, index) => (
+          {users?.map((user, index) => (
             <tr key={index} className="selecter">
-              <td>{user.id}</td>
+              <td>{user._id}</td>
               <td>
                 <nav className="uppercase">
                   <Link
-                    to={`/admin/account/${user.id}`}
+                    to={`/admin/account/${user._id}`}
                     state={{ id: { user } }}
                     className="User"
                   >
-                    {user.accountName}{" "}
+                    {user.accName}{" "}
                   </Link>
                 </nav>
               </td>
-              <td className="selecter_number">{user.amount} $ </td>
+              <td className="selecter_number">{user.balance} $ </td>
               <td>{user.accPhone}</td>
               <td>{user.accNumber}</td>
               <th>{user.pin}</th>

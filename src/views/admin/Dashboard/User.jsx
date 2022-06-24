@@ -18,12 +18,12 @@ function User() {
   useEffect(() => {
     setTitle("DASHBOARD");
   }, []);
-
+  console.log(111,users)
   return (
     <div className="menu">
       <div className="header_menu">
-        <h3>ACCOUNT NUMBER : {users.accountName} </h3>
-        <h3>PHONE : {users.accPhone}</h3>
+        <h3>ACCOUNT NUMBER : {users?.Account?.accName} </h3>
+        <h2>PHONE : {users?.Account?.accPhone}</h2>
       </div>
 
       <Outlet />
