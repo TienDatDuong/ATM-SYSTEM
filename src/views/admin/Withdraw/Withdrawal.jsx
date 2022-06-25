@@ -6,17 +6,17 @@ import WithdrawBtn from "../../../components/Button/WithdrawBtn";
 import Billing from "./Billing";
 import { TitleContext } from "../../../Contexts/ToolContext";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, selectUser } from "../../../store/reducers/user";
+import { getBalanceUser, selectBalance } from "../../../store/reducers/user";
 import { useNavigate } from "react-router-dom";
 
 function Withdrawal() {
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState(0);
+  const [amountOther, setAmountOther] = useState(0);
   const [isFocus, isSetFocus] = useState(false);
-  const [otherAmount, setOtherAmount] = useState("OTHER");
   const [isSelectAmount, isSetSelectAmount] = useState(false);
   const [isRedirectBill, isSetRedirectBill] = useState(false);
-  const getDetailUser = useSelector(selectUser);
-  const totalMoney = getDetailUser.amount;
+  const getDetailUser = useSelector(selectBalance);
+  const totalMoney = getDetailUser?.Account?.balance;
   const dispatch = useDispatch();
   const { setTitle } = useContext(TitleContext);
   const params = useParams();
@@ -25,9 +25,7 @@ function Withdrawal() {
 
   const handleOtherAmount = (e) => {
     const value = e.target.value.replace(/\D/g, "");
-    setOtherAmount(value);
-    setAmount(value);
-    isSetSelectAmount(!isRedirectBill);
+    setAmountOther(value);
   };
 
   const handleSubmit = () => {
@@ -41,12 +39,11 @@ function Withdrawal() {
   };
 
   const handeleOtherMoney = () => {
-    isSetSelectAmount(!isRedirectBill);
     isSetSelectAmount(!isSelectAmount);
+    setAmount(0)
   };
-
   useEffect(() => {
-    dispatch(getUser(id));
+    dispatch(getBalanceUser(id));
   }, []);
 
   useEffect(() => {
@@ -58,12 +55,21 @@ function Withdrawal() {
     setTitle("DASHBOARD ");
   };
 
+  const cancel = () => {
+    navigate(-1);
+    setTitle("DASHBOARD ");
+  };
+
+  const handleAmounts = () => {
+    isSetFocus(!isFocus);
+  };
+
   return (
     <>
       {isRedirectBill === false ? (
         <div className="Withdrawal uppercase">
           <h1>Please select an amount</h1>
-          <h3>Withdrawal : {amount} $</h3>
+          <h3>Withdrawal : {amountOther || amount} $</h3>
 
           {isSelectAmount === false ? (
             <div className="Withdrawal_box">
@@ -73,6 +79,7 @@ function Withdrawal() {
                 isFocus={isFocus}
                 isSetFocus={isSetFocus}
                 amount={amount}
+                onClick={() => handleAmounts()}
               />
               <WithdrawBtn
                 value={"200"}
@@ -80,6 +87,7 @@ function Withdrawal() {
                 isFocus={isFocus}
                 isSetFocus={isSetFocus}
                 amount={amount}
+                onClick={() => handleAmounts()}
               />
               <WithdrawBtn
                 value={"500"}
@@ -87,6 +95,7 @@ function Withdrawal() {
                 isFocus={isFocus}
                 isSetFocus={isSetFocus}
                 amount={amount}
+                onClick={() => handleAmounts()}
               />
               <WithdrawBtn
                 value={"1000"}
@@ -94,6 +103,7 @@ function Withdrawal() {
                 isFocus={isFocus}
                 isSetFocus={isSetFocus}
                 amount={amount}
+                onClick={() => handleAmounts()}
               />
               <WithdrawBtn
                 value={"1500"}
@@ -101,6 +111,7 @@ function Withdrawal() {
                 isFocus={isFocus}
                 isSetFocus={isSetFocus}
                 amount={amount}
+                onClick={() => handleAmounts()}
               />
 
               <input
@@ -116,7 +127,7 @@ function Withdrawal() {
                 type="text"
                 className="btn_inputAmount_input"
                 placeholder={"Amount of money ... "}
-                value={amount}
+                value={amountOther}
                 onChange={(e) => handleOtherAmount(e)}
               />
               <input
@@ -141,7 +152,7 @@ function Withdrawal() {
                 type="button"
                 value={"CANCEL"}
                 className="Withdrawal_button_main Withdrawal_button Withdrawl_btn_cancel btn_effect "
-                onClick={() => setAmount(0)}
+                onClick={() => cancel(0)}
               />
             </div>
           </div>

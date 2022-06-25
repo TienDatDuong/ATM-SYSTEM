@@ -2,7 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GoBack from "../../../components/Button/GoBack";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, selectUser } from "../../../store/reducers/user";
+import {
+  getBalanceUser,
+  selectBalance,
+  updateBalance,
+  updateUserBalance,
+} from "../../../store/reducers/user";
 import { createWithdraw } from "../../../store/reducers/user";
 import { TitleContext } from "../../../Contexts/ToolContext";
 
@@ -10,17 +15,19 @@ function Billing({ amounts, id }) {
   const [isExchangeCompleted, setIsExchangeCompleted] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const remainingAmount = useSelector(selectUser);
+  const remainingAmount = useSelector(selectBalance);
+  // const updateDataBalance = useSelector(updateBalance);
   const [user, setUser] = useState(remainingAmount);
-  const wallet = remainingAmount.amount;
+  const wallet = remainingAmount?.Account?.balance;
   const totalWallet = +wallet - +amounts;
-  const date = new Date();
+  // const date = new Date();
   const { setTitle } = useContext(TitleContext);
 
   useEffect(() => {
-    dispatch(getUser(id));
+    dispatch(getBalanceUser(id));
   }, []);
 
+  useEffect(() => {}, []);
   const handleUpdate = (e) => {
     e.preventDefault();
 
@@ -31,13 +38,18 @@ function Billing({ amounts, id }) {
     } else {
       dispatch(
         createWithdraw({
-          bank_accountId: id,
-          accountName: user.accountName,
-          amount: user.amount,
-          requsted_amount: amounts,
-          updatedAt: { date },
+          user_id: id,
+          type: "withdraw",
+          balance: +user?.Account?.balance,
+          withdrawalAmount: +amounts,
         })
       );
+      // dispatch(
+      //   updateUserBalance({
+      //     id: id,
+      //     balance: updateDataBalance?.updateAccount?.balance,
+      //   })
+      // );
       setIsExchangeCompleted(true);
     }
   };
@@ -60,7 +72,8 @@ function Billing({ amounts, id }) {
           <div className="bill_container uppercase ">
             <p className="bill_container_text">Bill</p>
             <p className="bill_container_text">
-              ATM transaction - Wallet : <span>{remainingAmount.amount}$</span>
+              ATM transaction - Wallet :{" "}
+              <span>{remainingAmount?.Account?.balance}$</span>
             </p>
             <p className="bill_container_text">
               Requsted amount : <span>{amounts}$</span>{" "}
@@ -84,7 +97,9 @@ function Billing({ amounts, id }) {
           <h2>Successful transaction</h2>
           <h3>Thank you for using our service</h3>
           <h3>Do you want to continue making other transactions ? </h3>
-          <div>
+          <div
+            className="BillingInfor_btn"
+          >
             <input
               type="button"
               value={"ENTER"}
@@ -93,7 +108,7 @@ function Billing({ amounts, id }) {
             />
             <input
               type="button"
-              value={"CENCAL"}
+              value={"CANCEL"}
               className="Withdrawal_button_other  Withdrawl_btn_cancel  btn_effect"
               onClick={() => Succeed()}
             />

@@ -16,8 +16,9 @@
 }
 
 table {
-  margin-top: 3%;
+  width: 80%;
   border-collapse: collapse;
+  margin: 3% auto;
 }
 
 tr {

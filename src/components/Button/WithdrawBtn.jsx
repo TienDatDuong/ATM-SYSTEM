@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 
 function WithdrawBtn({ value, setAmount, isFocus, isSetFocus, amount }) {
-  // const [isFocus, isSetFocus] = useState(false);
-
   const handleAmount = () => {
     setAmount(value);
-    isSetFocus(!isFocus);
-    console.log(11111, value);
   };
 
   return (

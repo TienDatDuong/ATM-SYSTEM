@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 5%;
 }
 
 .BalanceInquiry h2 {
@@ -16,7 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 8%;
   max-width: 800px;
   flex-direction: row;
   flex-wrap: wrap;
@@ -57,6 +56,9 @@
   text-align: center;
   font-size: 24px;
   font-weight: 600;
+}
+.BalanceInquiry_box_lable h2{
+  font-size: 24px;
 }
 .PageHeader {
   min-height: 10%;

@@ -5,7 +5,7 @@ import GoBack from "../../../components/Button/GoBack";
 function Menu() {
   return (
     <>
-      <div className="menu">
+      <div className="sub_menu">
         <nav>
           <ul className="navBar">
             <Link to="balance-inquiry" className="navBar_item btn_effect">
@@ -14,7 +14,7 @@ function Menu() {
             <Link to="withdrawal" className="navBar_item btn_effect">
               WITHDRAWAL
             </Link>
-            <Link to={`transfer`} className="navBar_item btn_effect">
+            <Link to={`transactions`} className="navBar_item btn_effect">
               TRANSACTIONS
             </Link>
             <Link to={`transfer`} className="navBar_item btn_effect">

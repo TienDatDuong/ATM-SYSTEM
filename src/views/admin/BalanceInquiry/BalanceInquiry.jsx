@@ -1,21 +1,21 @@
 import React, { useEffect, useContext } from "react";
 import { TitleContext } from "../../../Contexts/ToolContext";
 import { useParams } from "react-router-dom";
-import GoBack from "../../../components/Button/GoBack";
+// import GoBack from "../../../components/Button/GoBack";
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, selectUser } from "../../../store/reducers/user";
+import { selectBalance, getBalanceUser } from "../../../store/reducers/user";
 import { useNavigate } from "react-router-dom";
 
 function BalanceInquiry() {
-  const { setTitle } = useContext(TitleContext);
   const params = useParams();
   const id = params.id;
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
+  const userBalance = useSelector(selectBalance);
+  const { setTitle } = useContext(TitleContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getUser(id));
+    dispatch(getBalanceUser(id));
   }, []);
 
   useEffect(() => {
@@ -26,13 +26,13 @@ function BalanceInquiry() {
     navigate(-1);
     setTitle("DASHBOARD ");
   };
-
+  console.log(3333,userBalance)
   return (
     <div>
       <div className="BalanceInquiry">
         <div className="BalanceInquiry_box  btn_effect">
           <div className="BalanceInquiry_box_lable">ACCOUNT BALANCE</div>
-          <h2>AVAILABLE BALANCE : {user.amount}$ </h2>
+          <h2>AVAILABLE BALANCE : {userBalance?.Account?.balance}$ </h2>
         </div>
 
         {/* <GoBack /> */}

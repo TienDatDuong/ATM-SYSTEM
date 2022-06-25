@@ -15,7 +15,7 @@ function Admin() {
       <TitleContextProvider>
         <AdminHeader />
         <Routes>
-          <Route path="/admin/dashboard" element={<App />} />
+          <Route path="/admin/account" element={<App />} />
           <Route path="/admin/account/:id" element={<User />}>
             <Route index element={<Menu />} />
             <Route path="withdrawal" element={<Withdrawal />} />
@@ -23,7 +23,7 @@ function Admin() {
             <Route path="transfer" element={<Transfer />} >
             </Route>
           </Route>
-          <Route path="/" element={<Navigate to="/admin/dashboard" />} />
+          <Route path="/" element={<Navigate to="/admin/account" />} />
         </Routes>
       </TitleContextProvider>
     </div>

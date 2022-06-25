@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     dispatch(getListUser());
   }, []);
-
+  console.log(111333,userList)
   return (
     <>
       <ListAccount users={userList} />
