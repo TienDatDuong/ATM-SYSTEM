@@ -97,7 +97,9 @@ function Billing({ amounts, id }) {
           <h2>Successful transaction</h2>
           <h3>Thank you for using our service</h3>
           <h3>Do you want to continue making other transactions ? </h3>
-          <div>
+          <div
+            className="BillingInfor_btn"
+          >
             <input
               type="button"
               value={"ENTER"}
@@ -106,7 +108,7 @@ function Billing({ amounts, id }) {
             />
             <input
               type="button"
-              value={"CENCAL"}
+              value={"CANCEL"}
               className="Withdrawal_button_other  Withdrawl_btn_cancel  btn_effect"
               onClick={() => Succeed()}
             />

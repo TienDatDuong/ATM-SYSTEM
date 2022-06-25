@@ -6,15 +6,18 @@
   padding: 8% 0 1% 0;
   text-transform: uppercase;
 }
+.header_menu{
+  margin-top: 2%;
+}
 .header_menu h2{
-  font-size: 16px;
+  font-size: 20px;
   text-align: center;
   padding: 20px;
 }
 .header_menu h3 {
-  font-size: 18px;
+  font-size: 22px;
   display: block;
-  margin-top: 5%;
+  margin-top: 16%;
   text-align: center;
 }
 
@@ -24,4 +27,7 @@
 }
 .PageHeader_break {
   margin-left: 1%;
+}
+.sub_menu{
+  margin-top: 5%;
 }

@@ -34,10 +34,10 @@ function Transfer() {
 
   const handleOtherAmount = (e) => {
     const value = e.target.value.replace(/\D/g, "");
-    setAmount(value)
-    if( amount > bankuser.amount){
-        alert("Số tiền của bạn không đủ.")
-        setAmount("")
+    setAmount(value);
+    if (amount > bankuser.amount) {
+      alert("Số tiền của bạn không đủ.");
+      setAmount("");
     }
   };
 
@@ -45,14 +45,16 @@ function Transfer() {
     const value = e.target.value;
     setContent(value);
   };
+  console.log(111111, acc);
 
   const Continue = () => {
     dispatch(
       UpDateTransfer({
         type: "transfer",
-        balance: amount,
-        Information: content,
-        // receiver_id: acc.id,
+        transfer_amount: amount,
+        information: content,
+        sender_id: bankuser.Account._id,
+        receiver_id:acc._id,
         // sender_id: bankuser.id,
         // sender: bankuser.accountName,
         // sender_amount: bankuser.amount,
@@ -71,7 +73,6 @@ function Transfer() {
     setTitle("TRANSFER");
     dispatch(getListUser());
   }, []);
-  console.log(111111,bankuser)
   return (
     <div>
       <div className="transfer">
@@ -90,10 +91,10 @@ function Transfer() {
                     className="uppercase"
                     onClick={() => handlerTransfer({ user })}
                   >
-                    {user.accName}{" "}
+                    {user?.accName}{" "}
                   </nav>
                 </td>
-                <td>{user.accNumber}</td>
+                <td>{user?.accNumber}</td>
               </tr>
             ))}
           </table>
@@ -107,7 +108,7 @@ function Transfer() {
 
             <h3>Beneficiary information :</h3>
             <div className="transfer_section">
-              <h4>Beneficiary account : {acc.accName}</h4>
+              <h4>Beneficiary account : {acc?.accName}</h4>
               <h4>Amount received : {amount} $</h4>
             </div>
 
