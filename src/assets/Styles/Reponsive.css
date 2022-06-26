@@ -1,8 +1,45 @@
 @media screen and (min-width: 1025px) {
+  .Withdrawal_button_main {
+    font-size: 24px;
+    width: 25%;
+  }
+  .Withdrawal_cofirm {
+    position: absolute;
+    bottom: 12%;
+}
+.header_menu {
+  margin-top: 0%;
+}
+.BalanceInquiry_button {
+  min-width: 14%;
+  height: 50px;
+  font-size: 24px;
+  border-radius: 10px;
+  border: none;
+  margin: 50px 100px;
+  cursor: pointer;
+  position: absolute;
+  right: 10%;
+  bottom: -3%;
+}
+.transfer_Container{
+  width: 900px;
+}
+.transfer_section h4,h5{
+  font-size: 18px;
+}
+.transtion_btn_inputAmount_input,.transition_btn_inputAmount {
+  font-size: 24px;
+}
+}
 
+@media screen and (max-width: 1024px) {
+  .PageHeader {
+    height: 8%;
+  }
   th,
   td {
-    font-size: 14px;
+    font-size: 12px;
   }
   .header_menu h3 {
     margin-top: 10%;
@@ -16,11 +53,57 @@
   }
   .back-btn {
     position: absolute;
-    bottom: -1%;
-    right: 10%;
+    bottom: 4%;
+    right: 0%;
+  }
+  .PageHeader {
+    min-height: 6%;
+  }
+  .BalanceInquiry_box {
+    margin-top: 2%;
+  }
+  .header_menu {
+    margin-top: 20%;
+  }
+  .Withdrawal {
+    margin-top: 10%;
+  }
+  .Withdrawal_box {
+    margin-top: 0%;
+  }
+  .Withdrawal_cofirm {
+    position: absolute;
+    bottom: 26%;
+  }
+  .BalanceInquiry_button {
+    min-width: 25%;
+  }
+  .App h1 {
+    font-size: 34px;
+  }
+  .Withdrawal_button_main {
+    width: 25%;
+    font-size: 16px;
+  }
+
+  element.style {
+  }
+  .btn_effect {
+    transition-property: scale();
+    transition-duration: 1s;
+    box-shadow: 3px 3px #999;
+  }
+  .Withdrawal_button {
+    margin: 28px 100px;
+  }
+  .transtion_btn_inputAmount_input,.transition_btn_inputAmount {
+    font-size: 24px;
   }
 }
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 768px) {
+  .PageHeader {
+    min-height: 6%;
+  }
   .PageHeader h2 {
     font-size: 16px;
   }
@@ -33,7 +116,12 @@
   td {
     font-size: 10px;
   }
-
+  .sub_menu {
+    margin-top: 14%;
+}
+.transtion_btn_inputAmount_input,.transition_btn_inputAmount {
+  font-size: 18px;
+}
   .header_menu h3 {
     font-size: 18px;
     margin-top: 20%;
@@ -58,11 +146,7 @@
     font-size: 14px;
     cursor: pointer;
   }
-  .back-btn {
-    position: absolute;
-    bottom: 4%;
-    right: -5%;
-  }
+
   .BalanceInquiry_box {
     min-width: 500px;
     min-height: 220px;
@@ -98,6 +182,7 @@
   }
   .Withdrawal_box {
     justify-content: center;
+    margin-top: 10%;
   }
   .header_menu h3 {
     margin-top: 10%;
@@ -113,12 +198,7 @@
   }
   .Withdrawal_cofirm {
     position: absolute;
-    bottom: 16%;
-  }
-  .back-btn {
-    position: absolute;
-    bottom: -1%;
-    right: -5%;
+    bottom: 29%;
   }
   .bill_container {
     font-size: 14px;
@@ -143,6 +223,9 @@
     margin-bottom: 10px;
     font-size: 12px;
   }
+  .Withdrawal {
+    margin-top: 3%;
+  }
   .Withdrawal_button_other {
     width: 150px;
     height: 45px;
@@ -158,9 +241,13 @@
   .transfer h4 {
     font-size: 12px;
   }
-  .transfer_section {
+  /* .transfer_section {
     min-width: 500px;
     padding: 10px 0;
+  } */
+  .transfer_section > h5 {
+    display: flex;
+    justify-content: end;
   }
   .transition_btn_inputAmount {
     font-size: 26px;
@@ -173,5 +260,24 @@
   }
   .PageHeader h2 {
     font-size: 14px;
+  }
+  .BalanceInquiry_button {
+    min-width: 22%;
+    height: 45px;
+    font-size: 14px;
+    position: absolute;
+    bottom: 10%;
+    right: -3%;
+    cursor: pointer;
+  }
+  .sub_menu {
+    margin-top: 18%;
+  }
+  .header_menu {
+    margin-top: 12%;
+  }
+
+  .transfer_Container {
+    width: 100%;
   }
 }

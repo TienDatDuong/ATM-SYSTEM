@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getListUser,
   getUsers,
-  getUser,
   selectUser,
   UpDateTransfer,
+  getBalanceUser,
+  selectBalance,
 } from "../../../store/reducers/user";
 
 function Transfer() {
@@ -16,6 +17,7 @@ function Transfer() {
   const [acc, setAccs] = useState([]);
   const [isInfo, isSetInfo] = useState(false);
   const bankuser = useSelector(selectUser);
+  const balanceUser = useSelector(selectBalance);
   const { setTitle } = useContext(TitleContext);
   const listAcc = useSelector(getUsers);
   const navigate = useNavigate();
@@ -29,13 +31,12 @@ function Transfer() {
   const handlerTransfer = (user) => {
     setAccs(user.user);
     isSetInfo(!isInfo);
-    // dispatch(getUser());
   };
 
   const handleOtherAmount = (e) => {
     const value = e.target.value.replace(/\D/g, "");
     setAmount(value);
-    if (amount > bankuser.amount) {
+    if (amount > balanceUser.Account.balance) {
       alert("Số tiền của bạn không đủ.");
       setAmount("");
     }
@@ -45,8 +46,6 @@ function Transfer() {
     const value = e.target.value;
     setContent(value);
   };
-  console.log(111111, acc);
-
   const Continue = () => {
     dispatch(
       UpDateTransfer({
@@ -54,14 +53,7 @@ function Transfer() {
         transfer_amount: amount,
         information: content,
         sender_id: bankuser.Account._id,
-        receiver_id:acc._id,
-        // sender_id: bankuser.id,
-        // sender: bankuser.accountName,
-        // sender_amount: bankuser.amount,
-        // receiver: acc.accountName,
-        // receiver_amount: acc.amount,
-        // sender_amounts: +bankuser.amount - +amount,
-        // receiver_amounts: +acc.amount + +amount,
+        receiver_id: acc._id,
       })
     );
     isSetInfo(!isInfo);
@@ -72,7 +64,9 @@ function Transfer() {
   useEffect(() => {
     setTitle("TRANSFER");
     dispatch(getListUser());
+    dispatch(getBalanceUser(bankuser.Account._id));
   }, []);
+  console.log("balanceUser", balanceUser);
   return (
     <div>
       <div className="transfer">
@@ -99,17 +93,17 @@ function Transfer() {
             ))}
           </table>
         ) : (
-          <div>
+          <div className="transfer_Container">
             <h3>Transferr Information :</h3>
             <div className="transfer_section">
               <h4>Source account : {bankuser.Account.accName} </h4>
-              <h4>Available balances : {bankuser.balance} $ </h4>
+              <h5>Available balances : {balanceUser.Account.balance} $ </h5>
             </div>
 
             <h3>Beneficiary information :</h3>
             <div className="transfer_section">
               <h4>Beneficiary account : {acc?.accName}</h4>
-              <h4>Amount received : {amount} $</h4>
+              <h5>Amount received : {amount} $</h5>
             </div>
 
             <h3>Transaction information :</h3>
@@ -135,7 +129,7 @@ function Transfer() {
                 <input
                   type="text"
                   className="transtion_btn_inputAmount_input"
-                  placeholder={"Transfer money for meals ... "}
+                  placeholder={"Transfer money... "}
                   value={content}
                   onChange={(e) => handleContent(e)}
                 />

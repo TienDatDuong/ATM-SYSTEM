@@ -21,7 +21,7 @@
   border: none;
   margin: 30px 100px;
   cursor: pointer;
-  background-color: #00502f;
+  background-image: linear-gradient(to left, #00502f ,#82BC00 );
   color: #fff;
 }
 .Withdrawal_button_focus {
@@ -39,6 +39,8 @@
 .Withdrawal_button_main {
   background-color: #00502f;
   box-shadow: 3px 3px #999;
+  width: 70%;
+  font-size: 12px;
 }
 .Withdrawal_button_other {
   width: 200px;
@@ -69,5 +71,4 @@
   position: absolute;
   bottom: 12%;
 }
-.Withdrawal_cofirm_other {
-}
+

@@ -27,7 +27,7 @@
   /* border-radius: 5%; */
 }
 .btn_inputAmount {
-  border: 2px solid #00502f;
+  background-image: linear-gradient(to left, #00502f ,#82BC00 );
   position: absolute;
   bottom: 40%;
   left: 39%;

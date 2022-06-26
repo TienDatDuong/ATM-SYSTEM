@@ -8,7 +8,7 @@
   text-align: center;
   margin-top: 5%;
   margin-bottom: 5%;
-  color: #b8db89;
+  color: #000;
 }
 .transfer h3 {
   color: #b8db89;
@@ -18,26 +18,23 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 800px;
+  min-width: 80%;
   padding: 20px 0;
 }
 .transition_btn_inputAmount {
   border: 2px solid #00502f;
-  /* position: absolute; */
-  /* bottom: 30%;
-  left: 40%; */
   height: 6%;
-  font-size: 32px;
+  /* font-size: 18px; */
   width: 25%;
   border-radius: 12px;
-  min-width: 400px;
+  min-width: 45%;
 }
 .transtion_btn_inputAmount_input {
   height: 100%;
   width: 100%;
   outline: none;
   border: none;
-  font-size: 24px;
+  /* font-size: 24px; */
   padding-left: 5%;
   border-radius: 10px;
 }
@@ -53,6 +50,6 @@
   text-align: center;
   border: none;
   color: #fff;
-  background-color: green;
+  background-image: linear-gradient(to left, #00502f ,#82BC00 );
   font-weight: 600;
 }
