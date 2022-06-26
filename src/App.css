@@ -48,7 +48,7 @@ td {
 }
 
 thead {
-  background-color: #00502f;
+  background-color: #82BC00;
   color: #fff;
   text-transform: uppercase;
 }
@@ -63,7 +63,7 @@ thead {
   min-width: 150px;
   min-height: 50px;
   margin: 20px;
-  background-color: #00502f;
+  background-image: linear-gradient(to left, #00502f ,#82BC00 );
   color: #fff;
   font-size: 20px;
 }
@@ -100,7 +100,7 @@ thead {
   color: #000;
   padding: 20px 25px;
   min-width: 250px;
-  background-color: #00502f;
+  background-image: linear-gradient(to left, #00502f ,#82BC00 );
   color: #fff;
   text-align: center;
   border-radius: 10px;
@@ -121,9 +121,4 @@ thead {
 }
 .User:active {
   transform: scale(0.6);
-}
-.back-btn {
-  position: absolute;
-  bottom: 5%;
-  right: 2%;
 }

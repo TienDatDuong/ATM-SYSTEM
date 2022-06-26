@@ -6,7 +6,7 @@ import "./assets/Styles/input.css";
 import "./assets/Styles/menu.css";
 import "./assets/Styles/Button.css";
 import "./assets/Styles/Reponsive.css"
-import "./assets/Styles/ResponsiveBanlance.css"
+import "./assets/Styles/ResponSm.css"
 import "./assets/Styles/Transfer.css"
 import React, { useEffect } from "react";
 import ListAccount from "./views/auth/ListAccount";
