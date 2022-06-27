@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import AdminHeader from "../views/admin/Dashboard/AdminHeader";
+import AdminHeader from "./AdminHeader";
 import Menu from "../views/admin/Dashboard/Menu";
 import Withdrawal from "../views/admin/Withdraw/Withdrawal";
 import BalanceInquiry from "../views/admin/BalanceInquiry/BalanceInquiry";
@@ -15,15 +15,14 @@ function Admin() {
       <TitleContextProvider>
         <AdminHeader />
         <Routes>
-          <Route path="/admin/account" element={<App />} />
+          <Route path="/admin/accounts" element={<App />} />
           <Route path="/admin/account/:id" element={<User />}>
             <Route index element={<Menu />} />
             <Route path="withdrawal" element={<Withdrawal />} />
             <Route path="balance-inquiry" element={<BalanceInquiry />} />
-            <Route path="transfer" element={<Transfer />} >
-            </Route>
+            <Route path="transfer" element={<Transfer />}></Route>
           </Route>
-          <Route path="/" element={<Navigate to="/admin/account" />} />
+          <Route path="/" element={<Navigate to="/admin/accounts" />} />
         </Routes>
       </TitleContextProvider>
     </div>

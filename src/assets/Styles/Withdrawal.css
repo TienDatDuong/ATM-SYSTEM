@@ -21,21 +21,13 @@
   border: none;
   margin: 30px 100px;
   cursor: pointer;
-  background-image: linear-gradient(to left, #00502f ,#82BC00 );
+  background-image: linear-gradient(to left, #00502f, #82bc00);
   color: #fff;
 }
 .Withdrawal_button_focus {
   background-color: gainsboro;
   color: #000;
 }
-/* .Withdrawal_button:focus {
-  background-color: gainsboro;
-  color: #000;
-} */
-/* .Withdrawal_button:hover {
-  background-color: gainsboro;
-  color: #000;
-} */
 .Withdrawal_button_main {
   background-color: #00502f;
   box-shadow: 3px 3px #999;
@@ -71,4 +63,3 @@
   position: absolute;
   bottom: 12%;
 }
-

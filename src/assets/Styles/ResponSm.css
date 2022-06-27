@@ -52,7 +52,7 @@
   }
   .sub_menu {
     margin-top: -3%;
-}
+  }
   .Withdrawal_button {
     min-width: 35%;
     height: 45px;
@@ -116,7 +116,8 @@
     height: 50px;
     font-size: 14px;
   }
-  .transtion_btn_inputAmount_input,.transition_btn_inputAmount {
+  .transtion_btn_inputAmount_input,
+  .transition_btn_inputAmount {
     font-size: 14px;
   }
 
@@ -124,6 +125,14 @@
     width: 100%;
     align-items: center;
     margin-top: 24%;
-
+  }
+  .btn_inputAmount_submit {
+ 
+    font-size: 12px;
 }
+  .btn_inputAmount {
+    left: 28%;
+    height: 5%;
+    width: 50%;
+  }
 }

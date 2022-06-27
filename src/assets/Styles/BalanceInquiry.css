@@ -37,7 +37,7 @@
 }
 
 .BalanceInquiry_button_main {
- background-image: linear-gradient(to left, #00502f ,#82BC00 );
+  background-image: linear-gradient(to left, #00502f, #82bc00);
 }
 .BalanceInquiry_box {
   border: 2px solid #ccc;
@@ -58,14 +58,14 @@
   font-size: 24px;
   font-weight: 600;
 }
-.BalanceInquiry_box_lable h2{
+.BalanceInquiry_box_lable h2 {
   font-size: 24px;
 }
 .PageHeader {
   min-height: 10%;
   min-width: 100vw;
   max-width: 1240px;
-  background-image: linear-gradient(to left, #00502f ,#82BC00 );
+  background-image: linear-gradient(to left, #00502f, #82bc00);
   /* background-color: #00502f; */
   position: absolute;
   top: 0;

@@ -25,7 +25,8 @@ function Withdrawal() {
 
   const handleOtherAmount = (e) => {
     const value = e.target.value.replace(/\D/g, "");
-    setAmountOther(value);
+    // setAmountOther(value);
+    setAmount(value);
   };
 
   const handleSubmit = () => {
@@ -40,7 +41,7 @@ function Withdrawal() {
 
   const handeleOtherMoney = () => {
     isSetSelectAmount(!isSelectAmount);
-    setAmount(0)
+    setAmount(0);
   };
   useEffect(() => {
     dispatch(getBalanceUser(id));
@@ -127,7 +128,7 @@ function Withdrawal() {
                 type="text"
                 className="btn_inputAmount_input"
                 placeholder={"Amount of money ... "}
-                value={amountOther}
+                value={amount}
                 onChange={(e) => handleOtherAmount(e)}
               />
               <input

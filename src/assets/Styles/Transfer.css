@@ -50,6 +50,9 @@
   text-align: center;
   border: none;
   color: #fff;
-  background-image: linear-gradient(to left, #00502f ,#82BC00 );
+  background-image: linear-gradient(to left, #00502f, #82bc00);
   font-weight: 600;
+}
+.curser {
+  cursor: pointer;
 }

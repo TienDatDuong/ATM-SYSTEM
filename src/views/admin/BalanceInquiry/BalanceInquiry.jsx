@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { TitleContext } from "../../../Contexts/ToolContext";
 import { useParams } from "react-router-dom";
-// import GoBack from "../../../components/Button/GoBack";
 import { useDispatch, useSelector } from "react-redux";
 import { selectBalance, getBalanceUser } from "../../../store/reducers/user";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +25,6 @@ function BalanceInquiry() {
     navigate(-1);
     setTitle("DASHBOARD ");
   };
-  console.log(3333,userBalance)
   return (
     <div>
       <div className="BalanceInquiry">

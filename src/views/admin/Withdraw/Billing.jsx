@@ -4,6 +4,7 @@ import GoBack from "../../../components/Button/GoBack";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getBalanceUser,
+  getListUser,
   selectBalance,
   updateBalance,
   updateUserBalance,
@@ -16,16 +17,10 @@ function Billing({ amounts, id }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const remainingAmount = useSelector(selectBalance);
-  // const updateDataBalance = useSelector(updateBalance);
   const [user, setUser] = useState(remainingAmount);
   const wallet = remainingAmount?.Account?.balance;
   const totalWallet = +wallet - +amounts;
-  // const date = new Date();
   const { setTitle } = useContext(TitleContext);
-
-  useEffect(() => {
-    dispatch(getBalanceUser(id));
-  }, []);
 
   useEffect(() => {}, []);
   const handleUpdate = (e) => {
@@ -44,15 +39,14 @@ function Billing({ amounts, id }) {
           withdrawalAmount: +amounts,
         })
       );
-      // dispatch(
-      //   updateUserBalance({
-      //     id: id,
-      //     balance: updateDataBalance?.updateAccount?.balance,
-      //   })
-      // );
+
       setIsExchangeCompleted(true);
     }
   };
+
+  useEffect(() => {
+    dispatch(getBalanceUser(id));
+  }, [isExchangeCompleted]);
 
   const Continue = () => {
     setTitle("DASHBOARD ");
@@ -97,9 +91,7 @@ function Billing({ amounts, id }) {
           <h2>Successful transaction</h2>
           <h3>Thank you for using our service</h3>
           <h3>Do you want to continue making other transactions ? </h3>
-          <div
-            className="BillingInfor_btn"
-          >
+          <div className="BillingInfor_btn">
             <input
               type="button"
               value={"ENTER"}

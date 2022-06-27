@@ -18,7 +18,6 @@ function User() {
   useEffect(() => {
     setTitle("DASHBOARD");
   }, []);
-  console.log(111,users)
   return (
     <div className="menu">
       <div className="header_menu">

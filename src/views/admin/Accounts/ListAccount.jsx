@@ -1,23 +1,27 @@
-import "../../App.css";
+import "../../../App.css";
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import { TitleContext } from "../../Contexts/ToolContext";
+import { TitleContext } from "../../../Contexts/ToolContext";
+import { useDispatch, useSelector } from "react-redux";
+import { getListUser, getUsers } from "../../../store/reducers/user";
 
 function ListAccount({ users }) {
   const [createdAt, setCreatedAt] = useState(new Date());
   const { setTitle } = useContext(TitleContext);
+  const dispatch = useDispatch();
+  const userList = useSelector(getUsers);
   moment(createdAt).format();
 
   useEffect(() => {
     setTitle("DASHBOARD");
+    dispatch(getListUser());
   }, []);
 
   return (
     <>
       <div className="App">
         <h1>LIST ACCOUNT</h1>
-
         <table>
           <thead>
             <th>ID</th>
@@ -27,7 +31,7 @@ function ListAccount({ users }) {
             <th>ACCONNT NUMBER</th>
             <th>PIN</th>
           </thead>
-          {users?.map((user, index) => (
+          {userList?.map((user, index) => (
             <tr key={index} className="selecter">
               <td>{user._id}</td>
               <td>

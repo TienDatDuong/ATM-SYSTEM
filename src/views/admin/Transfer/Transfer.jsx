@@ -20,6 +20,7 @@ function Transfer() {
   const balanceUser = useSelector(selectBalance);
   const { setTitle } = useContext(TitleContext);
   const listAcc = useSelector(getUsers);
+  // const accSender = useSelector(selectUser)
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -29,6 +30,7 @@ function Transfer() {
   };
 
   const handlerTransfer = (user) => {
+    console.log(1111, user);
     setAccs(user.user);
     isSetInfo(!isInfo);
   };
@@ -46,27 +48,47 @@ function Transfer() {
     const value = e.target.value;
     setContent(value);
   };
-  const Continue = () => {
-    dispatch(
-      UpDateTransfer({
-        type: "transfer",
-        transfer_amount: amount,
-        information: content,
-        sender_id: bankuser.Account._id,
-        receiver_id: acc._id,
-      })
-    );
-    isSetInfo(!isInfo);
-    navigate(-1);
-    setTitle("DASHBOARD ");
-  };
+  // const Continue = () => {
+  //   if (amount > 50) {
+  //     dispatch(
+  //       UpDateTransfer({
+  //         type: "transfer",
+  //         transfer_amount: amount,
+  //         information: content,
+  //         sender_id: bankuser.Account._id,
+  //         receiver_id: acc._id,
+  //       })
+  //     );
+  //     isSetInfo(!isInfo);
+  //     navigate(-1);
+  //     setTitle("DASHBOARD ");
+  //   } else {
+  //     alert("Please enter the amount ");
+  //   }
+  // };
+   const Continue = () => {
+  
+      dispatch(
+        UpDateTransfer({
+          type: "transfer",
+          transfer_amount: amount,
+          information: content,
+          sender_id: bankuser.Account._id,
+          receiver_id: acc._id,
+        })
+      );
+      isSetInfo(!isInfo);
+      navigate(-1);
+      setTitle("DASHBOARD ");
+    } 
+
 
   useEffect(() => {
     setTitle("TRANSFER");
     dispatch(getListUser());
-    dispatch(getBalanceUser(bankuser.Account._id));
+    dispatch(getBalanceUser(bankuser.Account?._id));
   }, []);
-  console.log("balanceUser", balanceUser);
+  var receiver = listAcc.filter((item) => item?._id !== bankuser.Account?._id);
   return (
     <div>
       <div className="transfer">
@@ -78,11 +100,11 @@ function Transfer() {
               <th>ACCONNT NUMBER</th>
             </thead>
 
-            {listAcc.map((user, index) => (
+            {receiver.map((user, index) => (
               <tr key={index} className="selecter">
                 <td>
                   <nav
-                    className="uppercase"
+                    className="uppercase curser"
                     onClick={() => handlerTransfer({ user })}
                   >
                     {user?.accName}{" "}
@@ -97,7 +119,7 @@ function Transfer() {
             <h3>Transferr Information :</h3>
             <div className="transfer_section">
               <h4>Source account : {bankuser.Account.accName} </h4>
-              <h5>Available balances : {balanceUser.Account.balance} $ </h5>
+              <h5>Available balances : {balanceUser?.Account?.balance} $ </h5>
             </div>
 
             <h3>Beneficiary information :</h3>
