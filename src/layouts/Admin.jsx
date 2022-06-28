@@ -4,10 +4,11 @@ import AdminHeader from "./AdminHeader";
 import Menu from "../views/admin/Dashboard/Menu";
 import Withdrawal from "../views/admin/Withdraw/Withdrawal";
 import BalanceInquiry from "../views/admin/BalanceInquiry/BalanceInquiry";
-import User from "../views/admin/Dashboard/User";
+import User from "../views/admin/Dashboard/Dashboard";
 import TitleContextProvider from "../Contexts/ToolContext";
 import App from "../App";
 import Transfer from "../views/admin/Transfer/Transfer";
+import AdminFooter from "./AdminFooter";
 
 function Admin() {
   return (
@@ -24,6 +25,7 @@ function Admin() {
           </Route>
           <Route path="/" element={<Navigate to="/admin/accounts" />} />
         </Routes>
+        <AdminFooter/>
       </TitleContextProvider>
     </div>
   );

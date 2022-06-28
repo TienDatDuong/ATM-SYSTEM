@@ -39,10 +39,15 @@ function Withdrawal() {
     }
   };
 
-  const handeleOtherMoney = () => {
+  const setOtherMoneys = () => {
     isSetSelectAmount(!isSelectAmount);
-    setAmount(0);
+    setAmount();
   };
+
+  const handeleOtherMoneys = () => {
+    isSetSelectAmount(!isSelectAmount);
+  };
+
   useEffect(() => {
     dispatch(getBalanceUser(id));
   }, []);
@@ -72,89 +77,91 @@ function Withdrawal() {
           <h1>Please select an amount</h1>
           <h3>Withdrawal : {amountOther || amount} $</h3>
 
-          {isSelectAmount === false ? (
-            <div className="Withdrawal_box">
-              <WithdrawBtn
-                value={"100"}
-                setAmount={setAmount}
-                isFocus={isFocus}
-                isSetFocus={isSetFocus}
-                amount={amount}
-                onClick={() => handleAmounts()}
-              />
-              <WithdrawBtn
-                value={"200"}
-                setAmount={setAmount}
-                isFocus={isFocus}
-                isSetFocus={isSetFocus}
-                amount={amount}
-                onClick={() => handleAmounts()}
-              />
-              <WithdrawBtn
-                value={"500"}
-                setAmount={setAmount}
-                isFocus={isFocus}
-                isSetFocus={isSetFocus}
-                amount={amount}
-                onClick={() => handleAmounts()}
-              />
-              <WithdrawBtn
-                value={"1000"}
-                setAmount={setAmount}
-                isFocus={isFocus}
-                isSetFocus={isSetFocus}
-                amount={amount}
-                onClick={() => handleAmounts()}
-              />
-              <WithdrawBtn
-                value={"1500"}
-                setAmount={setAmount}
-                isFocus={isFocus}
-                isSetFocus={isSetFocus}
-                amount={amount}
-                onClick={() => handleAmounts()}
-              />
+          <div className="Withdraws_menu">
+            {isSelectAmount === false ? (
+              <div className="Withdrawal_box">
+                <WithdrawBtn
+                  value={"100"}
+                  setAmount={setAmount}
+                  isFocus={isFocus}
+                  isSetFocus={isSetFocus}
+                  amount={amount}
+                  onClick={() => handleAmounts()}
+                />
+                <WithdrawBtn
+                  value={"200"}
+                  setAmount={setAmount}
+                  isFocus={isFocus}
+                  isSetFocus={isSetFocus}
+                  amount={amount}
+                  onClick={() => handleAmounts()}
+                />
+                <WithdrawBtn
+                  value={"500"}
+                  setAmount={setAmount}
+                  isFocus={isFocus}
+                  isSetFocus={isSetFocus}
+                  amount={amount}
+                  onClick={() => handleAmounts()}
+                />
+                <WithdrawBtn
+                  value={"1000"}
+                  setAmount={setAmount}
+                  isFocus={isFocus}
+                  isSetFocus={isSetFocus}
+                  amount={amount}
+                  onClick={() => handleAmounts()}
+                />
+                <WithdrawBtn
+                  value={"1500"}
+                  setAmount={setAmount}
+                  isFocus={isFocus}
+                  isSetFocus={isSetFocus}
+                  amount={amount}
+                  onClick={() => handleAmounts()}
+                />
 
-              <input
-                type={"button"}
-                className="Withdrawal_button btn_effect"
-                value={"OTHER"}
-                onClick={() => handeleOtherMoney()}
-              />
-            </div>
-          ) : (
-            <div className="btn_inputAmount ">
-              <input
-                type="text"
-                className="btn_inputAmount_input"
-                placeholder={"Amount of money ... "}
-                value={amount}
-                onChange={(e) => handleOtherAmount(e)}
-              />
-              <input
-                type={"button"}
-                className="btn_inputAmount_submit"
-                value={"Enter"}
-                onClick={() => handeleOtherMoney()}
-              />
-            </div>
-          )}
+                <input
+                  type={"button"}
+                  className="Withdrawal_button btn_effect"
+                  value={"OTHER"}
+                  onClick={() => setOtherMoneys()}
+                />
+              </div>
+            ) : (
+              <div className="btn_inputAmount ">
+                <input
+                  type="text"
+                  className="btn_inputAmount_input"
+                  placeholder={"Amount of money ... "}
+                  value={0 || amount}
+                  onChange={(e) => handleOtherAmount(e)}
+                />
+                <input
+                  type={"button"}
+                  className="btn_inputAmount_submit"
+                  value={"Enter"}
+                  onClick={() => handeleOtherMoneys()}
+                />
+              </div>
+            )}
 
-          <div className="Withdrawal_cofirm">
-            <div className="Withdrawal_cofirm_other">
-              <input
-                type="button"
-                value={"CONFIRM"}
-                className="Withdrawal_button_main Withdrawal_button Withdrawl_btn_confirm btn_effect "
-                onClick={(e) => handleSubmit(e)}
-              />
+            <div className="Withdrawal_cofirm">
+              <div className="Withdrawal_cofirm_other">
+                <input
+                  type="button"
+                  value={"CONFIRM"}
+                  className="Withdrawal_button_main Withdrawal_button Withdrawl_btn_confirm btn_effect "
+                  onClick={(e) => handleSubmit(e)}
+                />
 
-              <input
-                type="button"
-                value={"CANCEL"}
-                className="Withdrawal_button_main Withdrawal_button Withdrawl_btn_cancel btn_effect "
-                onClick={() => cancel(0)}
-              />
+                <input
+                  type="button"
+                  value={"CANCEL"}
+                  className="Withdrawal_button_main Withdrawal_button Withdrawl_btn_cancel btn_effect "
+                  onClick={() => cancel(0)}
+                />
+              </div>
             </div>
           </div>
 

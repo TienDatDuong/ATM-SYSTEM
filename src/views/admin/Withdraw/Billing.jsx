@@ -2,13 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GoBack from "../../../components/Button/GoBack";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getBalanceUser,
-  getListUser,
-  selectBalance,
-  updateBalance,
-  updateUserBalance,
-} from "../../../store/reducers/user";
+import { getBalanceUser, selectBalance } from "../../../store/reducers/user";
 import { createWithdraw } from "../../../store/reducers/user";
 import { TitleContext } from "../../../Contexts/ToolContext";
 
@@ -17,9 +11,11 @@ function Billing({ amounts, id }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const remainingAmount = useSelector(selectBalance);
+  // const updateDataBalance = useSelector(updateBalance);
   const [user, setUser] = useState(remainingAmount);
   const wallet = remainingAmount?.Account?.balance;
   const totalWallet = +wallet - +amounts;
+  // const date = new Date();
   const { setTitle } = useContext(TitleContext);
 
   useEffect(() => {}, []);
@@ -39,14 +35,16 @@ function Billing({ amounts, id }) {
           withdrawalAmount: +amounts,
         })
       );
-
+      dispatch(getBalanceUser(id));
       setIsExchangeCompleted(true);
     }
   };
 
   useEffect(() => {
     dispatch(getBalanceUser(id));
-  }, [isExchangeCompleted]);
+  }, [!isExchangeCompleted]);
+
+  console.log(88888, remainingAmount);
 
   const Continue = () => {
     setTitle("DASHBOARD ");

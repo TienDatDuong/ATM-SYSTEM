@@ -24,11 +24,11 @@
   }
   .BalanceInquiry_button {
     min-width: 39%;
-    height: 5%;
+    height: 3.5%;
     font-size: 14px;
     position: absolute;
-    bottom: 13%;
-    right: 6%;
+    bottom: 9%;
+    right: 5%;
   }
   .BalanceInquiry_box_lable {
     padding: 14px;
@@ -48,7 +48,7 @@
     margin-top: 34%;
   }
   .header_menu {
-    margin-top: 14%;
+    margin-top: 24%;
   }
   .sub_menu {
     margin-top: -3%;
@@ -127,12 +127,18 @@
     margin-top: 24%;
   }
   .btn_inputAmount_submit {
- 
     font-size: 12px;
-}
+  }
   .btn_inputAmount {
     left: 28%;
     height: 5%;
     width: 50%;
+  }
+  .Withdrawal_cofirm_other {
+    position: absolute;
+    bottom: inherit;
+    left: -1%;
+    width: 105%;
+    font-size: 2px;
   }
 }

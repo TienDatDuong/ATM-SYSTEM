@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { TitleContext } from "../../../Contexts/ToolContext";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,17 +10,18 @@ import {
   getBalanceUser,
   selectBalance,
 } from "../../../store/reducers/user";
+import TransferHistory from "./TransferHistory";
 
 function Transfer() {
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState("");
   const [content, setContent] = useState("");
   const [acc, setAccs] = useState([]);
   const [isInfo, isSetInfo] = useState(false);
+  const [isBill, isSetBill] = useState(false);
   const bankuser = useSelector(selectUser);
   const balanceUser = useSelector(selectBalance);
   const { setTitle } = useContext(TitleContext);
   const listAcc = useSelector(getUsers);
-  // const accSender = useSelector(selectUser)
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -30,7 +31,6 @@ function Transfer() {
   };
 
   const handlerTransfer = (user) => {
-    console.log(1111, user);
     setAccs(user.user);
     isSetInfo(!isInfo);
   };
@@ -48,26 +48,11 @@ function Transfer() {
     const value = e.target.value;
     setContent(value);
   };
-  // const Continue = () => {
-  //   if (amount > 50) {
-  //     dispatch(
-  //       UpDateTransfer({
-  //         type: "transfer",
-  //         transfer_amount: amount,
-  //         information: content,
-  //         sender_id: bankuser.Account._id,
-  //         receiver_id: acc._id,
-  //       })
-  //     );
-  //     isSetInfo(!isInfo);
-  //     navigate(-1);
-  //     setTitle("DASHBOARD ");
-  //   } else {
-  //     alert("Please enter the amount ");
-  //   }
-  // };
-   const Continue = () => {
-  
+
+  const Continue = () => {
+    if (amount === 0 || amount === "") {
+      alert("Please enter the amount ");
+    } else {
       dispatch(
         UpDateTransfer({
           type: "transfer",
@@ -77,17 +62,15 @@ function Transfer() {
           receiver_id: acc._id,
         })
       );
-      isSetInfo(!isInfo);
-      navigate(-1);
-      setTitle("DASHBOARD ");
-    } 
-
+      isSetBill(!isBill);
+    }
+  };
 
   useEffect(() => {
     setTitle("TRANSFER");
     dispatch(getListUser());
     dispatch(getBalanceUser(bankuser.Account?._id));
-  }, []);
+  }, [!isBill]);
   var receiver = listAcc.filter((item) => item?._id !== bankuser.Account?._id);
   return (
     <div>
@@ -114,11 +97,11 @@ function Transfer() {
               </tr>
             ))}
           </table>
-        ) : (
+        ) : isBill === false ? (
           <div className="transfer_Container">
             <h3>Transferr Information :</h3>
             <div className="transfer_section">
-              <h4>Source account : {bankuser.Account.accName} </h4>
+              <h4>Source account : {bankuser?.Account?.accName} </h4>
               <h5>Available balances : {balanceUser?.Account?.balance} $ </h5>
             </div>
 
@@ -135,7 +118,7 @@ function Transfer() {
               </div>
               <div className="transition_btn_inputAmount ">
                 <input
-                  type="text"
+                  type="number"
                   className="transtion_btn_inputAmount_input"
                   placeholder={"Amount of money ... "}
                   value={amount}
@@ -166,6 +149,14 @@ function Transfer() {
               />
             </div>
           </div>
+        ) : (
+          <TransferHistory
+            bankuser={bankuser}
+            acc={acc}
+            amount={amount}
+            isBill={isBill}
+            isSetBill={isSetBill}
+          />
         )}
       </div>
       <button
