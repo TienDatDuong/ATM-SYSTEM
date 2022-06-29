@@ -65,6 +65,8 @@
   position: absolute;
   bottom: 12%;
 }
-.Withdraws_menu{
+.Withdraws_menu {
   display: flex;
+}
+.Withdrawal_cofirm_others {
 }

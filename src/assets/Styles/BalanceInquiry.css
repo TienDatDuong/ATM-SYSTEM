@@ -91,6 +91,8 @@
   left: 0;
   right: 0;
   display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
   align-items: center;
   padding-left: 5%;
   color: #fff;

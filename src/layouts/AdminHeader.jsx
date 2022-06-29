@@ -9,7 +9,7 @@ function AdminHeader() {
 
   return (
     <div className="PageHeader">
-      <h2>{` WELCOME TO NEWWAVE ATM - ${title}`}</h2>
+      <h2>{` WELCOME TO NEWWAVE ATM`}</h2>
 
       {/* <p className="PageHeader_break"></p>
       {title === "DASHBOARD" ? (

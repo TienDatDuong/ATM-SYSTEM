@@ -3,7 +3,15 @@ import axios from "axios";
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: { status: "", users: [], user: {}, balance: {}, withdraw: {} },
+  initialState: {
+    status: "",
+    users: [],
+    user: {},
+    balance: {},
+    withdraw: {},
+    transaction: [],
+    pin:{}
+  },
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -39,7 +47,19 @@ export const userSlice = createSlice({
       .addCase(UpDateTransfer.fulfilled, (state, action) => {
         state.status = "idle";
         state.user = action.payload;
-      });
+      })
+      .addCase(getListTransaction.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.transaction = action.payload;
+      })
+      .addCase(getPin.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.pin = action.payload;
+      })
+      .addCase(updateUserPin.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.pin = action.payload;
+      })
   },
 });
 
@@ -47,6 +67,21 @@ export const getUser = createAsyncThunk("user/getUser", async (id) => {
   const res = await axios.get(`http://localhost:4001/api/accounts/${id}`);
   return res.data;
 });
+
+export const getPin = createAsyncThunk("user/getPin", async (id) => {
+  const res = await axios.get(`http://localhost:4001/api/accounts/${id}/pin`);
+  return res.data;
+});
+
+export const updateUserPin = createAsyncThunk(
+  "user/updateUserPin",
+  async ({ id, pin }) => {
+    const res = await axios.patch(`http://localhost:4001/api/accounts/${id}/pin`, {
+      pin,
+    });
+    return res.data;
+  }
+);
 
 export const getBalanceUser = createAsyncThunk(
   "user/getBalanceUser",
@@ -64,6 +99,16 @@ export const getListUser = createAsyncThunk("user/getListUser", async () => {
   return res.data.accounts;
 });
 
+export const getListTransaction = createAsyncThunk(
+  "user/getListTransaction",
+  async () => {
+    const res = await axios.get(
+      `http://localhost:4001/api/tranactions`
+    );
+    return res.data.Transaction;
+  }
+);
+
 export const updateUserBalance = createAsyncThunk(
   "user/putUser",
   async ({ id, balance }) => {
@@ -78,7 +123,7 @@ export const createWithdraw = createAsyncThunk(
   "user/createWithdraw",
   async (newTransaction, thunkAPI) => {
     const res = await axios.post(
-      `http://localhost:4001/api/accounts/${newTransaction.user_id}/withdraw`,
+      `http://localhost:4001/api/accounts/${newTransaction.accNumber}/withdraw`,
       newTransaction
     );
     return res.data;
@@ -103,5 +148,9 @@ export const selectBalance = (state) => state.user.balance;
 export const updateBalance = (state) => state.user.withdraw;
 
 export const getUsers = (state) => state.user.users;
+
+export const selectUserPin = (state) => state.user.pin
+
+export const getTransaction = (state) => state.user.transaction;
 
 export default userSlice.reducer;

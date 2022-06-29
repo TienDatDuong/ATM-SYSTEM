@@ -1,21 +1,20 @@
 import React, { useContext } from "react";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { TitleContext } from "../../../Contexts/ToolContext";
 import { selectUser } from "../../../store/reducers/user";
 
-function TransferHistory({ acc, amount, isBill, isSetBill }) {
+function TransferHistory({ acc, amount, isBill, isSetBill, content }) {
   const { setTitle } = useContext(TitleContext);
   const users = useSelector(selectUser);
   const navigate = useNavigate();
 
   const Continue = () => {
     setTitle("DASHBOARD ");
-    navigate(-1);
+    navigate(-2);
     isSetBill(!isBill);
   };
-  console.log(1111,users)
+  console.log(8989, acc);
   return (
     <>
       <div className="transfer_Container">
@@ -23,8 +22,9 @@ function TransferHistory({ acc, amount, isBill, isSetBill }) {
         <div className="transfer_Container_text">
           <p>receiver :{acc?.accName}</p>
           <p>amount : {amount}</p>
-          <p>information : {users?.createTransfer?.information}</p>
+          <p>information : {content}</p>
         </div>
+
         <div className="transfer_section">
           <input
             type="button"

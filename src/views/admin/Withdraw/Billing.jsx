@@ -29,10 +29,10 @@ function Billing({ amounts, id }) {
     } else {
       dispatch(
         createWithdraw({
-          user_id: id,
+          accNumber: id,
           type: "withdraw",
-          balance: +user?.Account?.balance,
-          withdrawalAmount: +amounts,
+          amount: +amounts,
+          // amount: +user?.Account?.balance,
         })
       );
       dispatch(getBalanceUser(id));

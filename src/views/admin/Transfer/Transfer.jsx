@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { TitleContext } from "../../../Contexts/ToolContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getListUser,
@@ -9,6 +9,7 @@ import {
   UpDateTransfer,
   getBalanceUser,
   selectBalance,
+  getUser,
 } from "../../../store/reducers/user";
 import TransferHistory from "./TransferHistory";
 
@@ -24,9 +25,11 @@ function Transfer() {
   const listAcc = useSelector(getUsers);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const params = useParams();
+  const id = params.id;
 
   const handlerSubmit = () => {
-    setTitle("DASHBOARD ");
+    setTitle("DASHBOARD");
     navigate(-1);
   };
 
@@ -50,28 +53,34 @@ function Transfer() {
   };
 
   const Continue = () => {
-    if (amount === 0 || amount === "") {
+    if (amount === 0) {
       alert("Please enter the amount ");
     } else {
       dispatch(
         UpDateTransfer({
           type: "transfer",
-          transfer_amount: amount,
+          accNumber: id,
+          accNumberReceived: acc._id,
+          amount: amount,
           information: content,
-          sender_id: bankuser.Account._id,
-          receiver_id: acc._id,
         })
       );
       isSetBill(!isBill);
     }
   };
-
+console.log(999,acc)
   useEffect(() => {
     setTitle("TRANSFER");
     dispatch(getListUser());
-    dispatch(getBalanceUser(bankuser.Account?._id));
+  }, []);
+
+  useEffect(() => {
+    dispatch(getUser(id));
+    dispatch(getBalanceUser(id));
   }, [!isBill]);
+
   var receiver = listAcc.filter((item) => item?._id !== bankuser.Account?._id);
+
   return (
     <div>
       <div className="transfer">
@@ -156,6 +165,7 @@ function Transfer() {
             amount={amount}
             isBill={isBill}
             isSetBill={isSetBill}
+            content={content}
           />
         )}
       </div>

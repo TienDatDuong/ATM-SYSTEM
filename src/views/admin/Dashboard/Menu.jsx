@@ -20,10 +20,10 @@ function Menu() {
             <Link to={`transfer`} className="navBar_item btn_effect">
               TRANSFER
             </Link>
-            <Link to={`change PIN`} className="navBar_item btn_effect">
+            <Link to={`pin`} className="navBar_item btn_effect">
               CHANGE PIN
             </Link>
-            <Link to={`change PIN`} className="navBar_item btn_effect">
+            <Link to={`other`} className="navBar_item btn_effect">
               OTHER
             </Link>
           </ul>

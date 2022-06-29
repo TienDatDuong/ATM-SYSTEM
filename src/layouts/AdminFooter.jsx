@@ -1,15 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { TitleContext } from "../Contexts/ToolContext";
-import { useSelector } from "react-redux";
-import { selectBalance } from "../store/reducers/user";
+import { useDispatch, useSelector } from "react-redux";
+import { getBalanceUser, selectBalance } from "../store/reducers/user";
+import { useParams } from "react-router-dom";
 
 function AdminFooter() {
   const balance = useSelector(selectBalance);
   const { title } = useContext(TitleContext);
-  console.log(balance)
+  // const params = useParams();
+  // const id = params.id;
+  // const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   dispatch(getBalanceUser(id));
+  // }, []);
+
+  // console.log(balance);
   return (
     <div className="PageFooter">
-      <p className="PageHeader_break"></p>
+      {/* <p className="PageHeader_break"></p> */}
+      <h2>{`${title}`}</h2>
+
       {title === "DASHBOARD" ? (
         balance?.Account?.balance === 0
       ) : balance?.Account?.balance > 0 ? (

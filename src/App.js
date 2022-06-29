@@ -8,6 +8,7 @@ import "./assets/Styles/Button.css";
 import "./assets/Styles/Reponsive.css";
 import "./assets/Styles/ResponSm.css";
 import "./assets/Styles/Transfer.css";
+import "./assets/Styles/transaction.css"
 import React from "react";
 import ListAccount from "./views/admin/Accounts/ListAccount";
 function App() {

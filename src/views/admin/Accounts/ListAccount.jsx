@@ -6,12 +6,10 @@ import { TitleContext } from "../../../Contexts/ToolContext";
 import { useDispatch, useSelector } from "react-redux";
 import { getListUser, getUsers } from "../../../store/reducers/user";
 
-function ListAccount({ users }) {
-  const [createdAt, setCreatedAt] = useState(new Date());
+function ListAccount() {
   const { setTitle } = useContext(TitleContext);
   const dispatch = useDispatch();
   const userList = useSelector(getUsers);
-  moment(createdAt).format();
 
   useEffect(() => {
     setTitle("DASHBOARD");
@@ -29,7 +27,7 @@ function ListAccount({ users }) {
             <th>AMOUNT</th>
             <th>PHONE</th>
             <th>ACCONNT NUMBER</th>
-            <th>PIN</th>
+              <th>PIN</th>
           </thead>
           {userList?.map((user, index) => (
             <tr key={index} className="selecter">
