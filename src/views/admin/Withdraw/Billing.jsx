@@ -2,12 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GoBack from "../../../components/Button/GoBack";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getBalanceUser,
-  selectBalance,
-  updateBalance,
-  updateUserBalance,
-} from "../../../store/reducers/user";
+import { getBalanceUser, selectBalance } from "../../../store/reducers/user";
 import { createWithdraw } from "../../../store/reducers/user";
 import { TitleContext } from "../../../Contexts/ToolContext";
 
@@ -23,11 +18,6 @@ function Billing({ amounts, id }) {
   // const date = new Date();
   const { setTitle } = useContext(TitleContext);
 
-  useEffect(() => {
-    dispatch(getBalanceUser(id));
-  }, []);
-
-  useEffect(() => {}, []);
   const handleUpdate = (e) => {
     e.preventDefault();
 
@@ -38,21 +28,22 @@ function Billing({ amounts, id }) {
     } else {
       dispatch(
         createWithdraw({
-          user_id: id,
+          accNumber: id,
           type: "withdraw",
-          balance: +user?.Account?.balance,
-          withdrawalAmount: +amounts,
+          amount: +amounts,
+          // amount: +user?.Account?.balance,
         })
       );
-      // dispatch(
-      //   updateUserBalance({
-      //     id: id,
-      //     balance: updateDataBalance?.updateAccount?.balance,
-      //   })
-      // );
+      dispatch(getBalanceUser(id));
       setIsExchangeCompleted(true);
     }
   };
+
+  useEffect(() => {
+    dispatch(getBalanceUser(id));
+  }, [!isExchangeCompleted]);
+
+  console.log(88888, remainingAmount);
 
   const Continue = () => {
     setTitle("DASHBOARD ");
@@ -82,7 +73,7 @@ function Billing({ amounts, id }) {
               Remaining amount : <span>{totalWallet}$</span>{" "}
             </p>
             <button
-              className="btn  btn_effect"
+              className="btn btn_effect"
               onClick={(e) => handleUpdate(e)}
             >
               {" "}
@@ -97,9 +88,7 @@ function Billing({ amounts, id }) {
           <h2>Successful transaction</h2>
           <h3>Thank you for using our service</h3>
           <h3>Do you want to continue making other transactions ? </h3>
-          <div
-            className="BillingInfor_btn"
-          >
+          <div className="BillingInfor_btn">
             <input
               type="button"
               value={"ENTER"}

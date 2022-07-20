@@ -5,32 +5,35 @@
   }
   .Withdrawal_cofirm {
     position: absolute;
-    bottom: 12%;
-}
-.header_menu {
-  margin-top: 0%;
-}
-.BalanceInquiry_button {
-  min-width: 14%;
-  height: 50px;
-  font-size: 24px;
-  border-radius: 10px;
-  border: none;
-  margin: 50px 100px;
-  cursor: pointer;
-  position: absolute;
-  right: 10%;
-  bottom: -3%;
-}
-.transfer_Container{
-  width: 900px;
-}
-.transfer_section h4,h5{
-  font-size: 18px;
-}
-.transtion_btn_inputAmount_input,.transition_btn_inputAmount {
-  font-size: 24px;
-}
+    bottom: 17%;
+    left: 29.7%;
+  }
+  .header_menu {
+    margin-top: -2%;
+  }
+  .BalanceInquiry_button {
+    min-width: 14%;
+    height: 50px;
+    font-size: 24px;
+    border-radius: 10px;
+    border: none;
+    margin: 50px 100px;
+    cursor: pointer;
+    position: absolute;
+    right: 10%;
+    bottom: 8%;
+  }
+  .transfer_Container {
+    width: 900px;
+  }
+  .transfer_section h4,
+  h5 {
+    font-size: 18px;
+  }
+  .transtion_btn_inputAmount_input,
+  .transition_btn_inputAmount {
+    font-size: 24px;
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -70,10 +73,7 @@
   }
   .Withdrawal_box {
     margin-top: 0%;
-  }
-  .Withdrawal_cofirm {
-    position: absolute;
-    bottom: 26%;
+    justify-content: center;
   }
   .BalanceInquiry_button {
     min-width: 25%;
@@ -94,10 +94,26 @@
     box-shadow: 3px 3px #999;
   }
   .Withdrawal_button {
-    margin: 28px 100px;
+    margin: 28px 10%;
   }
-  .transtion_btn_inputAmount_input,.transition_btn_inputAmount {
+  .transtion_btn_inputAmount_input,
+  .transition_btn_inputAmount {
     font-size: 24px;
+  }
+  .btn_inputAmount_submit {
+    font-size: 22px;
+  }
+  .btn_inputAmount {
+    left: 33%;
+    height: 6%;
+    font-size: 32px;
+    width: 38%;
+  }
+  .Withdrawal_cofirm {
+    position: absolute;
+    bottom: 26%;
+    width: 800px;
+    left: 16%;
   }
 }
 @media screen and (max-width: 768px) {
@@ -118,10 +134,11 @@
   }
   .sub_menu {
     margin-top: 14%;
-}
-.transtion_btn_inputAmount_input,.transition_btn_inputAmount {
-  font-size: 18px;
-}
+  }
+  .transtion_btn_inputAmount_input,
+  .transition_btn_inputAmount {
+    font-size: 18px;
+  }
   .header_menu h3 {
     font-size: 18px;
     margin-top: 20%;
@@ -175,10 +192,15 @@
     margin: 3%;
   }
   .Withdrawal_button {
-    min-width: 160px;
+    min-width: 190px;
     height: 45px;
     font-size: 14px;
     margin: 12px 50px;
+  }
+  .Withdrawal_cofirm_other {
+    position: absolute;
+    bottom: inherit;
+    left: -2%;
   }
   .Withdrawal_box {
     justify-content: center;
@@ -241,13 +263,9 @@
   .transfer h4 {
     font-size: 12px;
   }
-  /* .transfer_section {
-    min-width: 500px;
-    padding: 10px 0;
-  } */
   .transfer_section > h5 {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
   .transition_btn_inputAmount {
     font-size: 26px;

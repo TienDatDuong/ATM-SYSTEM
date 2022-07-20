@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 8%;
+  margin-top: 4%;
   max-width: 800px;
   flex-direction: row;
   flex-wrap: wrap;
@@ -30,6 +30,9 @@
   margin: 50px 100px;
   cursor: pointer;
   color: #fff;
+  /* position: absolute;
+  right: 16%;
+  bottom: 10%; */
 }
 
 .BalanceInquiry_button:hover {
@@ -37,7 +40,7 @@
 }
 
 .BalanceInquiry_button_main {
- background-image: linear-gradient(to left, #00502f ,#82BC00 );
+  background-image: linear-gradient(to left, #00502f, #82bc00);
 }
 .BalanceInquiry_box {
   border: 2px solid #ccc;
@@ -58,20 +61,38 @@
   font-size: 24px;
   font-weight: 600;
 }
-.BalanceInquiry_box_lable h2{
+.BalanceInquiry_box_lable h2 {
   font-size: 24px;
 }
 .PageHeader {
-  min-height: 10%;
+  min-height: 8%;
   min-width: 100vw;
   max-width: 1240px;
-  background-image: linear-gradient(to left, #00502f ,#82BC00 );
-  /* background-color: #00502f; */
+  background-image: linear-gradient(to left, #00502f, #82bc00);
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   display: flex;
+  align-items: center;
+  padding-left: 5%;
+  color: #fff;
+  letter-spacing: 2px;
+  font-weight: 300;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.PageFooter {
+  min-height: 6%;
+  min-width: 100vw;
+  max-width: 1240px;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
   align-items: center;
   padding-left: 5%;
   color: #fff;

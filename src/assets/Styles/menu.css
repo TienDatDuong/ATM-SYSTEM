@@ -1,15 +1,14 @@
 .menu {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   flex-direction: column;
   padding: 8% 0 1% 0;
   text-transform: uppercase;
 }
-.header_menu{
+.header_menu {
   margin-top: 2%;
 }
-.header_menu h2{
+.header_menu h2 {
   font-size: 20px;
   text-align: center;
   padding: 20px;
@@ -30,7 +29,7 @@
   position: sticky;
   top: 0;
 }
-.sub_menu{
+.sub_menu {
   display: flex;
   justify-content: space-between;
   flex-direction: column;

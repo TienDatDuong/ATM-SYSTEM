@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .App {
@@ -48,7 +48,7 @@ td {
 }
 
 thead {
-  background-color: #82BC00;
+  background-color: #82bc00;
   color: #fff;
   text-transform: uppercase;
 }
@@ -63,7 +63,7 @@ thead {
   min-width: 150px;
   min-height: 50px;
   margin: 20px;
-  background-image: linear-gradient(to left, #00502f ,#82BC00 );
+  background-image: linear-gradient(to left, #00502f, #82bc00);
   color: #fff;
   font-size: 20px;
 }
@@ -93,14 +93,14 @@ thead {
 }
 
 .navBar_item {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   text-decoration: none;
   margin-left: 30px;
   color: #000;
   padding: 20px 25px;
-  min-width: 250px;
-  background-image: linear-gradient(to left, #00502f ,#82BC00 );
+  min-width: 32%;
+  background-image: linear-gradient(to left, #00502f, #82bc00);
   color: #fff;
   text-align: center;
   border-radius: 10px;

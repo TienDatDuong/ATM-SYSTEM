@@ -1,30 +1,35 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { TitleContext } from "../../../Contexts/ToolContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getListUser,
-  getUsers,
+  selectUsers,
   selectUser,
   UpDateTransfer,
   getBalanceUser,
   selectBalance,
+  getUser,
 } from "../../../store/reducers/user";
+import TransferHistory from "./TransferHistory";
 
 function Transfer() {
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState("");
   const [content, setContent] = useState("");
   const [acc, setAccs] = useState([]);
   const [isInfo, isSetInfo] = useState(false);
+  const [isBill, isSetBill] = useState(false);
   const bankuser = useSelector(selectUser);
   const balanceUser = useSelector(selectBalance);
   const { setTitle } = useContext(TitleContext);
-  const listAcc = useSelector(getUsers);
+  const listAcc = useSelector(selectUsers);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const params = useParams();
+  const id = params.id;
 
   const handlerSubmit = () => {
-    setTitle("DASHBOARD ");
+    setTitle("DASHBOARD");
     navigate(-1);
   };
 
@@ -46,27 +51,36 @@ function Transfer() {
     const value = e.target.value;
     setContent(value);
   };
-  const Continue = () => {
-    dispatch(
-      UpDateTransfer({
-        type: "transfer",
-        transfer_amount: amount,
-        information: content,
-        sender_id: bankuser.Account._id,
-        receiver_id: acc._id,
-      })
-    );
-    isSetInfo(!isInfo);
-    navigate(-1);
-    setTitle("DASHBOARD ");
-  };
 
+  const Continue = () => {
+    if (amount === 0) {
+      alert("Please enter the amount ");
+    } else {
+      dispatch(
+        UpDateTransfer({
+          type: "transfer",
+          accNumber: id,
+          accNumberReceived: acc._id,
+          amount: amount,
+          information: content,
+        })
+      );
+      isSetBill(!isBill);
+    }
+  };
+console.log(999,acc)
   useEffect(() => {
     setTitle("TRANSFER");
     dispatch(getListUser());
-    dispatch(getBalanceUser(bankuser.Account._id));
   }, []);
-  console.log("balanceUser", balanceUser);
+
+  useEffect(() => {
+    dispatch(getUser(id));
+    dispatch(getBalanceUser(id));
+  }, [!isBill]);
+
+  var receiver = listAcc.filter((item) => item?._id !== bankuser.Account?._id);
+
   return (
     <div>
       <div className="transfer">
@@ -78,11 +92,11 @@ function Transfer() {
               <th>ACCONNT NUMBER</th>
             </thead>
 
-            {listAcc.map((user, index) => (
+            {receiver.map((user, index) => (
               <tr key={index} className="selecter">
                 <td>
                   <nav
-                    className="uppercase"
+                    className="uppercase curser"
                     onClick={() => handlerTransfer({ user })}
                   >
                     {user?.accName}{" "}
@@ -92,12 +106,12 @@ function Transfer() {
               </tr>
             ))}
           </table>
-        ) : (
+        ) : isBill === false ? (
           <div className="transfer_Container">
             <h3>Transferr Information :</h3>
             <div className="transfer_section">
-              <h4>Source account : {bankuser.Account.accName} </h4>
-              <h5>Available balances : {balanceUser.Account.balance} $ </h5>
+              <h4>Source account : {bankuser?.Account?.accName} </h4>
+              <h5>Available balances : {balanceUser?.Account?.balance} $ </h5>
             </div>
 
             <h3>Beneficiary information :</h3>
@@ -113,7 +127,7 @@ function Transfer() {
               </div>
               <div className="transition_btn_inputAmount ">
                 <input
-                  type="text"
+                  type="number"
                   className="transtion_btn_inputAmount_input"
                   placeholder={"Amount of money ... "}
                   value={amount}
@@ -144,6 +158,15 @@ function Transfer() {
               />
             </div>
           </div>
+        ) : (
+          <TransferHistory
+            bankuser={bankuser}
+            acc={acc}
+            amount={amount}
+            isBill={isBill}
+            isSetBill={isSetBill}
+            content={content}
+          />
         )}
       </div>
       <button

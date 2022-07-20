@@ -9,20 +9,20 @@ function User() {
   const dispatch = useDispatch();
   const users = useSelector(selectUser);
   const params = useParams();
+  const id = params.id;
 
   useEffect(() => {
-    const id = params.id;
     dispatch(getUser(id));
   }, []);
 
   useEffect(() => {
     setTitle("DASHBOARD");
   }, []);
-  console.log(111,users)
+
   return (
     <div className="menu">
       <div className="header_menu">
-        <h3>ACCOUNT NUMBER : {users?.Account?.accName} </h3>
+        <h3>ACCOUNT NUMBER :{users?.Account?.accName}</h3>
         <h2>PHONE : {users?.Account?.accPhone}</h2>
       </div>
 

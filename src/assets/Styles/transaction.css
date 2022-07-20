@@ -1,0 +1,22 @@
+.changepin h1 {
+  text-align: center;
+  margin: 2%;
+}
+.changepin table {
+  margin-top: 5%;
+}
+.changepin_text:hover {
+  transform: scale(0.7);
+}
+
+.btn_changepin {
+  background-image: linear-gradient(to left, #00502f, #82bc00);
+  position: absolute;
+  bottom: 40%;
+  left: 37.5%;
+  height: 8%;
+  font-size: 32px;
+  width: 25%;
+  border-radius: 12px;
+  border: 2px solid #00502f;
+}
