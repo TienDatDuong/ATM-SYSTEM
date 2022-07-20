@@ -1,4 +1,4 @@
-@media  screen and (min-width: 1025px) {
+@media screen and (min-width: 1025px) {
   .Withdrawal_button_main {
     font-size: 24px;
     width: 25%;
@@ -6,8 +6,8 @@
   .Withdrawal_cofirm {
     position: absolute;
     bottom: 17%;
-    left: 30%;
-}
+    left: 29.7%;
+  }
   .header_menu {
     margin-top: -2%;
   }
@@ -36,7 +36,7 @@
   }
 }
 
-@media  screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
   .PageHeader {
     height: 8%;
   }
@@ -116,7 +116,7 @@
     left: 16%;
   }
 }
-@media  screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .PageHeader {
     min-height: 6%;
   }
@@ -201,7 +201,7 @@
     position: absolute;
     bottom: inherit;
     left: -2%;
-}
+  }
   .Withdrawal_box {
     justify-content: center;
     margin-top: 10%;
@@ -265,7 +265,7 @@
   }
   .transfer_section > h5 {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
   .transition_btn_inputAmount {
     font-size: 26px;
@@ -298,5 +298,4 @@
   .transfer_Container {
     width: 100%;
   }
- 
 }

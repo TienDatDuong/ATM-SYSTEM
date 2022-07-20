@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { TitleContext } from "../../../Contexts/ToolContext";
 import { useDispatch, useSelector } from "react-redux";
-import { getListUser, getUsers } from "../../../store/reducers/user";
+import { getListUser, selectUsers } from "../../../store/reducers/user";
 
 function ListAccount() {
   const { setTitle } = useContext(TitleContext);
   const dispatch = useDispatch();
-  const userList = useSelector(getUsers);
+  const userList = useSelector(selectUsers);
 
   useEffect(() => {
     setTitle("DASHBOARD");

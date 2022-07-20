@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getListUser,
-  getUsers,
+  selectUsers,
   selectUser,
   UpDateTransfer,
   getBalanceUser,
@@ -22,7 +22,7 @@ function Transfer() {
   const bankuser = useSelector(selectUser);
   const balanceUser = useSelector(selectBalance);
   const { setTitle } = useContext(TitleContext);
-  const listAcc = useSelector(getUsers);
+  const listAcc = useSelector(selectUsers);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();

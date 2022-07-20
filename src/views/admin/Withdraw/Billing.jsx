@@ -18,7 +18,6 @@ function Billing({ amounts, id }) {
   // const date = new Date();
   const { setTitle } = useContext(TitleContext);
 
-  useEffect(() => {}, []);
   const handleUpdate = (e) => {
     e.preventDefault();
 
@@ -74,7 +73,7 @@ function Billing({ amounts, id }) {
               Remaining amount : <span>{totalWallet}$</span>{" "}
             </p>
             <button
-              className="btn  btn_effect"
+              className="btn btn_effect"
               onClick={(e) => handleUpdate(e)}
             >
               {" "}

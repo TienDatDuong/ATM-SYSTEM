@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { TitleContext } from "../../../Contexts/ToolContext";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getTransaction,
+  selectTransaction,
   getListTransaction,
 } from "../../../store/reducers/user";
 import GoBack from "../../../components/Button/GoBack";
@@ -12,7 +12,7 @@ import GoBack from "../../../components/Button/GoBack";
 function Transaction() {
   const { setTitle } = useContext(TitleContext);
   const dispatch = useDispatch();
-  const userList = useSelector(getTransaction);
+  const userList = useSelector(selectTransaction);
   const params = useParams();
   const id = params.id;
 
