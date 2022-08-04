@@ -31,26 +31,33 @@ tr {
 }
 .uppercase {
   text-transform: uppercase;
-  text-align: left;
+  text-align: center;
   margin-left: 2%;
 }
 .selecter_number {
   text-align: right;
-  padding-right: 6%;
 }
 th,
 td {
   border: 2px solid #000;
-  width: 200px;
+  max-width: 200px;
   height: 35px;
   text-align: center;
   border-spacing: 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0 10px;
+  min-width: 110px;
 }
-
+th:hover {
+  overflow: visible;
+}
 thead {
   background-color: #82bc00;
   color: #fff;
   text-transform: uppercase;
+  min-width: 100px;
 }
 
 .btn {
@@ -83,7 +90,7 @@ thead {
 }
 
 .navBar {
-  width: 60%;
+  width: 65%;
   height: 10%;
   margin: auto;
   display: flex;
